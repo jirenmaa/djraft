@@ -265,7 +265,7 @@ Session.vim
 tags
 
 # Pre-created files
-./obsidian/static/css/tailwind.css
+obsidian/static/css/tailwind.css
 
 ### VirtualEnv template
 # Virtualenv
