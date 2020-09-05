@@ -4,8 +4,7 @@ Obsidian
 Project to learn.
 A `Medium.com`_.
 
-.. _`Medium.com`: https://medium.com/
-Clone.
+.. _`Medium.com`: https://medium.com/ Clone.
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
      :target: https://github.com/pydanny/cookiecutter-django/
