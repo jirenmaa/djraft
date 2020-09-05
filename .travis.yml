@@ -6,9 +6,6 @@ python:
 services:
   - postgresql
 
-addons:
-  postgresql: "12"
-
 install:
   # python deps
   - python -m pip install --upgrade pip
