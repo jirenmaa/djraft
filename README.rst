@@ -2,9 +2,9 @@ Obsidian
 ========
 
 Project to learn.
-A `Medium.com`_.
+A Clone of `Medium.com`_.
 
-.. _`Medium.com`: https://medium.com/ Clone.
+.. _`Medium.com`: https://medium.com/
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
      :target: https://github.com/pydanny/cookiecutter-django/
