@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "tailwindcss": "^1.8.2"
+  },
+  "scripts": {
+    "build-tailwind": "tailwindcss build public/tailwind/tailwind.css -o obsidian/static/css/tailwind.css"
+  }
+}
