@@ -264,6 +264,8 @@ Session.vim
 # Auto-generated tag files
 tags
 
+# Pre-created files
+./obsidian/static/css/tailwind.css
 
 ### VirtualEnv template
 # Virtualenv
@@ -283,6 +285,9 @@ obsidian/media/
 .pytest_cache/
 
 
-.env
-.envs/*
-!.envs/.local/
+.env
+
+.envs/*
+
+!.envs/.local/
+
