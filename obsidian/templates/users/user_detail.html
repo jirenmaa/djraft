@@ -1,36 +1,26 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}User: {{ object.username }}{% endblock %}
-
-{% block content %}
-<div class="container">
-
-  <div class="row">
-    <div class="col-sm-12">
-
-      <h2>{{ object.username }}</h2>
+{% extends "base.html" %} {% load static %} {% block title %} User:
+{{object.username }} {% endblock %} {% block content %}
+<div class="container mx-auto px-4 sm:px-12 lg:px-20">
+  {% if object == request.user %}
+  <div class="container mx-auto px-4 sm:px-12 lg:px-20 flex justify-around">
+    <div class="user-info">
+      <!-- {% url 'account_email' %}
+      {% url 'users:update' %} -->
+      <h2 class="text-4xl font-bold">{{ object.username }}</h2>
       {% if object.name %}
-        <p>{{ object.name }}</p>
+      <p>{{ object.name }}</p>
       {% endif %}
     </div>
+    <div class="user-image">
+      <img
+        src="{% static 'images/avatars/kazuha.jpg' %}"
+        width="300"
+        height="300"
+        class="rounded-full"
+        alt=""
+      />
+    </div>
   </div>
-
-{% if object == request.user %}
-<!-- Action buttons -->
-<div class="row">
-
-  <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <!-- Your Stuff: Custom user template urls -->
-  </div>
-
-</div>
-<!-- End Action buttons -->
-{% endif %}
-
-
+  {% endif %}
 </div>
 {% endblock content %}
-
