@@ -14,7 +14,7 @@ A Clone of `Medium.com`_.
      :alt: Black code style
 .. image:: https://travis-ci.com/jirenmaa/django-obsidian.svg?branch=master
      :target: https://travis-ci.com/github/jirenmaa/django-obsidian
-     :alt: travis ci
+     :alt: Travis ci
 
 
 :License: MIT
