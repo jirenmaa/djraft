@@ -27,7 +27,9 @@
           <a href="{% url 'users:detail' request.user.username  %}" class="mx-6"
             >{{request.user.username}}</a
           >
-          <a href="{% url 'account_logout' %}" class="mx-6">{% trans "Sign Out" %}</a>
+          <a href="{% url 'account_logout' %}" class="mx-6"
+            >{% trans "Sign Out" %}</a
+          >
           {% else %}
           <a href="{% url 'account_login' %}" class="mx-6"
             >{% trans "Sign In" %}</a
@@ -43,20 +45,7 @@
     </nav>
 
     <section class="container mx-auto p-12 px-4 sm:px-12 lg:px-5">
-      {% if messages %} {% for message in messages %}
-      <div
-        class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}"
-      >
-        {{ message }}<button
-          type="button"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      {% endfor %} {% endif %} {% block content %}
+      {% block content %}
       <div class="grid grid-cols-2">
         <div class="content-title px-3">
           <p class="text-5xl font-bold">

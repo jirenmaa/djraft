@@ -1,7 +1,7 @@
 from django.db import models
 
 from core.models import TimestampedModel
-from users.models import User
+from obsidian.users.models import User
 
 
 class Tag(TimestampedModel):
@@ -23,6 +23,7 @@ class Article(TimestampedModel):
     # many `Article`s.
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="articles")
 
+    image = models.URLField(blank=True)
     description = models.TextField()
     body = models.TextField()
     tags = models.ManyToManyField(Tag, related_name="articles")
