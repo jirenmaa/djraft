@@ -1,14 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obsidian - Articles</title>
-</head>
-<body>
-    <div>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae architecto facere harum quos quo quas quod porro accusantium quidem, ducimus hic possimus distinctio nam deserunt, consectetur illo vel, repudiandae nesciunt.</p>
-        <p>{{data}}</p>
+{% extends "base.html" %} {% load static %} {% block title %} Obsidian -
+Articles {% endblock %} {% block content %}
+<div class="container px-4 sm:px-12 lg:px-24">
+  <header>
+    <h1 class="tracking-widest">TAGGED IN</h1>
+    <h1 class="text-4xl">Python</h1>
+  </header>
+  <div class="grid grid-cols-3 gap-4 mt-12">
+    <div class="left-side col-span-1 border-t">
+      <div class="">
+        <!-- fixed w-1/4 -->
+        <div class="heading-title py-4">Related tags</div>
+        <div class="tags related--tags text-sm">
+          <a href="#" class="mr-3">Data Sience</a>
+          <a href="#" class="mr-3">Programming</a>
+          <a href="#" class="mr-3">Django</a>
+          <a href="#" class="mr-3">Python 3</a>
+          <a href="#" class="mr-3">Flask</a>
+          <a href="#" class="mr-3">Software Development</a>
+          <a href="#" class="mr-3">Python Programming</a>
+        </div>
+      </div>
     </div>
-</body>
-</html>
+    <div class="article-list col-span-2 px-4 sm:px-12 lg:px-8">
+      {% for article in articles %}
+      <div class="card shadow-sm border rounded-sm p-4 mb-5">
+        <a href="{{article.slug}}">
+          <div class="u-infoArticle flex">
+            <img
+              class="rounded-full"
+              src="{{article.author.image}}"
+              alt="avatar"
+              width="50"
+              height="50"
+            />
+            <div class="u ml-3">
+              <p class="font-bold">{{ article.author }}</p>
+              <small class="text-gray-700">{{ article.date_posted }}</small>
+            </div>
+          </div>
+          <div class="SJQN4PyU7r my-5">
+            <div class="img">
+              <img
+                src="{{ article.image }}"
+                class="article-image"
+                alt="article-image"
+              />
+            </div>
+          </div>
+          <h1 class="font-bold text-2xl pb-3">{{ article.title }}</h1>
+          <p class="pb-5">{{ article.body | slice:":150" }} ...</p>
+        </a>
+        <small style="color: #979797" class="hover:text-gray-500">
+          <a href="#">Read more...</a>
+        </small>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

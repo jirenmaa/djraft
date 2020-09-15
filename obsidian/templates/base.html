@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Obsidian{% endblock title %}</title>
+    <title>{% block title %}Medium{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Medium.com clone | Learn purpose only" />
     <meta name="author" content="jirenmaa" />
@@ -12,13 +12,14 @@
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
     {% block css %}
     <link href="{% static 'css/tailwind.css' %}" rel="stylesheet" />
+    <link href="{% static 'sass/project.css' %}" rel="stylesheet" />
     {% endblock %}
   </head>
   <body class="text-gray-800">
-    <nav class="container mx-auto p-12 px-4 sm:px-12 lg:px-12">
-      <div class="flex justify-between">
+    <nav class="shadow mx-auto p-5 px-4 sm:px-12 lg:px-12">
+      <div class="container px-4 sm:px-12 lg:px-24 flex justify-between">
         <div id="site" class="site text-2xl font-bold">
-          <a href="{% url 'home' %}">Obsidian</a>
+          <a href="{% url 'home' %}">Medium</a>
         </div>
         <div id="navigation" class="navigation float-right">
           <a href="#" class="mx-6">About</a>

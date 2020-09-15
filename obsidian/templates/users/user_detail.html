@@ -1,5 +1,9 @@
-{% extends "base.html" %} {% load static %} {% block title %} User:
-{{object.username }} {% endblock %} {% block content %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} User: {{object.username }} {% endblock %}
+
+{% block content %}
 <div class="container mx-auto px-4 sm:px-12 lg:px-20">
   {% if object == request.user %}
   <div class="container mx-auto px-4 sm:px-12 lg:px-20 flex justify-around">
