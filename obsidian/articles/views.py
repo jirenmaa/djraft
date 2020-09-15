@@ -10,6 +10,16 @@ class ArticleLists(LoginRequiredMixin, ListView):
     model = Article
 
     def get_context_data(self, **kwargs):
-        return {"data": "yes"}
+        articles = Article.objects.all()
+        contexts = {
+            "articles": articles
+        }
+
+        for i in articles:
+            print(i.author.image)
+
+        return contexts
+
+
 
 articles_view = ArticleLists.as_view()

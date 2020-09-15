@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from core.models import TimestampedModel
 from obsidian.users.models import User
@@ -24,9 +25,10 @@ class Article(TimestampedModel):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="articles")
 
     image = models.URLField(blank=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     body = models.TextField()
-    tags = models.ManyToManyField(Tag, related_name="articles")
+    date_posted = models.DateTimeField(default=timezone.now)
+    tags = models.ManyToManyField(Tag, related_name="articles", blank=True)
 
     def __str__(self):
         return self.title
