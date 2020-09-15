@@ -9,4 +9,22 @@
   border-color: #eed3d7;
   color: #b94a48;
 }
+
+.SJQN4PyU7r img {
+  height: auto;
+  max-width: 100%;
+}
+
+.SJQN4PyU7r .img {
+  overflow: hidden;
+  height: 192px;
+  width: 600px;
+}
+
+.SJQN4PyU7r .img img {
+  float: right;
+  margin-top: -10%;
+  /* crop position */
+  color: #979797;
+}
 /*# sourceMappingURL=project.css.map */

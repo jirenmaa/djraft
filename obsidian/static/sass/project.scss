@@ -1,11 +1,7 @@
-
-
-
-
 // project specific CSS goes here
 
 ////////////////////////////////
-		//Variables//
+//Variables//
 ////////////////////////////////
 
 // Alert colors
@@ -18,7 +14,7 @@ $dark-pink: #eed3d7;
 $red: #b94a48;
 
 ////////////////////////////////
-		//Alerts//
+//Alerts//
 ////////////////////////////////
 
 // bootstrap alert CSS, translated to the django-standard levels of
@@ -34,4 +30,22 @@ $red: #b94a48;
   background-color: $pink;
   border-color: $dark-pink;
   color: $red;
+}
+
+.SJQN4PyU7r {
+  img {
+    height: auto;
+    max-width: 100%;
+  }
+
+  .img {
+    overflow: hidden;
+    height: 192px;
+    width: 600px;
+
+    img {
+      float: right;
+      margin-top: -10%; /* crop position */
+    }
+  }
 }
