@@ -2,7 +2,6 @@ Obsidian
 ========
 
 Project to learn.
-A Clone of `Medium.com`_.
 
 .. _`Medium.com`: https://medium.com/
 
