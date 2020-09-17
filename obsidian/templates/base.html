@@ -19,7 +19,7 @@
     <nav class="shadow mx-auto p-5 px-4 sm:px-12 lg:px-12">
       <div class="container px-4 sm:px-12 lg:px-24 flex justify-between">
         <div id="site" class="site text-2xl font-bold">
-          <a href="{% url 'home' %}">Medium</a>
+          <a href="{% url 'home:landing' %}">Medium</a>
         </div>
         <div id="navigation" class="navigation float-right">
           <a href="#" class="mx-6">About</a>
@@ -46,23 +46,7 @@
     </nav>
 
     <section class="container mx-auto p-12 px-4 sm:px-12 lg:px-5">
-      {% block content %}
-      <div class="grid grid-cols-2">
-        <div class="content-title px-3">
-          <p class="text-5xl font-bold">
-            We Giving The Best Topics That Matter To You
-          </p>
-          <p class="mt-6 mb-12">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus
-            modi, recusandae animi nostrum nisi incidunt. Sint, animi!
-            Laudantium voluptatibus temporibus excepturi
-          </p>
-          <a href="#" class="px-16 py-4 bg-gray-400 hover:bg-gray-600"
-            >Get Started</a
-          >
-        </div>
-      </div>
-      {% endblock content %}
+      {% block content %}{% endblock content %}
     </section>
 
     {% block javascript %} {% endblock javascript %}

@@ -11,15 +11,22 @@ class ArticleLists(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         articles = Article.objects.all()
-        contexts = {
-            "articles": articles
-        }
+        contexts = {"articles": articles}
 
         for i in articles:
-            print(i.author.image)
+            print(i)
 
         return contexts
 
 
-
 articles_view = ArticleLists.as_view()
+
+
+class ArticleCreate(LoginRequiredMixin, View):
+    model = Article
+
+    def post(self, request, *args, **kwargs):
+        pass
+
+
+articles_create = ArticleCreate.as_view()

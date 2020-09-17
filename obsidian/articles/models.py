@@ -1,4 +1,6 @@
 from django.db import models
+from random import randint
+from django.db.models import Count
 from django.utils import timezone
 
 from core.models import TimestampedModel
@@ -12,6 +14,11 @@ class Tag(TimestampedModel):
     def __str__(self):
         return self.tag
 
+class ArticleManager(models.Manager):
+    def random(self):
+        count = self.aggregate(ids=Count('id'))['ids']
+        random_index = randint(0, count - 1)
+        return self.all()[random_index]
 
 class Article(TimestampedModel):
     slug = models.SlugField(max_length=100, unique=True)
@@ -29,6 +36,8 @@ class Article(TimestampedModel):
     body = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     tags = models.ManyToManyField(Tag, related_name="articles", blank=True)
+
+    objects = ArticleManager()
 
     def __str__(self):
         return self.title

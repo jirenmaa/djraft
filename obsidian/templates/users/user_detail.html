@@ -8,8 +8,8 @@
   {% if object == request.user %}
   <div class="container mx-auto px-4 sm:px-12 lg:px-20 flex justify-around">
     <div class="user-info">
-      <!-- {% url 'account_email' %}
-      {% url 'users:update' %} -->
+      {% comment %} {% url 'account_email' %} {% endcomment %}
+      {% comment %} <a href="{% url 'users:update' %}">update</a> {% endcomment %}
       <h2 class="text-4xl font-bold">{{ object.username }}</h2>
       {% if object.name %}
       <p>{{ object.name }}</p>

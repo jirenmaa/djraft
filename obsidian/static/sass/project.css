@@ -25,6 +25,18 @@
   float: right;
   margin-top: -10%;
   /* crop position */
-  color: #979797;
+}
+
+.kIibvJLrbf img {
+  height: 100px;
+  max-width: 100%;
+}
+
+.kIibvJLrbf .img {
+  overflow: hidden;
+}
+
+.kIibvJLrbf .img img {
+  float: right;
 }
 /*# sourceMappingURL=project.css.map */

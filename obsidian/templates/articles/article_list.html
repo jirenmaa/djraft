@@ -1,5 +1,9 @@
-{% extends "base.html" %} {% load static %} {% block title %} Obsidian -
-Articles {% endblock %} {% block content %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Obsidian - Articles {% endblock %}
+
+{% block content %}
 <div class="container px-4 sm:px-12 lg:px-24">
   <header>
     <h1 class="tracking-widest">TAGGED IN</h1>
@@ -22,23 +26,34 @@ Articles {% endblock %} {% block content %}
       </div>
     </div>
     <div class="article-list col-span-2 px-4 sm:px-12 lg:px-8">
+      <div class="heading-title mb-8">
+        <div class="flex text-sm">
+          <a href="#" class="mr-4 pb-2 border-b font-bold text-black border-black">Top Stories</a>
+          <a href="#" class="mr-4 pb-2">Archive</a>
+        </div>
+      </div>
       {% for article in articles %}
       <div class="card shadow-sm border rounded-sm p-4 mb-5">
-        <a href="{{article.slug}}">
-          <div class="u-infoArticle flex">
-            <img
-              class="rounded-full"
-              src="{{article.author.image}}"
-              alt="avatar"
-              width="50"
-              height="50"
-            />
-            <div class="u ml-3">
-              <p class="font-bold">{{ article.author }}</p>
-              <small class="text-gray-700">{{ article.date_posted }}</small>
-            </div>
+        <div class="u-infoArticle flex">
+          <img
+            class="rounded-full"
+            src="{{article.author.image}}"
+            alt="avatar"
+            width="50"
+            height="50"
+          />
+          <div class="u ml-3">
+            <p class="font-bold">{{ article.author }}</p>
+            <small class="text-gray-700">{{ article.date_posted | date:"M d" }} · 5 min read &#9733;</small>
           </div>
-          <div class="SJQN4PyU7r my-5">
+        </div>
+        <div class="article--tags my-5">
+          {% for tag in article.tags.all %}
+          <small class="pb-1 px-3 border rounded-full">{{ tag }}</small>
+          {% endfor %}
+        </div>
+        <a href="{{article.slug}}">
+          <div class="SJQN4PyU7r mb-5">
             <div class="img">
               <img
                 src="{{ article.image }}"
