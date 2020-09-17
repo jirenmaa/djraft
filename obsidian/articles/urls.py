@@ -1,10 +1,10 @@
 from django.urls import path
 
-from obsidian.articles.views import (articles_view, articles_create)
+from obsidian.articles.views import articles_list_view, articles_create_view
 
 app_name = "articles"
 urlpatterns = [
-    path("", view=articles_view, name="articles"),
-    path("~create/", view=articles_create, name="create"),
+    path("", view=articles_list_view, name="articles"),
+    path("~write/", view=articles_create_view, name="write"),
     # path("@<str:username>/<str:title_slug>")
 ]

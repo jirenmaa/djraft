@@ -36,7 +36,7 @@
       <div class="card shadow-sm border rounded-sm p-4 mb-5">
         <div class="u-infoArticle flex">
           <img
-            class="rounded-full"
+            class="rounded-full border-t border-b"
             src="{{article.author.image}}"
             alt="avatar"
             width="50"
@@ -44,7 +44,7 @@
           />
           <div class="u ml-3">
             <p class="font-bold">{{ article.author }}</p>
-            <small class="text-gray-700">{{ article.date_posted | date:"M d" }} · 5 min read &#9733;</small>
+            <small class="text-gray-700">{{ article.created_at | date:"M d" }} · 5 min read &#9733;</small>
           </div>
         </div>
         <div class="article--tags my-5">
@@ -56,7 +56,7 @@
           <div class="SJQN4PyU7r mb-5">
             <div class="img">
               <img
-                src="{{ article.image }}"
+                src="{{ article.cover }}"
                 class="article-image"
                 alt="article-image"
               />

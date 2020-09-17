@@ -3,7 +3,10 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView, RedirectView, UpdateView
+from django.shortcuts import render
+from django.views.generic import DetailView, RedirectView, UpdateView, ListView
+
+from articles.models import Article
 
 User = get_user_model()
 
@@ -48,3 +51,11 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 user_redirect_view = UserRedirectView.as_view()
+
+
+class UserStoryDetailView(LoginRequiredMixin, DetailView):
+    template_name_suffix = "story_detail"
+    slug_url_kwarg = ["username", "slug"]
+
+
+user_story_view = UserStoryDetailView.as_view()

@@ -1,7 +1,9 @@
 from django.db import models
-from random import randint
 from django.db.models import Count
 from django.utils import timezone
+from django.utils.text import slugify
+
+from random import randint
 
 from core.models import TimestampedModel
 from obsidian.users.models import User
@@ -14,13 +16,15 @@ class Tag(TimestampedModel):
     def __str__(self):
         return self.tag
 
+
 class ArticleManager(models.Manager):
     def random(self):
-        count = self.aggregate(ids=Count('id'))['ids']
+        count = self.aggregate(ids=Count("id"))["ids"]
         random_index = randint(0, count - 1)
         return self.all()[random_index]
 
-class Article(TimestampedModel):
+
+class Article(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
     title = models.CharField(max_length=100)
 
@@ -31,16 +35,32 @@ class Article(TimestampedModel):
     # many `Article`s.
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="articles")
 
-    image = models.URLField(blank=True)
+    cover = models.URLField(blank=True)
     description = models.TextField(blank=True)
     body = models.TextField()
-    date_posted = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(Tag, related_name="articles", blank=True)
 
     objects = ArticleManager()
 
+    class Meta:
+        ordering = ["-created_at", "-updated_at"]
+
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse(
+            "users:story", kwargs={"username": self.author.username, "slug": self.slug}
+        )
+
+    def save(self):
+        eslug = (self.title + str(self.date_posted)).encode("utf-8")[-12:]
+        self.slug = slugify(self.title + eslug)
+
+        super(Article, self).save()
+        return eslug
 
 
 class Comments(TimestampedModel):
