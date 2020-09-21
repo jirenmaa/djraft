@@ -21,44 +21,16 @@ articles_list_view = ArticleLists.as_view()
 
 
 class ArticleCreate(LoginRequiredMixin, CreateView):
-    model = Article
-    fields = ('title', 'description')
-
     success_url = "/"
-    # template_name = 'articles/article_form.html'
-    # form_class = ArticleForm
+    template_name = "articles/article_form.html"
+    form_class = ArticleForm
 
-    # def form_valid(self, form):
-    #     self.object = form.save(commit=False)
-    #     self.object.author = self.request.user
-    #     self.object.save()
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user
+        self.object.save()
 
-    #     return reverse("articles:articles")
-
-    # def get(self, *args, **kwargs):
-    #     form = ArticleForm(self.request.POST or None)
-
-    # def post(self, *args, **kwargs):
-    #     form = ArticleForm(self.request.POST or None)
-    #     try:
-    #         if form.is_valid():
-    #             article = Article.objects.create(
-    #                 title=form.cleaned_data.get("article_title"),
-    #                 cover=form.cleaned_data.get("article_cover"),
-    #                 description=form.cleaned_data.get("article_descr"),
-    #                 body=form.cleaned_data.get("article_body"),
-    #                 tags=form.cleaned_data.get("article_tags"),
-    #             )
-    #             eslug = article.save()
-    #             return redirect(
-    #                 "users:story",
-    #                 kwargs={
-    #                     "username": self.request.user.username,
-    #                     "slug_article": eslug,
-    #                 },
-    #             )
-    #     except Exception as ex:
-    #         return ex
+        return reverse("articles:articles")
 
 
 articles_create_view = ArticleCreate.as_view()

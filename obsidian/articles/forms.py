@@ -41,18 +41,47 @@ def image_exists(domain, path):
     return response.status == 200
 
 
-class ArticleForm(forms.Form):
-    # class Meta:
-    #     model = Article
-    #     exclude = ()
-        # exclude = ('slug', 'author')
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        exclude = ("slug", "author")
 
     def __init__(self, *args, **kwargs):
-        # self.author = kwargs.pop("author")
         super(ArticleForm, self).__init__(*args, **kwargs)
 
-    article_title = forms.CharField(max_length=100, required=True)
-    article_cover = forms.URLField(required=True)
-    article_descr = forms.CharField(required=False)
-    article_body = forms.CharField()
-    article_tags = forms.CharField(required=False)
+    title = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "There Is No Utopia",
+                "autofocus": "off",
+                "class": "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+            }
+        ),
+    )
+    cover = forms.URLField(
+        required=True,
+        help_text="Your image url",
+        widget=forms.TextInput(
+            attrs={
+                "class": "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+            }
+        ),
+    )
+    description = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+            }
+        ),
+    )
+    body = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+            }
+        ),
+    )
+    tags = forms.CharField(required=False)

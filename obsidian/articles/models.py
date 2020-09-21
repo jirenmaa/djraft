@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Count
 from django.utils import timezone
 from django.utils.text import slugify
+from django.urls import reverse
 
 from random import randint
 
@@ -56,11 +57,11 @@ class Article(models.Model):
         )
 
     def save(self):
-        eslug = (self.title + str(self.date_posted)).encode("utf-8")[-12:]
-        self.slug = slugify(self.title + eslug)
+        ptitle = self.title.replace(" ", "-").lower()
+        eslug = (self.title[:7] + str(self.created_at)).encode("utf-8").hex()[-12:]
+        self.slug = slugify("%s-%s" % (ptitle, eslug))
 
         super(Article, self).save()
-        return eslug
 
 
 class Comments(TimestampedModel):

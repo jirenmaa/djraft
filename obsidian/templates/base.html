@@ -18,19 +18,45 @@
   <body class="text-gray-800">
     <nav class="shadow mx-auto p-5 px-4 sm:px-12 lg:px-12">
       <div class="container px-4 sm:px-12 lg:px-24 flex justify-between">
-        <div id="site" class="site text-2xl font-bold">
-          <a href="{% url 'home:landing' %}">Medium</a>
+        <div id="site" class="site text-2xl float-left font-bold">
+          <a href="{% url 'home:landing' %}" class="flex">
+            <!-- <img
+              src="{% static 'images/icons/obsidian.png' %}"
+              alt=""
+              srcset=""
+              width="32"
+              height="30"
+            /> -->
+            <img
+              src="{% static 'svgs/no-obsidian.svg' %}"
+              alt=""
+              srcset=""
+              width="35"
+              height="35"
+            />
+            <span class="ml-3">Obsidian</span>
+          </a>
         </div>
         <div id="navigation" class="navigation float-right">
-          <a href="#" class="mx-6">About</a>
-          <a href="#" class="mx-6">Write</a>
+          <a href="{% url 'articles:articles' %}" class="mx-6">Articles</a>
+          <a href="{% url 'articles:write' %}" class="mx-6">Write</a>
           {% if request.user.is_authenticated %}
-          <a href="{% url 'users:detail' request.user.username  %}" class="mx-6"
-            >{{request.user.username}}</a
-          >
           <a href="{% url 'account_logout' %}" class="mx-6"
             >{% trans "Sign Out" %}</a
           >
+          <a
+            href="{% url 'users:detail' request.user.username  %}"
+            class="mx-6"
+          >
+            <!-- <img
+              class="rounded-full"
+              src="{{request.user.image}}"
+              alt="avatar"
+              width="50"
+              height="50"
+          /> -->
+            {{ request.user.username }}
+          </a>
           {% else %}
           <a href="{% url 'account_login' %}" class="mx-6"
             >{% trans "Sign In" %}</a
