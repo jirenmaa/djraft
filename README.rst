@@ -45,6 +45,7 @@ Tailwindcss Config
 ^^^^^^^^^^^^^^^^^^^^^
 
      $ yarn install
+
      $ yarn tailwindcss build public/tailwind/tailwind.css
 
 Type checks
