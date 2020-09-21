@@ -42,7 +42,7 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 
 Tailwindcss Config
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
      $ yarn install
 

@@ -20,24 +20,17 @@
       <div class="container px-4 sm:px-12 lg:px-24 flex justify-between">
         <div id="site" class="site text-2xl float-left font-bold">
           <a href="{% url 'home:landing' %}" class="flex">
-            <!-- <img
-              src="{% static 'images/icons/obsidian.png' %}"
-              alt=""
-              srcset=""
-              width="32"
-              height="30"
-            /> -->
             <img
               src="{% static 'svgs/no-obsidian.svg' %}"
               alt=""
               srcset=""
-              width="35"
-              height="35"
+              width="30"
+              height="30"
             />
             <span class="ml-3">Obsidian</span>
           </a>
         </div>
-        <div id="navigation" class="navigation float-right">
+        <div id="navigation" class="navigation flex items-center float-right">
           <a href="{% url 'articles:articles' %}" class="mx-6">Articles</a>
           <a href="{% url 'articles:write' %}" class="mx-6">Write</a>
           {% if request.user.is_authenticated %}
@@ -48,14 +41,13 @@
             href="{% url 'users:detail' request.user.username  %}"
             class="mx-6"
           >
-            <!-- <img
+            <img
               class="rounded-full"
               src="{{request.user.image}}"
               alt="avatar"
-              width="50"
-              height="50"
-          /> -->
-            {{ request.user.username }}
+              width="35"
+              height="35"
+            />
           </a>
           {% else %}
           <a href="{% url 'account_login' %}" class="mx-6"

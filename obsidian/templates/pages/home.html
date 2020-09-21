@@ -4,33 +4,29 @@
   <div class="grid grid-cols-3 gap-4 mt-12">
     <div class="left-side col-span-2 px-4 sm:px-4 lg:px-4">
       {% for article in articles %}
-      <div class="card py-4">
-        <a href="{{article.slug}}">
-          <div class="flex justify-between">
-            <div class="w-9/12">
-              <p class="tracking-wide text-sm font-normal text-gray-600">
-                BASED ON YOUR READING HISTORY
-              </p>
-              <h1 class="font-bold text-xl pb-3">{{ article.title }}</h1>
-              <p class="pb-5">{{ article.body | slice:":100" }}.</p>
-              <p>{{ article.author }}</p>
-              <small class="text-gray-700">{{ article.date_posted }}</small>
-            </div>
-            <div class="w-3/12">
-              <div class="kIibvJLrbf mb-5">
-                <div class="img">
-                  <img
-                    src="{{ article.cover }}"
-                    class="article-image"
-                    alt="article-image"
-                    width="140"
-                    height="200"
-                  />
-                </div>
-              </div>
-            </div>
+      <div class="card pb-12">
+        <div class="flex justify-between">
+          <div class="w-9/12">
+            <p class="tracking-wide text-sm font-normal text-gray-600">
+              BASED ON YOUR READING HISTORY
+            </p>
+            <a href="{{article.slug}}">
+              <h1 class="font-bold text-xl">{{ article.title }}</h1>
+              <p class="text-sm pb-3">{{ article.body | slice:":100" }}.</p>
+            </a>
+            <p class="text-sm text-gray-900">@{{ article.author }}</p>
+            <small class="text-gray-700"
+              >{{ article.created_at | date:"M d" }}</small
+            >
           </div>
-        </a>
+          <div class="w-3/12">
+            <a href="{{article.slug}}"
+              ><img
+                src="https://cdn-images-1.medium.com/fit/c/152/156/1*pFaeNO48gYlRMQii977cQg.jpeg"
+                alt="article-image"
+            /></a>
+          </div>
+        </div>
       </div>
       {% endfor %}
     </div>

@@ -35,32 +35,18 @@ $red: #b94a48;
 .SJQN4PyU7r {
   img {
     height: auto;
-    max-width: 100%;
+    max-width: 100% !important;
   }
 
   .img {
     overflow: hidden;
     height: 192px;
-    width: 600px;
+    width: 594.5  px;
 
     img {
-      float: right;
+      float: left;
       margin-top: -10%; /* crop position */
     }
   }
 }
 
-.kIibvJLrbf {
-  img {
-    height: 100px;
-    max-width: 100%;
-  }
-
-  .img {
-    overflow: hidden;
-
-    img {
-      float: right;
-    }
-  }
-}

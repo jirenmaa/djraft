@@ -12,31 +12,18 @@
 
 .SJQN4PyU7r img {
   height: auto;
-  max-width: 100%;
+  max-width: 100% !important;
 }
 
 .SJQN4PyU7r .img {
   overflow: hidden;
   height: 192px;
-  width: 600px;
+  width: 594.5  px;
 }
 
 .SJQN4PyU7r .img img {
-  float: right;
+  float: left;
   margin-top: -10%;
   /* crop position */
-}
-
-.kIibvJLrbf img {
-  height: 100px;
-  max-width: 100%;
-}
-
-.kIibvJLrbf .img {
-  overflow: hidden;
-}
-
-.kIibvJLrbf .img img {
-  float: right;
 }
 /*# sourceMappingURL=project.css.map */
