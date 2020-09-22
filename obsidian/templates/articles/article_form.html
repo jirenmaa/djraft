@@ -1,23 +1,23 @@
 {% extends "base.html" %} {% load crispy_forms_tags %} {% block title %}Write
 your Story{% endblock %} {% block content %}
-<div class="w-full max-w-xs">
-  <form
-    class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-    method="post"
-    action="{% url 'articles:write' %}"
-  >
-    {% csrf_token %}
-    <div class="mb-6">
-      {{ form|crispy }}
-    </div>
-    <div class="flex items-center justify-between">
-      <button
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        type="button"
-      >
-        Create
-      </button>
-    </div>
-  </form>
+<div class="mx-auto px-4 py-10 sm:px-12 lg:px-20">
+  <div class="w-full max-w-xs">
+    <form
+      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      method="post"
+      action="{% url 'articles:write' %}"
+    >
+      {% csrf_token %}
+      <div class="mb-6">{{ form|crispy }}</div>
+      <div class="flex items-center justify-between">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="button"
+        >
+          Create
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock %}
