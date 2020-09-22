@@ -8,7 +8,7 @@ from articles.models import Article
 from articles.forms import ArticleForm
 
 
-class ArticleLists(LoginRequiredMixin, ListView):
+class ArticleLists(ListView):
     model = Article
 
     def get_context_data(self, **kwargs):
