@@ -1,28 +1,82 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %} User: {{object.username }} {% endblock %}
-
-{% block content %}
-<div class="container mx-auto px-4 sm:px-12 lg:px-20">
+{% extends "base.html" %} {% load static %} {% block title %} User:
+{{object.username }} {% endblock %} {% block content %}
+<div class="container mx-auto px-4 py-10 sm:px-12 lg:px-20">
   {% if object == request.user %}
   <div class="container mx-auto px-4 sm:px-12 lg:px-20 flex justify-around">
     <div class="user-info">
       {% comment %} {% url 'account_email' %} {% endcomment %}
-      {% comment %} <a href="{% url 'users:update' %}">update</a> {% endcomment %}
-      <h2 class="text-4xl font-bold">{{ object.username }}</h2>
+      <span class="text-4xl font-bold">{{ object.username }}</span>
+      <small>
+        <a
+          href="{% url 'users:update' %}"
+          class="p-1 mx-3 text-black border-black border rounded-md"
+          >Edit Profile</a
+        >
+      </small>
+      <p class="text-gray-600">
+        <a href="#">{{object.follows.count}} followers</a>
+      </p>
       {% if object.name %}
-      <p>{{ object.name }}</p>
+      <span>{{ object.name }}</span>
       {% endif %}
     </div>
     <div class="user-image">
       <img
         src="{{object.image}}"
-        width="300"
-        height="300"
+        width="200"
+        height="200"
         class="rounded-full"
         alt=""
       />
+    </div>
+  </div>
+  <div class="mx-auto px-32 py-5 sm:px-32 lg:px-56">
+    <hr>
+  </div>
+  <div class="container mx-auto px-32 py-10 sm:px-32 lg:px-56">
+    <div class="user--story">
+      {% for story in stories %}
+      <div class="card shadow-sm border rounded-sm p-4 mb-8">
+        <div class="u-infoArticle flex">
+          <img
+            class="rounded-full border-t border-b"
+            src="{{story.author.image}}"
+            alt="avatar"
+            width="50"
+            height="50"
+          />
+          <div class="u ml-3">
+            <p class="font-bold">{{ story.author }}</p>
+            <small class="text-gray-700"
+              >{{ story.created_at | date:"M d" }} · 5 min read &#9733;</small
+            >
+          </div>
+        </div>
+        <div class="article--tags my-5">
+          {% for tag in story.tags.all %}
+          <small class="pb-1 px-3 border rounded-full">{{ tag }}</small>
+          {% endfor %}
+        </div>
+        <a href="{% url 'users:story' username=story.author slug=story.slug %}">
+          {% if story.cover %}
+          <div class="z18REfxSKn mb-5">
+            <div class="img">
+              <img
+                src="{{ story.cover }}"
+                class="article-image"
+                alt="article-image"
+              />
+            </div>
+          </div>
+          {% endif %}
+          <h1 class="font-bold text-2xl pb-3">{{ story.title }}</h1>
+          <p class="pb-5">{{ story.body | slice:":150" }} ...</p>
+        </a>
+        <small style="color: #979797" class="hover:text-gray-500">
+          <a href="#">Read more...</a>
+        </small>
+      </div>
+      {% endfor %}
     </div>
   </div>
   {% endif %}
