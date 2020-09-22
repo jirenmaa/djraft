@@ -4,7 +4,8 @@
 {% block title %} Obsidian - Articles {% endblock %}
 
 {% block content %}
-<div class="container px-4 sm:px-12 lg:px-24">
+
+<div class="container mx-auto p-12 px-16 sm:px-24 lg:px-32">
   <header>
     <h1 class="tracking-widest">TAGGED IN</h1>
     <h1 class="text-4xl">Python</h1>
@@ -33,7 +34,7 @@
         </div>
       </div>
       {% for article in articles %}
-      <div class="card shadow-sm border rounded-sm p-4 mb-5">
+      <div class="card shadow-sm border rounded-sm p-4 mb-8">
         <div class="u-infoArticle flex">
           <img
             class="rounded-full border-t border-b"

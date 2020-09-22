@@ -1,41 +1,142 @@
 {% extends "base.html" %} {% load static %} {% block title %} Obsidian - Home
 {%endblock %} {% block content %}
-<div class="container px-4 sm:px-12 lg:px-32">
-  <div class="grid grid-cols-3 gap-4 mt-12">
-    <div class="left-side col-span-2 px-4 sm:px-4 lg:px-4">
-      {% for article in articles %}
-      <div class="card pb-12">
-        <div class="flex justify-between">
-          <div class="w-9/12">
-            <p class="tracking-wide text-sm font-normal text-gray-600">
-              BASED ON YOUR READING HISTORY
-            </p>
-            <a href="{{article.slug}}">
-              <h1 class="font-bold text-xl">{{ article.title }}</h1>
-              <p class="text-sm pb-3">{{ article.body | slice:":100" }}.</p>
-            </a>
-            <p class="text-sm text-gray-900">@{{ article.author }}</p>
-            <small class="text-gray-700"
-              >{{ article.created_at | date:"M d" }}</small
-            >
-          </div>
-          <div class="w-3/12">
-            <a href="{{article.slug}}"
-              ><img
-                src="https://cdn-images-1.medium.com/fit/c/152/156/1*pFaeNO48gYlRMQii977cQg.jpeg"
-                alt="article-image"
-            /></a>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    <div class="article-list col-span-1">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, iste
-      tempora in aliquam dolor dicta velit ratione aspernatur laudantium iure
-      necessitatibus perspiciatis dolore molestias dolorem rem eaque itaque,
-      quibusdam nesciunt?
+<section id="home">
+  <div class="metanav mx-auto p-5 px-4 sm:px-12 lg:px-12">
+    <div
+      class="meta--items container px-4 sm:px-12 lg:px-24 flex justify-between"
+    >
+      <a href="#">HOME</a>
+      <a href="#">POPULAR</a>
+      <a href="#">MOMENTUM</a>
+      <a href="#">ELEMENTAL</a>
+      <a href="#">GEN</a>
+      <a href="#">ZERO</a>
+      <a href="#">FORGE</a>
+      <a href="#">HUMAN</a>
+      <a href="#">PROGRAMMING</a>
+      <a href="#">MARKER</a>
+      <a href="#">CORONAVIRUS</a>
+      <a href="#">LEVEL</a>
+      <a href="#">HEATED</a>
+      <a href="#">MORE</a>
     </div>
   </div>
-</div>
+  <div class="top-heading">
+    <header class="flex mx-auto p-5 px-4 sm:px-12 lg:px-12">
+      <article class="flex-initial mx-4">
+        <a href="#">
+          <img
+            src="https://cdn-images-1.medium.com/focal/416/151/50/51/0*r5K58u1vO0DjAHy4.png"
+            alt=""
+            srcset=""
+            style="background-position: 50% 51% !important"
+            width="2000"
+            height="1200"
+          />
+          <h1
+            id="article--heading-title"
+            class="text-lg font-bold mt-2 mb-1 ml-20"
+          >
+            Reality Is Never Strange. We Are.
+          </h1>
+        </a>
+        <div class="summery text-sm ml-20">
+          <p id="article--body">
+            Our expectations of the world are truly perplexing
+          </p>
+        </div>
+        <div class="article--info text-sm mt-3 ml-20">
+          <p><a id="article--author" href="#">@Jirenmaa</a></p>
+          <p id="article--created-date">Sept 21 · 7 min read &#9733;</p>
+        </div>
+      </article>
+      <div class="flex-initial mx-4">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est
+          accusamus alias et debitis labore asperiores molestias aliquid, ut
+          neque nobis, tempore illum libero quibusdam explicabo velit ducimus?
+          Incidunt, fuga similique.
+        </p>
+        <br />
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique
+          officiis, voluptatem autem molestias explicabo magnam labore nobis
+          maxime maiores eaque debitis dolorum! Amet ab suscipit delectus
+          repellendus sunt? Commodi, voluptates?
+        </p>
+        <br />
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit iste
+          corporis corrupti, deleniti et cum sit magni quia dolorum, excepturi
+          fugit saepe officia modi similique earum, cumque error rem dolores.
+        </p>
+      </div>
+      <article class="flex-initial mx-4">
+        <a href="#">
+          <img
+            src="https://cdn-images-1.medium.com/fit/c/504/222/1*heGuDOz1ZOea3MEm9yrQkg.png"
+            alt=""
+            srcset=""
+            style="background-position: 50% 51% !important"
+            width="1500"
+            height="700"
+          />
+          <h1 id="article--heading-title" class="text-lg font-bold mt-2 mb-1">
+            How I Seed My Database With Go
+          </h1>
+        </a>
+        <div class="summery text-sm">
+          <p id="article--body">Seeder is a very important feature in dev...</p>
+        </div>
+        <div class="article--info mt-3 text-sm">
+          <p><a id="article--author" href="#">@Jirenmaa</a></p>
+          <p id="article--created-date">Sept 22 · 3 min read &#9733;</p>
+        </div>
+      </article>
+    </header>
+  </div>
+  <div class="divider px-4 sm:px-12 lg:px-32">
+    <hr />
+  </div>
+  <div class="container px-4 sm:px-12 lg:px-32">
+    <div class="grid grid-cols-3 gap-4 mt-12">
+      <div class="left-side col-span-2 px-4 sm:px-4 lg:px-4">
+        {% for article in articles %}
+        <article class="card pb-12">
+          <div class="flex justify-between">
+            <div class="w-9/12">
+              <p class="tracking-wide text-sm font-normal text-gray-600">
+                BASED ON YOUR READING HISTORY
+              </p>
+              <a href="{{article.slug}}">
+                <h1 class="font-bold text-xl">{{ article.title }}</h1>
+                <p class="text-sm pb-3">
+                  {{ article.body | slice:":140" }} ...
+                </p>
+              </a>
+              <p class="text-sm text-gray-900">@{{ article.author }}</p>
+              <small class="text-gray-700"
+                >{{ article.created_at | date:"M d" }}</small
+              >
+            </div>
+            <div class="w-3/12">
+              <a href="{{article.slug}}"
+                ><img
+                  src="https://cdn-images-1.medium.com/fit/c/152/156/1*pFaeNO48gYlRMQii977cQg.jpeg"
+                  alt="article-image"
+              /></a>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      <div class="article-list col-span-1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse provident
+        magni accusantium, vel aperiam pariatur ipsam adipisci vitae non ullam
+        nostrum veritatis, iste ipsum ratione corporis rem voluptas, voluptate
+        eveniet?
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock content %}
