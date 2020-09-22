@@ -52,8 +52,25 @@ $red: #b94a48;
 
 .zP8lE49jMa {
   img {
-    height: auto;
     max-width: 100% !important;
+    height: auto;
+  }
+
+  .img {
+    overflow: hidden;
+    // height: 250px;
+
+    img {
+      float: left;
+      margin-top: -10%; /* crop position */
+    }
+  }
+}
+
+.z18REfxSKn {
+  img {
+    max-width: 100% !important;
+    height: auto;
   }
 
   .img {
@@ -61,7 +78,6 @@ $red: #b94a48;
     height: 250px;
 
     img {
-      float: left;
       margin-top: -10%; /* crop position */
     }
   }

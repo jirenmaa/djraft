@@ -28,17 +28,31 @@
 }
 
 .zP8lE49jMa img {
-  height: auto;
   max-width: 100% !important;
+  height: auto;
 }
 
 .zP8lE49jMa .img {
   overflow: hidden;
-  height: 250px;
 }
 
 .zP8lE49jMa .img img {
   float: left;
+  margin-top: -10%;
+  /* crop position */
+}
+
+.z18REfxSKn img {
+  max-width: 100% !important;
+  height: auto;
+}
+
+.z18REfxSKn .img {
+  overflow: hidden;
+  height: 250px;
+}
+
+.z18REfxSKn .img img {
   margin-top: -10%;
   /* crop position */
 }
