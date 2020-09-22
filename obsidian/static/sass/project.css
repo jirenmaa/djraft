@@ -18,10 +18,26 @@
 .SJQN4PyU7r .img {
   overflow: hidden;
   height: 192px;
-  width: 594.5  px;
+  width: 578.5px;
 }
 
 .SJQN4PyU7r .img img {
+  float: left;
+  margin-top: -10%;
+  /* crop position */
+}
+
+.zP8lE49jMa img {
+  height: auto;
+  max-width: 100% !important;
+}
+
+.zP8lE49jMa .img {
+  overflow: hidden;
+  height: 250px;
+}
+
+.zP8lE49jMa .img img {
   float: left;
   margin-top: -10%;
   /* crop position */

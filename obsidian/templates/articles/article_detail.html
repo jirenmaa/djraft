@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{object.title}} | by {{object.author}} | {{object.created_at | date:"M d"}}
+{% endblock %}
+
+{% block content %}
+<article class="container mx-auto px-32 py-10 sm:px-32 lg:px-64">
+  <h1 class="text-5xl" style="line-height: 3.25rem">{{object.title}}</h1>
+  <h1 class="text-xl text-gray-700 py-2">{{object.description}}</h1>
+  <div class="profile-author flex py-4">
+    <div class="DgsdrGERArgA flex">
+      <img
+        src="{{object.author.image}}"
+        class="rounded-full border-t border-b"
+        alt="avatar"
+        width="50"
+        height="50"
+      />
+      <div class="mx-3">
+        <a href="#">{{object.author}}</a>
+        <p>
+          <small>{{object.created_at | date:"M d"}} · 5 min read &#9733;</small>
+        </p>
+      </div>
+    </div>
+    <div class="RFgDFgSwefsD"></div>
+  </div>
+  <div id="article--body">
+    <figure class="zP8lE49jMa py-8">
+      <div class="img">
+        <img
+          src="{{ object.cover }}"
+          alt="article-image"
+        />
+      </div>
+    </figure>
+    <p>{{object.body}}</p>
+  </div>
+</article>
+{% endblock content %}

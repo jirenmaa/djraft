@@ -54,8 +54,7 @@ user_redirect_view = UserRedirectView.as_view()
 
 
 class UserStoryDetailView(LoginRequiredMixin, DetailView):
-    template_name_suffix = "story_detail"
-    slug_url_kwarg = ["username", "slug"]
+    model = Article
 
 
 user_story_view = UserStoryDetailView.as_view()

@@ -41,7 +41,24 @@ $red: #b94a48;
   .img {
     overflow: hidden;
     height: 192px;
-    width: 594.5  px;
+    width: 578.5px;
+
+    img {
+      float: left;
+      margin-top: -10%; /* crop position */
+    }
+  }
+}
+
+.zP8lE49jMa {
+  img {
+    height: auto;
+    max-width: 100% !important;
+  }
+
+  .img {
+    overflow: hidden;
+    height: 250px;
 
     img {
       float: left;

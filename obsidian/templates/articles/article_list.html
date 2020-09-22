@@ -53,7 +53,7 @@
           <small class="pb-1 px-3 border rounded-full">{{ tag }}</small>
           {% endfor %}
         </div>
-        <a href="{{article.slug}}">
+        <a href="{% url 'users:story' username=article.author slug=article.slug %}">
           <div class="SJQN4PyU7r mb-5">
             <div class="img">
               <img
