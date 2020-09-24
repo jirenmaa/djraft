@@ -108,7 +108,9 @@
               <p class="tracking-wide text-sm font-normal text-gray-600">
                 BASED ON YOUR READING HISTORY
               </p>
-              <a href="{{article.slug}}">
+              <a
+                href="{% url 'users:story' username=article.author slug=article.slug %} "
+              >
                 <h1 class="font-bold text-xl">{{ article.title }}</h1>
                 <p class="text-sm pb-3">
                   {{ article.body | slice:":140" }} ...
@@ -120,7 +122,8 @@
               >
             </div>
             <div class="w-3/12">
-              <a href="{{article.slug}}"
+              <a
+                href="{% url 'users:story' username=article.author slug=article.slug %} "
                 ><img
                   src="https://cdn-images-1.medium.com/fit/c/152/156/1*pFaeNO48gYlRMQii977cQg.jpeg"
                   alt="article-image"

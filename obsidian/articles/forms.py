@@ -9,7 +9,6 @@ VALID_IMAGE_EXTENSION = [
     ".jpg",
     ".jpeg",
     ".png",
-    ".gif",
 ]
 
 VALID_MIME_TYPE = [
@@ -44,7 +43,7 @@ def image_exists(domain, path):
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        exclude = ("slug", "author")
+        exclude = ("slug", "author", "cover_2", "cover")
 
     def __init__(self, *args, **kwargs):
         super(ArticleForm, self).__init__(*args, **kwargs)
@@ -60,14 +59,10 @@ class ArticleForm(forms.ModelForm):
             }
         ),
     )
-    cover = forms.URLField(
+    imgcover = forms.ImageField(
         required=True,
-        help_text="Your image url",
-        widget=forms.TextInput(
-            attrs={
-                "class": "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-            }
-        ),
+        help_text="Your article image cover",
+        widget=forms.FileInput(),
     )
     description = forms.CharField(
         required=False,

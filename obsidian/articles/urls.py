@@ -6,5 +6,4 @@ app_name = "articles"
 urlpatterns = [
     path("", view=articles_list_view, name="articles"),
     path("~write/", view=articles_create_view, name="write"),
-    # path("@<str:username>/<str:title_slug>")
 ]

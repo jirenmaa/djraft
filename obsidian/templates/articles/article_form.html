@@ -1,23 +1,70 @@
 {% extends "base.html" %} {% load crispy_forms_tags %} {% block title %}Write
 your Story{% endblock %} {% block content %}
 <div class="mx-auto px-4 py-10 sm:px-12 lg:px-20">
+  <input type="hidden" name="url" id="url" />
   <div class="w-full max-w-xs">
     <form
       class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       method="post"
+      enctype="multipart/form-data"
       action="{% url 'articles:write' %}"
     >
       {% csrf_token %}
       <div class="mb-6">{{ form|crispy }}</div>
       <div class="flex items-center justify-between">
-        <button
+        {% comment %} <button
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="button"
+          onclick="uploadimage()"
         >
-          Create
-        </button>
+          upload
+        </button> {% endcomment %}
+        <input
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+          value="Submit"
+        />
       </div>
     </form>
   </div>
 </div>
+{% comment %} <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+<script>
+  var config = {
+    apiKey: "AIzaSyAhFY77h7YfJ8TRaWoDj7TmrJnmlv6xztE",
+    authDomain: "obsidian-dfba3.firebaseapp.com",
+    databaseURL: "https://obsidian-dfba3.firebaseio.com",
+    projectId: "obsidian-dfba3",
+    storageBucket: "obsidian-dfba3.appspot.com",
+    messagingSenderId: "378438565558",
+    appId: "1:378438565558:web:e0fb25d121c31e9740b017",
+    measurementId: "G-MFWC4W6DW5",
+  };
+  firebase.initializeApp(config);
+
+  // Get a reference to the storage service, which is used to create references in your storage bucket
+
+  function uploadimage() {
+    var storage = firebase.storage();
+    var file = document.getElementById("id_imgcover").files[0];
+    var storageRef = storage.ref();
+    var thisref = storageRef.child(file.name).put(file);
+
+    thisref.on(
+      "state_changed",
+      function (snapshot) {
+        console.log("file uplaoded succesfully");
+      },
+      function (error) {},
+
+      function () {
+        // Upload completed successfully, now we can get the download URL
+        var downloadURL = thisref.snapshot.downloadURL;
+        console.log("got url");
+        document.getElementById("url").value = downloadURL;
+        alert("file uploaded successfully");
+      }
+    );
+  }
+</script> {% endcomment %}
 {% endblock %}

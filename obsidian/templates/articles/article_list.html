@@ -40,12 +40,12 @@
             class="rounded-full border-t border-b"
             src="{{article.author.image}}"
             alt="avatar"
-            width="50"
-            height="50"
+            width="45"
+            height="45"
           />
           <div class="u ml-3">
-            <p class="font-bold">{{ article.author }}</p>
-            <small class="text-gray-700">{{ article.created_at | date:"M d" }} · 5 min read &#9733;</small>
+            <p class="text-teal-600">{{ article.author }}</p>
+            <small class="text-gray-700 text-xs">{{ article.created_at | date:"M d" }} · 5 min read &#9733;</small>
           </div>
         </div>
         <div class="article--tags my-5">
@@ -54,7 +54,8 @@
           {% endfor %}
         </div>
         <a href="{% url 'users:story' username=article.author slug=article.slug %}">
-          <div class="SJQN4PyU7r mb-5">
+          {% if article.cover %}
+          <div class="z18REfxSKn mb-5">
             <div class="img">
               <img
                 src="{{ article.cover }}"
@@ -63,6 +64,7 @@
               />
             </div>
           </div>
+          {% endif %}
           <h1 class="font-bold text-2xl pb-3">{{ article.title }}</h1>
           <p class="pb-5">{{ article.body | slice:":150" }} ...</p>
         </a>

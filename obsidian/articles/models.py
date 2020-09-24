@@ -62,6 +62,7 @@ class Article(models.Model):
         self.slug = slugify("%s-%s" % (ptitle, eslug))
 
         super(Article, self).save()
+        return reverse("articles:articles")
 
 
 class Comments(TimestampedModel):
