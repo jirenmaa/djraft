@@ -101,37 +101,41 @@
   <div class="container px-4 sm:px-12 lg:px-32">
     <div class="grid grid-cols-3 gap-4 mt-12">
       <div class="left-side col-span-2 px-4 sm:px-4 lg:px-4">
-        {% for article in articles %}
-        <article class="card pb-12">
-          <div class="flex justify-between">
-            <div class="w-9/12">
-              <p class="tracking-wide text-sm font-normal text-gray-600">
-                BASED ON YOUR READING HISTORY
-              </p>
-              <a
-                href="{% url 'users:story' username=article.author slug=article.slug %} "
-              >
-                <h1 class="font-bold text-xl">{{ article.title }}</h1>
-                <p class="text-sm pb-3">
-                  {{ article.body | slice:":140" }} ...
+        {% if article.count > 0 %}
+          {% for article in articles %}
+          <article class="card pb-12">
+            <div class="flex justify-between">
+              <div class="w-9/12">
+                <p class="tracking-wide text-sm font-normal text-gray-600">
+                  BASED ON YOUR READING HISTORY
                 </p>
-              </a>
-              <p class="text-sm text-gray-900">@{{ article.author }}</p>
-              <small class="text-gray-700"
-                >{{ article.created_at | date:"M d" }}</small
-              >
+                <a
+                  href="{% url 'users:story' username=article.author slug=article.slug %} "
+                >
+                  <h1 class="font-bold text-xl">{{ article.title }}</h1>
+                  <p class="text-sm pb-3">
+                    {{ article.body | slice:":140" }} ...
+                  </p>
+                </a>
+                <p class="text-sm text-gray-900">@{{ article.author }}</p>
+                <small class="text-gray-700"
+                  >{{ article.created_at | date:"M d" }}</small
+                >
+              </div>
+              <div class="w-3/12">
+                <a
+                  href="{% url 'users:story' username=article.author slug=article.slug %} "
+                  ><img
+                    src="https://cdn-images-1.medium.com/fit/c/152/156/1*pFaeNO48gYlRMQii977cQg.jpeg"
+                    alt="article-image"
+                /></a>
+              </div>
             </div>
-            <div class="w-3/12">
-              <a
-                href="{% url 'users:story' username=article.author slug=article.slug %} "
-                ><img
-                  src="https://cdn-images-1.medium.com/fit/c/152/156/1*pFaeNO48gYlRMQii977cQg.jpeg"
-                  alt="article-image"
-              /></a>
-            </div>
-          </div>
-        </article>
-        {% endfor %}
+          </article>
+          {% endfor %}
+        {% else %}
+          <p class="text-3xl">0 Article Found</p>
+        {% endif %}
       </div>
       <div class="article-list col-span-1">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse provident

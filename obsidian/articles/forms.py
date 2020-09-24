@@ -43,7 +43,7 @@ def image_exists(domain, path):
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        exclude = ("slug", "author", "cover_2", "cover")
+        exclude = ("slug", "author")
 
     def __init__(self, *args, **kwargs):
         super(ArticleForm, self).__init__(*args, **kwargs)
@@ -59,11 +59,11 @@ class ArticleForm(forms.ModelForm):
             }
         ),
     )
-    imgcover = forms.ImageField(
-        required=True,
-        help_text="Your article image cover",
-        widget=forms.FileInput(),
-    )
+    # imgcover = forms.ImageField(
+    #     required=True,
+    #     help_text="Your article image cover",
+    #     widget=forms.FileInput(),
+    # )
     description = forms.CharField(
         required=False,
         widget=forms.TextInput(

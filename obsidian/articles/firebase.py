@@ -1,7 +1,11 @@
+import os
+import pathlib
 import pyrebase
 import datetime
 import mimetypes
+
 from PIL import Image
+from django.core.files.storage import FileSystemStorage
 
 FIREBASE_CONFIG = {
     "apiKey": "AIzaSyAhFY77h7YfJ8TRaWoDj7TmrJnmlv6xztE",
@@ -16,24 +20,31 @@ FIREBASE_CONFIG = {
 
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 
-def firebase_image_url(img):
+def firebase_image_url(file, obj):
     global firebase
 
-    image = Image.open(img)
+    image = Image.open(obj)
+    file_storage = FileSystemStorage()
     mimetype = ["JPG", "JPEG", "PNG"]
+
     if image.format in mimetype:
         storage = firebase.storage()
 
-        # u_timestamp = str(str(datetime.datetime.now()).encode("utf-8").hex())
-        # path_cloud = "%s----%s" % (u_timestamp, str(img))
+        # create temp file
+        file_storage.save(file.name, file)
 
-        # storage.child(path_cloud).put(img)
-        # return storage.child(str(img)).get_url()
+        u_timestamp = str(str(datetime.datetime.now()).encode("utf-8").hex())[:32]
+        path_cloud = "cover/%s----%s" % (u_timestamp, str(file))
 
-        u_timestamp = str(str(datetime.datetime.now()).encode("utf-8").hex())
-        path_cloud = "%s----%s" % (u_timestamp, str(img))
+        # upload file to firebase
+        storage.child(path_cloud).put(file)
 
-        storage.child(path_cloud).put(img)
+        # delete temp file
+        os.remove("%s\\media\\%s" % (
+            str(pathlib.Path(__file__).parent.parent),
+            file.name)
+        )
+
         return storage.child(path_cloud).get_url()
     else:
         return "file should be in image format"

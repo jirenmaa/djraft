@@ -21,8 +21,9 @@ class Tag(TimestampedModel):
 class ArticleManager(models.Manager):
     def random(self):
         count = self.aggregate(ids=Count("id"))["ids"]
-        random_index = randint(0, count - 1)
-        return self.all()[random_index]
+        if count > 1:
+            random_index = randint(0, count - 1)
+            return self.all()[random_index]
 
 
 class Article(models.Model):
@@ -36,7 +37,8 @@ class Article(models.Model):
     # many `Article`s.
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="articles")
 
-    cover = models.URLField(blank=True)
+    # cover = models.URLField(blank=True)
+    cover = models.ImageField(blank=True)
     description = models.TextField(blank=True)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

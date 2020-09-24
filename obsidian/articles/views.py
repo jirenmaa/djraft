@@ -27,9 +27,11 @@ class ArticleCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        # print(form.cleaned_data['imgcover'], type(form.cleaned_data['imgcover']))
         self.object.author = self.request.user
-        self.object.cover = firebase.firebase_image_url(form.cleaned_data['imgcover'])
+
+        # self.object.cover = firebase.firebase_image_url(
+        #     file=self.request.FILES['imgcover'], obj=form.cleaned_data['imgcover']
+        # )
         return super().form_valid(form)
 
 

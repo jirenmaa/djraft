@@ -9,11 +9,9 @@ from random import randint
 from articles.models import Article
 
 class HomeView(View):
-
     def get_context_data(self, **kwargs):
         random_top_article = 5
         articles = [Article.objects.random() for _ in range(random_top_article)]
-
         return articles
 
     def get(self, *args, **kwargs):
