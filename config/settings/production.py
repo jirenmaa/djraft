@@ -17,7 +17,7 @@ SECRET_KEY = env(
     default=get_random_secret_key()
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["example.com"])
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["hk-test-docker.herokuapp.com"])
 
 # DATABASES
 # ------------------------------------------------------------------------------
