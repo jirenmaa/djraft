@@ -13,7 +13,7 @@ SECRET_KEY = env(
     default=get_random_secret_key(),
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "enigmatic-peak-03207.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "desolate-oasis-02145.herokuapp.com"]
 
 # CACHES
 # ------------------------------------------------------------------------------
