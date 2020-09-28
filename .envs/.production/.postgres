@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=obsidian
+POSTGRES_USER=EfkjSXfWWCMqkGCtYdhQFAnImFLICxgU
+POSTGRES_PASSWORD=fQ6ZoL3mAFc8ilFPjGMweNdSooZMW9QkOo32QqHquUkq12hvzcTRTgBG4LypbqL8
