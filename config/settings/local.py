@@ -1,6 +1,8 @@
 from .base import *  # noqa
 from .base import env
 
+from django.core.management.utils import get_random_secret_key
+
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
@@ -8,7 +10,7 @@ DEBUG = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
-    default="oCdtaO2Lu54kAaBrjqyENBySo4TWRAK6eH00W8z2xuRrMztbAsW93AJCdcVnc2jB",
+    default=get_random_secret_key(),
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
