@@ -4,7 +4,7 @@
 DJANGO_SETTINGS_MODULE=config.settings.production
 DJANGO_SECRET_KEY=5ZBmJBL0sS12NSXebqgYjFeg67cekrIl2BBpbCNrhJ2ga9tlXYShvUYZrjIxCQZ3
 DJANGO_ADMIN_URL=ypRMCmGsUkp01oPjKFT7knSFFOECTP8x/
-DJANGO_ALLOWED_HOSTS=aqueous-hollows-16248.herokuapp.com
+DJANGO_ALLOWED_HOSTS=['enigmatic-peak-03207.herokuapp.com']
 
 # Security
 # ------------------------------------------------------------------------------
