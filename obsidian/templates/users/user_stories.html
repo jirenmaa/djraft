@@ -26,12 +26,14 @@
       <hr class="mt-1">
     </div>
   </header>
+
   {% for data in stories %}
-    <p class="text-xl font-bold text-gray-900">{{data.title}}.</p>
-    <p class="text-based text-gray-700">{{data.body}}</p>
-    <p class="text-based text-gray-700">Published on {{data.created_at | date:"M d" }} · 1 min read</p>
+    <article>
+      <p class="text-xl font-bold text-gray-900">{{data.title}}.</p>
+      <p class="text-based text-gray-700">{{data.body}}</p>
+      <p class="text-based text-gray-700">Published on {{data.created_at | date:"M d" }} · 1 min read</p>
+    </article>
   {% endfor %}
-  <article></article>
 </section>
 {% endblock modal %}
 
