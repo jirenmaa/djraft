@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Obsidian - Your Stories {% endblock %}
+{% block modal %}
+<div class="mx-auto p-12 px-6 sm:px-24 lg:px-20">
+  <header>
+    <div class="flex justify-between items-center">
+      <h1 class="font-bold text-5xl text-gray-900">Your Stories</h1>
+      <div>
+        <a
+          href="#"
+          class="p-2 px-3 mx-1 border rounded-md border-gray-900 text-gray-900"
+          >Import a Story</a
+        >
+        <a
+          href="#"
+          class="p-2 px-3 mx-1 border rounded-md border-teal-500 text-teal-500"
+          >Write a Story</a
+        >
+      </div>
+    </div>
+    <div class="navigation mt-12">
+      <a href="#" class="mr-3 p-2">Draft</a>
+      <a href="#" class="mr-3 p-1 border-b border-gray-900">Published</a>
+      <hr class="mt-1">
+    </div>
+  </header>
+  {% for data in stories %}
+    <p class="text-xl font-bold text-gray-900">{{data.title}}.</p>
+    <p class="text-based text-gray-700">{{data.body}}</p>
+    <p class="text-based text-gray-700">Published on {{data.created_at | date:"M d" }} · 1 min read</p>
+  {% endfor %}
+  <article></article>
+</section>
+{% endblock modal %}
+
