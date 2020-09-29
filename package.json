@@ -9,6 +9,7 @@
     "tailwindcss": "^1.8.10"
   },
   "scripts": {
-    "build-tailwind": "tailwindcss build assets/css/tailwind.css -o obsidian/static/css/tailwind.css"
+    "build-tailwind": "tailwindcss build assets/css/tailwind.css -o obsidian/static/css/tailwind.css",
+    "heroku-postbuild": "tailwindcss build assets/css/tailwind.css -o obsidian/static/css/tailwind.css"
   }
 }

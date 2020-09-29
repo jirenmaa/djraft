@@ -262,7 +262,6 @@ Session.vim
 .netrwhist
 
 # your gitignore
-yarn.lock
 tailwind.css
 
 # Auto-generated tag files
