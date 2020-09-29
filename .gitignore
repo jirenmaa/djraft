@@ -261,6 +261,10 @@ Session.vim
 # Temporary
 .netrwhist
 
+# your gitignore
+yarn.lock
+tailwind.css
+
 # Auto-generated tag files
 tags
 
@@ -272,6 +276,8 @@ obsidian/media/
 
 
 .ipython/
-.env
-.envs/*
-!.envs/.local/
+.env
+
+.envs/*
+
+!.envs/.local/
