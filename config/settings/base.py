@@ -10,9 +10,6 @@ ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 APPS_DIR = ROOT_DIR / "obsidian"
 env = environ.Env()
 
-# print(str(ROOT_DIR / "staticfiles"))
-# print(str(APPS_DIR / "static"))
-
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
@@ -82,6 +79,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "obsidian.users.apps.UsersConfig",
     # Your stuff: custom apps go here
+    "stories",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
