@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "custom_bootstrap_vars.scss"
+    ],
+    "names": [],
+    "file": "custom_bootstrap_vars.css"
+}

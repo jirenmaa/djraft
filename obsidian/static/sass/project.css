@@ -1,0 +1,59 @@
+.alert-debug {
+  background-color: #fff;
+  border-color: #d6e9c6;
+  color: #000;
+}
+
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+
+.SJQN4PyU7r img {
+  height: auto;
+  max-width: 100% !important;
+}
+
+.SJQN4PyU7r .img {
+  overflow: hidden;
+  height: 192px;
+  width: 578.5px;
+}
+
+.SJQN4PyU7r .img img {
+  float: left;
+  margin-top: -10%;
+  /* crop position */
+}
+
+.zP8lE49jMa img {
+  max-width: 100% !important;
+  height: auto;
+}
+
+.zP8lE49jMa .img {
+  overflow: hidden;
+}
+
+.zP8lE49jMa .img img {
+  float: left;
+  margin-top: -10%;
+  /* crop position */
+}
+
+.z18REfxSKn img {
+  max-width: 100% !important;
+  height: auto;
+}
+
+.z18REfxSKn .img {
+  overflow: hidden;
+  height: 250px;
+}
+
+.z18REfxSKn .img img {
+  margin-top: -10%;
+  /* crop position */
+}
+/*# sourceMappingURL=project.css.map */
