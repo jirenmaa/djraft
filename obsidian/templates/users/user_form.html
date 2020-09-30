@@ -1,17 +1,63 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
 
+{% load crispy_forms_tags %}
 {% block title %}{{ user.username }}{% endblock %}
 
-{% block content %}
-  <h1>{{ user.username }}</h1>
-  <form class="form-horizontal" method="post" action="{% url 'users:update' object.username %}">
+{% block modal %}
+<div class="mx-auto p-12 px-6 sm:px-24 lg:px-20">
+  <form
+    class="form-horizontal"
+    method="post"
+    action="{% url 'users:info' user.username %}"
+  >
     {% csrf_token %}
-    {{ form|crispy }}
-    <div class="control-group">
+    <input
+      type="text"
+      value="{{ user.username }}"
+      id="current_name"
+      class="outline-none border-0 text-5xl font-bold text-gray-900"
+    />
+    <input type="hidden" id="id_name" name="username" value="">
+    <div class="control-group py-4">
       <div class="controls">
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="p-1 px-4 border rounded-md border-gray-900 text-gray-900">Save Change</button>
       </div>
     </div>
   </form>
-{% endblock %}
+</div>
+{% block javascript %}
+<script lang="javascript">
+  /* setupUpdater will be called once, on page load.
+  */
+  function InputLiveUpdater() {
+    var input = document.getElementById("current_name")
+    var hid = document.getElementById("id_name").value
+    var oldText = input.value
+    var timeout = null
+
+    document.getElementById("id_name").value = input.value
+
+    /* handleChange is called 1ms after the user stopstyping.*/
+    function handleChange() {
+      var newText = input.value;
+      if (newText == oldText) return;
+      else {
+        document.getElementById("id_name").value = newText
+        oldText = newText
+      }
+    }
+
+    /* eventHandler is called on keyboard and mouse events.
+    If there is a pending timeout, it cancels it.
+    It sets a timeout to call handleChange in 1ms. */
+    function eventHandler() {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(handleChange, 1);
+    }
+
+    input.onkeydown = input.onkeyup = input.onclick = eventHandler;
+  }
+
+  InputLiveUpdater();
+</script>
+{% endblock javascript %} {% endblock %}

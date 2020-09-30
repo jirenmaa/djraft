@@ -22,17 +22,20 @@
     </div>
     <div class="navigation mt-12">
       <a href="#" class="mr-3 p-2">Draft</a>
-      <a href="#" class="mr-3 p-1 border-b border-gray-900">Published</a>
+      <a href="#" class="mr-3 p-1 border-b border-gray-900">
+        Published <sup>{{stories.count}}</sup>
+      </a>
       <hr class="mt-1">
     </div>
   </header>
 
   {% for data in stories %}
-    <article>
+    <article class="py-4">
       <p class="text-xl font-bold text-gray-900">{{data.title}}.</p>
       <p class="text-based text-gray-700">{{data.body}}</p>
-      <p class="text-based text-gray-700">Published on {{data.created_at | date:"M d" }} · 1 min read</p>
+      <small class="text-gray-700">Published on {{data.created_at | date:"M d" }} · 1 min read</small>
     </article>
+    <hr>
   {% endfor %}
 </section>
 {% endblock modal %}

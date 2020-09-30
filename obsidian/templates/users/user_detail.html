@@ -5,17 +5,19 @@
 {% block modal %}
 <div class="mx-auto p-12 px-6 sm:px-24 lg:px-20">
   <div class="mx-1">
-    <h2 class="font-bold text-gray-900 text-4xl">{{ object.username }}</h2>
     {% if object.name %}
-      <p>{{ object.name }}</p>
+      <h2 class="font-bold text-gray-900 text-6xl">{{ object.name }}</h2>
+    {% else %}
+      <h2 class="font-bold text-gray-900 text-6xl">{{ object.username }}</h2>
     {% endif %}
   </div>
 
   {% if object == request.user %}
   <!-- Action buttons -->
   <div class="flex mt-6">
-    <a class="p-1 px-3 mx-1 border rounded-md border-gray-900 text-gray-900" href="{% url 'users:update' object.username %}" role="button">My Info</a>
+    <a class="p-1 px-3 mx-1 border rounded-md border-gray-900 text-gray-900" href="{% url 'users:info' object.username %}" role="button">My Info</a>
     <a class="p-1 px-3 mx-1 border rounded-md border-teal-500 text-teal-500" href="{% url 'account_email' %}" role="button">E-Mail</a>
+    <a class="p-1 px-3 mx-1 border rounded-md border-pink-500 text-pink-500" href="{% url 'users:stories' object.username %}" role="button">Stories</a>
     <!-- Your Stuff: Custom user template urls -->
   </div>
   <!-- End Action buttons -->
