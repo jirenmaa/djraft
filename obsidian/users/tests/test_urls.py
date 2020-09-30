@@ -15,10 +15,10 @@ def test_detail(user: User):
 
 
 def test_update():
-    assert reverse("users:update") == "/users/~update/"
-    assert resolve("/users/~update/").view_name == "users:update"
+    assert reverse("users:info") == "/users/~info/"
+    assert resolve("/users/~info/").view_name == "users:info"
 
 
-def test_redirect():
+def test_redirect(user: User):
     assert reverse("users:redirect") == "/users/~redirect/"
-    assert resolve("/users/~redirect/").view_name == "users:redirect"
+    assert resolve("/users/~redirect/", kwargs={"username": user.username}).view_name == "users:redirect"
