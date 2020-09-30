@@ -11,3 +11,7 @@
   background-color: #f2dede;
   border-color: #eed3d7;
 }
+
+.outline-gray-500 {
+  outline: 1px solid #a0aec0;
+}
