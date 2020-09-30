@@ -31,5 +31,5 @@ class Story(models.Model):
         return self.title
 
     def save(self):
-        self.slug = generate_slug(self.title, self.created_at)
+        self.slug = generate_slug(self.title, timezone.now())
         super(Story, self).save()
