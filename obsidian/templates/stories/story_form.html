@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load utils %}
+{% block title %}{{ user.username }} ~ New story{% endblock %}
+
+{% block modal %}
+<div class="mx-auto p-12 px-6 sm:px-24 lg:px-20">
+  <div class="w-full max-w-xs">
+    <form
+      class="bg-white px-8 pt-6 pb-8 mb-4"
+      method="POST"
+      action="{% url 'users:new-story' user.username %}"
+    >
+      <div class="mb-6">
+        {% csrf_token %}
+        {{ form.title | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
+        {{ form.cover | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
+        {{ form.description | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
+        {{ form.body | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
+      </div>
+      <div class="flex items-center justify-between">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          {% trans "Publish" %}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock modal %}
