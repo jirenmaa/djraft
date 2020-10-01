@@ -17,25 +17,25 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     slug_field = "username"
     slug_url_kwarg = "username"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["stories"] = Story.objects.filter(author=self.request.user.id)
+        return context
+
 
 class UserInfoView(LoginRequiredMixin, UpdateView):
 
     model = User
-    updated_username = ""
     fields = ["name", "username"]
 
     def get_success_url(self):
-        return reverse("users:detail", kwargs={"username": updated_username})
+        user = User.objects.get(id=self.request.user.id)
+        return reverse("users:detail", kwargs={"username": user.username})
 
     def get_object(self):
         return User.objects.get(username=self.request.user.username)
 
     def form_valid(self, form):
-        global updated_username
-
-        self.object = form.save(commit=False)
-        updated_username = form.cleaned_data["username"]
-
         messages.add_message(
             self.request, messages.INFO, _("Infos successfully updated")
         )
