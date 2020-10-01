@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.view.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView
 
 from stories.models import Story
 
-class ArticleList(ListView):
+class ArticleList(LoginRequiredMixin, ListView):
     model = Story
