@@ -13,9 +13,10 @@
     {% csrf_token %}
     <input
       type="text"
-      value="{{ user.username }}"
       id="current_name"
       class="outline-none border-0 text-5xl font-bold text-gray-900"
+      value="{{ user.username }}"
+      autocomplete="off"
     />
     <input type="hidden" id="id_name" name="username" value="">
     <div class="control-group py-4">
