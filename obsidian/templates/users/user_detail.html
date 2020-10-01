@@ -3,25 +3,76 @@
 {% block title %}{{ object.username }}{% endblock %}
 
 {% block modal %}
-<div class="mx-auto p-12 px-6 sm:px-24 lg:px-20">
+<div class="mx-auto py-6 px-12 sm:px-24 lg:px-20">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+    <div class="col-span-2">
+      <div class="top-heading pb-4">
+        <h2 class="font-bold text-gray-900 text-5xl">{{ object.username }}</h2>
+        {% if object.name %}
+          <h2 class="font-bold text-gray-900 text-6xl">{{ object.name }}</h2>
+        {% endif %}
+        {% if object == request.user %}
+          <div class="flex mt-6">
+            <a class="mr-5 font-bold" href="{% url 'users:detail' object.username %}">All</a>
+            <a class="mr-5" href="{% url 'users:info' object.username %}" role="button">My Info</a>
+            <a class="mr-5" href="{% url 'account_email' %}" role="button">E-Mail</a>
+            <a class="mr-5" href="{% url 'users:stories' object.username %}" role="button">Stories</a>
+            <!-- Your Stuff: Custom user template urls -->
+          </div>
+        {% endif %}
+      </div>
+      {% for story in stories %}
+        <div class="py-4">
+          <article class="card shadow-sm border rounded-sm p-6 py-4">
+            <div class="article--top">
+              <p class="text-based">{{ story.author }}</p>
+              <p class="text-xs">{{ story.created_at | date:"M d" }} · 1 min read &#9733;</p>
+            </div>
+            {% if story.cover %}
+            <div class="article--image py-4">
+              <div class="img">
+                <img
+                  src="{{ story.cover.url }}"
+                  class="article-image"
+                  alt="article-image"
+                />
+              </div>
+            </div>
+            {% endif %}
+            <div class="article--body">
+              <p class="font-bold text-3xl text-gray-900">{{ story.title }}.</p>
+              <p class="">{{ story.body | slice:":150" }} ... </p>
+            </div>
+          </article>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="col-span-2">
+      <aside class="mx-8">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni adipisci dolorum ratione libero. Debitis, voluptas placeat vitae temporibus veritatis exercitationem ducimus non maxime optio dolore totam, deserunt reprehenderit ad eos.
+        </p>
+        <br>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium debitis veritatis sunt vero id, ipsam hic quos harum explicabo iusto illo accusantium obcaecati doloribus sequi quis perspiciatis nam architecto provident.
+        </p>
+        <br>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque natus eligendi quisquam aspernatur accusamus, animi officiis quis odio, quam delectus quod tempore sint nemo quo, omnis magnam asperiores ad esse?
+        </p>
+        <br>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero earum nobis veniam ipsa provident, voluptates quo eligendi rem sed? Culpa, quod. Ducimus aliquid blanditiis, sunt praesentium illo facilis veniam libero.
+        </p>
+        <br>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui excepturi amet perspiciatis libero animi nesciunt, totam sit? Harum illum labore eveniet enim esse rerum unde reprehenderit, porro dolor qui maxime?
+        </p>
+      </aside>
+    </div>
+  </div>
   <div class="mx-1">
-    {% if object.name %}
-      <h2 class="font-bold text-gray-900 text-6xl">{{ object.name }}</h2>
-    {% else %}
-      <h2 class="font-bold text-gray-900 text-6xl">{{ object.username }}</h2>
-    {% endif %}
   </div>
-
-  {% if object == request.user %}
-  <!-- Action buttons -->
-  <div class="flex mt-6">
-    <a class="p-1 px-3 mx-1 border rounded-md border-gray-900 text-gray-900" href="{% url 'users:info' object.username %}" role="button">My Info</a>
-    <a class="p-1 px-3 mx-1 border rounded-md border-teal-500 text-teal-500" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <a class="p-1 px-3 mx-1 border rounded-md border-pink-500 text-pink-500" href="{% url 'users:stories' object.username %}" role="button">Stories</a>
-    <!-- Your Stuff: Custom user template urls -->
-  </div>
-  <!-- End Action buttons -->
-  {% endif %}
 </div>
 {% endblock modal %}
 
