@@ -262,7 +262,7 @@ Session.vim
 .netrwhist
 
 # your gitignore
-# tailwind.css
+tailwind.css
 
 # Auto-generated tag files
 tags
