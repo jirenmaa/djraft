@@ -10,6 +10,7 @@
     <form
       class="bg-white px-8 pt-6 pb-8 mb-4"
       method="POST"
+      enctype="multipart/form-data"
       action="{% url 'users:new-story' user.username %}"
     >
       <div class="mb-6">
