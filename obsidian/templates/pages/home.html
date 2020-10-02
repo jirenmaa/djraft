@@ -10,13 +10,23 @@
           <div class="article--top mb-2">
             <div class="flex">
               <picture>
-                <img
-                  src="{{article.author.avatar.url}}"
-                  class="rounded-full"
-                  alt="avatar"
-                  width="45"
-                  height="45"
-                />
+                {% if article.author.avatar %}
+                  <img
+                    src="{{article.author.avatar.url}}"
+                    class="rounded-full"
+                    alt="avatar"
+                    width="45"
+                    height="45"
+                  />
+                  {% else %}
+                  <img
+                    src="#"
+                    class="rounded-full border"
+                    alt="avatar"
+                    width="45"
+                    height="45"
+                  />
+                {% endif %}
                 </picture>
                 <div class="author mx-3">
                 <p class="text-based">
