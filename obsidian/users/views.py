@@ -64,6 +64,11 @@ class UserStoriesView(LoginRequiredMixin, ListView):
         data['stories'] = stories
         return data
 
+class UserStoryDetailView(DetailView):
+
+    model = Story
+    template_name_suffix = "_detail"
+
 
 class UserNewStoryView(LoginRequiredMixin, CreateView):
     template_name = "stories/story_form.html"
@@ -83,4 +88,5 @@ user_detail_view = UserDetailView.as_view()
 user_info_view = UserInfoView.as_view()
 user_redirect_view = UserRedirectView.as_view()
 user_stories_view = UserStoriesView.as_view()
+user_story_detail_view = UserStoryDetailView.as_view()
 user_new_stories_view = UserNewStoryView.as_view()
