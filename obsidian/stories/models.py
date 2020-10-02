@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 from obsidian.users.models import User
-from stories.utils import generate_slug
+from .utils import generate_slug
 
 
 
@@ -15,7 +15,7 @@ class Story(models.Model):
     # Unlike the `User` <-> `Profile` relationship, this is a simple foreign
     # key (or one-to-many) relationship. In this case, one `Profile` can have
     # many `Article`s.
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="articles")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories")
 
     # cover = models.URLField(blank=True)
     cover = models.ImageField(blank=True)
