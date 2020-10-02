@@ -5,8 +5,8 @@
 {% block title %}{{ user.username }} ~ New story{% endblock %}
 
 {% block modal %}
-<div class="mx-auto p-12 px-6 sm:px-24 lg:px-20">
-  <div class="w-full max-w-xs">
+<div class="mx-auto p-6 px-6 sm:px-24 lg:px-64">
+  <div class="w-full">
     <form
       class="bg-white px-8 pt-6 pb-8 mb-4"
       method="POST"
@@ -15,15 +15,16 @@
     >
       <div class="mb-6">
         {% csrf_token %}
-        {{ form.title | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
-        {{ form.cover | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
-        {{ form.description | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
-        {{ form.body | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
+        {{ form.title }}
+        {{ form.description }}
+        {{ form.cover }}
+        {{ form.body }}
       </div>
       <div class="flex items-center justify-between">
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          class="text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
+          id="publish"
         >
           {% trans "Publish" %}
         </button>
@@ -31,4 +32,18 @@
     </form>
   </div>
 </div>
+
+<script lang="javascript">
+  function AutoGrowTextArea(textField)
+  {
+    if (textField.clientHeight < textField.scrollHeight) {
+      textField.style.height = textField.scrollHeight + "px";
+      if (textField.clientHeight < textField.scrollHeight) {
+        textField.style.height = (textField.scrollHeight * 2 - textField.clientHeight) + "px";
+      }
+    } else {
+      textField.style.height = textField.scrollHeight + "px";
+    }
+  }
+</script>
 {% endblock modal %}
