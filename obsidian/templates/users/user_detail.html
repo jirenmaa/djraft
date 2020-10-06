@@ -45,6 +45,7 @@
         <article class="card shadow-sm border rounded-sm p-6 py-4">
           <div class="article--top mb-2">
             <div class="flex">
+              {% if user.avatar %}
               <picture>
                 <img
                   src="{{user.avatar.url}}"
@@ -54,6 +55,17 @@
                   height="45"
                 />
               </picture>
+              {% else %}
+              <picture>
+                <img
+                    src="#"
+                    class="rounded-full border"
+                    alt="avatar"
+                    width="45"
+                    height="45"
+                  />
+              </picture>
+              {% endif %}
               <div class="author mx-3">
                 <p class="text-based">
                   <span class="text-teal-600">{{ story.author }}</span> in
@@ -83,7 +95,7 @@
               <h1 class="font-bold text-3xl text-gray-900">
                 {{ story.title }}.
               </h1>
-              <p class="font-based">{{ story.body | slice:":150" }} ...</p>
+              <p class="text-sm">{{ story.body | slice:":150" }} ...</p>
             </div>
           </a>
         </article>
