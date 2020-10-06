@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>{% block title %}obsidian{% endblock title %}</title>
+    <title>{% block title %}Obsidian{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="project" />
     <meta name="author" content="jirenmaa" />
@@ -20,6 +20,7 @@
     {% block css %}
     <!-- Your stuff: Third-party CSS libraries go here -->
     <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" /> -->
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
@@ -36,7 +37,9 @@
     {% endif %}
       <div class="container px-4 sm:px-12 lg:px-24 flex justify-between">
         <div class="left">
-          <a href="{% url 'home' %}" class="text-2xl font-bold text-grey-900">obsidian</a>
+          <a href="{% url 'home' %}" class="text-2xl font-bold text-grey-900">
+            <h2>Obsidian</h2>
+          </a>
         </div>
         <div class="right flex items-center">
           {# URL provided by django-allauth/account/urls.py #}
