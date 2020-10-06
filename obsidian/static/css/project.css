@@ -1,10 +1,15 @@
 /* These styles are generated from project.scss. */
 body {
+  font-family: 'Merriweather', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Piazzolla', serif;
 }
 
 p {
   font-weight: 300 !important;
+  font-family: 'Merriweather', serif;
 }
 
 a {
