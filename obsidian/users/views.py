@@ -26,7 +26,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 class UserInfoView(LoginRequiredMixin, UpdateView):
 
     model = User
-    fields = ["name", "username"]
+    fields = ["name", "username", "avatar"]
 
     def get_success_url(self):
         user = User.objects.get(id=self.request.user.id)
