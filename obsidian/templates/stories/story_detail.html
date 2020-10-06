@@ -10,13 +10,17 @@
     <div class="article--top-heading mb-6">
       <h1 class="font-bold text-gray-900 text-6xl">{{story.title}}</h1>
       <div class="max-w-3xl">
-        <p class="text-gray-900 text-xl">{{story.description}}</p>
+        <p class="text-gray-700 text-lg">{{story.description}}</p>
       </div>
     </div>
     <div class="article--top-author mb-12">
       <div class="flex">
         <picture>
-          <img src="#" class="border" alt="avatar" width="50" height="50" />
+          {% if story.author.avatar %}
+            <img src="{{story.author.avatar.url}}" class="rounded-full" alt="avatar" width="50" height="50" />
+          {% else %}
+            <img src="#" class="border" alt="avatar" width="50" height="50" />
+          {% endif %}
         </picture>
         <div class="author mx-4">
           <p class="text-gray-900">{{story.author}}.</p>
@@ -35,7 +39,9 @@
         </div>
       </div>
     {% endif %}
-    <div class="article--body mt-6">{{story.body}}</div>
+    <div class="article--body mt-6">
+      <p class="text-lg">{{story.body}}</p>
+    </div>
   </article>
 </div>
 {% endblock modal %}
