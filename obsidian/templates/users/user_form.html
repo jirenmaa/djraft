@@ -4,20 +4,33 @@
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block modal %}
-<div class="mx-auto p-12 px-6 sm:px-24 lg:px-20">
+<div class="mx-auto p-12 px-6 sm:px-24 lg:px-20" style="font-family: 'Piazzolla', serif !important;">
   <form
-    class="form-horizontal"
+    class="form-horizontal mx-auto p-12 px-6 sm:px-24 lg:px-56"
     method="post"
     action="{% url 'users:info' user.username %}"
   >
     {% csrf_token %}
-    <input
-      type="text"
-      id="current_name"
-      class="outline-none border-0 text-5xl font-bold text-gray-900"
-      value="{{ user.username }}"
-      autocomplete="off"
-    />
+    <div class="grid grid-cols-4">
+      <div class="col-span-2">
+        <input
+          type="text"
+          id="current_name"
+          class="outline-none border-0 text-6xl font-bold text-gray-900"
+          style="max-width: 25rem;"
+          value="{{ user.username }}"
+          autocomplete="off"
+        />
+      </div>
+      <div class="col-span-2">
+        <div class="flex justify-center items-center">
+          <img src="{{user.avatar.url}}" id="current_avatar" class="rounded-full" alt="avatar" style="height: 250px !important; width: 250px !important;">
+        </div>
+        <input type="file"  accept="image/*" name="id_avatar" name="avatar" id="file"  onchange="loadFile(event)" style="display: none;">
+        <label for="file" style="cursor: pointer;" class="flex justify-center">Change Image</label>
+      </div>
+    </div>
+
     <input type="hidden" id="id_name" name="username" value="">
     <div class="control-group py-4">
       <div class="controls">
@@ -58,6 +71,11 @@
 
     input.onkeydown = input.onkeyup = input.onclick = eventHandler;
   }
+
+  var loadFile = function(event) {
+    var current_avatar = document.getElementById('current_avatar');
+    current_avatar.src = URL.createObjectURL(event.target.files[0]);
+  };
 
   InputLiveUpdater();
 </script>
