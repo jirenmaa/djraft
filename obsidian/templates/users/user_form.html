@@ -8,6 +8,7 @@
   <form
     class="form-horizontal mx-auto p-12 px-6 sm:px-24 lg:px-56"
     method="post"
+    enctype="multipart/form-data"
     action="{% url 'users:info' user.username %}"
   >
     {% csrf_token %}
