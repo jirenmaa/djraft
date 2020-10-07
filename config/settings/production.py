@@ -14,10 +14,10 @@ from .base import env
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
-    default="OeKgCjDxjdkWk4pIfKMYeefLYheNLrvviRSaoIWkmjDXlrCXZXJ2XD86VN1zWGd2"
+    default="XgBsPhC5hi3MH7YIMPg5foqTsM3uJbFO"
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["*"])
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["obsidians.herokuapp.com"])
 
 # DATABASES
 # ------------------------------------------------------------------------------
