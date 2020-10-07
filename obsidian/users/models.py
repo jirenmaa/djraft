@@ -22,3 +22,11 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"username": self.username})
+
+    def delete_old_avatar(user):
+        # You have to prepare what you need before delete the model
+        storage, path = user.avatar.storage, user.avatar.path
+        # Delete the model before the file
+        super(User, user).delete()
+        # Delete the file after the model
+        storage.delete(path)
