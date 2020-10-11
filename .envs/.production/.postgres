@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=djraft
+POSTGRES_USER=IYAZTtyvRtcMsuDpVrqixmgimZhvjSSm
+POSTGRES_PASSWORD=PyxRloO6RCbCG0GTaklrXnmLzfubNY44X5Aem5TM1EnMtNFIFsvssM81BtN06pAG
