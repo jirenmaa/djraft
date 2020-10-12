@@ -41,7 +41,7 @@ class UserInfoView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         user = User.objects.get(id=self.request.user.id)
         if user.avatar:
-            User.delete_old_avatar(user)    
+            User.delete_old_avatar(user)
 
         messages.add_message(
             self.request, messages.INFO, _("Info successfully updated")
