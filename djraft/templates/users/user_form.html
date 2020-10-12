@@ -1,17 +1,87 @@
 {% extends "base.html" %}
+
 {% load crispy_forms_tags %}
+{% block title %}{{ user.username }} - Djraft{% endblock %}
 
-{% block title %}{{ user.username }}{% endblock %}
-
-{% block content %}
-  <h1>{{ user.username }}</h1>
-  <form class="form-horizontal" method="post" action="{% url 'users:update' %}">
+{% block modal %}
+<div class="mx-auto p-12 px-6 sm:px-24 lg:px-20" style="font-family: 'Piazzolla', serif !important;">
+  <form
+    class="form-horizontal mx-auto p-12 px-6 sm:px-24 lg:px-56"
+    method="post"
+    enctype="multipart/form-data"
+    action="{% url 'users:info' user.username %}"
+  >
     {% csrf_token %}
-    {{ form|crispy }}
-    <div class="control-group">
+    <div class="grid grid-cols-4">
+      <div class="col-span-2">
+        <input
+          type="text"
+          id="current_name"
+          class="outline-none border-0 text-6xl font-bold text-gray-900"
+          style="max-width: 25rem;"
+          value="{{ user.username }}"
+          autocomplete="off"
+        />
+      </div>
+      <div class="col-span-2">
+        <div class="flex justify-center items-center">
+          {% if user.avatar %}
+            <img src="{{user.avatar.url}}" id="current_avatar" class="rounded-full" alt="avatar" style="height: 250px !important; width: 250px !important;">
+          {% else %}
+            <img src="#" id="current_avatar" class="rounded-full border" alt="avatar" style="height: 250px !important; width: 250px !important;">
+          {% endif %}
+        </div>
+        <input type="file" name="avatar" accept="image/*" id="id_avatar" onchange="loadFile(event)" style="display: none;">
+        <label for="id_avatar" style="cursor: pointer;" class="flex justify-center">Change Image</label>
+      </div>
+    </div>
+
+    <input type="hidden" id="id_name" name="username" value="">
+    <div class="control-group py-4">
       <div class="controls">
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="p-1 px-4 border rounded-md border-gray-900 text-gray-900">Save Change</button>
       </div>
     </div>
   </form>
+</div>
+<script lang="javascript">
+  var loadFile = function(event) {
+    var current_avatar = document.getElementById('current_avatar');
+    current_avatar.src = URL.createObjectURL(event.target.files[0]);
+  };
+
+  /* setupUpdater will be called once, on page load.
+  */
+  function InputLiveUpdater() {
+    var input = document.getElementById("current_name")
+    var hid = document.getElementById("id_name").value
+    var oldText = input.value
+    var timeout = null
+
+    document.getElementById("id_name").value = input.value
+
+    /* handleChange is called 1ms after the user stopstyping.*/
+    function handleChange() {
+      var newText = input.value;
+      if (newText == oldText) return;
+      else {
+        document.getElementById("id_name").value = newText
+        oldText = newText
+      }
+    }
+
+    /* eventHandler is called on keyboard and mouse events.
+    If there is a pending timeout, it cancels it.
+    It sets a timeout to call handleChange in 1ms. */
+    function eventHandler() {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(handleChange, 1);
+    }
+
+    input.onkeydown = input.onkeyup = input.onclick = eventHandler;
+  }
+
+
+  InputLiveUpdater();
+</script>
 {% endblock %}
