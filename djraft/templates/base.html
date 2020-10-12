@@ -1,4 +1,4 @@
-{% load static i18n compress%}
+{% load static i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,12 +30,11 @@
     />
 
     <!-- Your stuff: Third-party CSS libraries go here -->
-    {% compress css %}
     <!-- This file stores project-specific CSS -->
 
     <link href="{% static 'css/project.css' %}" rel="stylesheet" />
 
-    {% endcompress %} {% endblock %}
+    {% endblock %}
   </head>
 
   <body>
@@ -108,8 +107,7 @@
     <!-- Your stuff: Third-party javascript libraries go here -->
 
     <!-- place project specific Javascript in this file -->
-    {% compress js %}
     <script src="{% static 'js/project.js' %}"></script>
-    {% endcompress %} {% endblock javascript %}
+    {% endblock javascript %}
   </body>
 </html>
