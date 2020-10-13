@@ -13,7 +13,9 @@
         <h1 class="font-bold text-gray-900 text-5xl">{{ object.username }}</h1>
         {% if object.name %}
         <h1 class="text-gray-900 text-lg">{{ object.name }}</h1>
-        {% endif %} {% if object == request.user %}
+        {% endif %} 
+        
+        {% if object == request.user %}
         <div class="flex mt-6">
           <a
             class="mr-5 font-bold"

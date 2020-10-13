@@ -55,7 +55,7 @@
             <a class="mx-3" href="{% url 'users:detail' request.user.username  %}"
               >
               {% if user.avatar %}
-                <img src="{{user.avatar.url}}" class="rounded-full" alt="avatar" style="height: 45px !important; width: 45px !important;">
+                <img src="{{request.user.avatar.url}}" class="rounded-full" alt="avatar" style="height: 45px !important; width: 45px !important;">
               {% else %}
                 <img src="#" class="rounded-full border" alt="avatar" style="height: 45px !important; width: 45px !important;">
               {% endif %}

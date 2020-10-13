@@ -18,8 +18,15 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     slug_url_kwarg = "username"
 
     def get_context_data(self, **kwargs):
+        detailed_username = self.kwargs['username']
+        current_username = self.request.user.username
         context = super().get_context_data(**kwargs)
-        context["stories"] = Story.objects.filter(author=self.request.user.id)
+
+        if detailed_username == current_username:
+            context["stories"] = Story.objects.filter(author=self.request.user.id)
+        else:
+            context["stories"] = Story.objects.filter(author__username=detailed_username)
+
         return context
 
 
@@ -39,10 +46,6 @@ class UserInfoView(LoginRequiredMixin, UpdateView):
         return User.objects.get(username=self.request.user.username)
 
     def form_valid(self, form):
-        # user = User.objects.get(id=self.request.user.id)
-        # if user.avatar:
-        #     User.delete_old_avatar(user)
-
         messages.add_message(
             self.request, messages.INFO, _("Info successfully updated")
         )
