@@ -1,6 +1,7 @@
 from django import forms
 from .models import Story
 
+
 class StoryForm(forms.ModelForm):
     class Meta:
         model = Story
@@ -12,7 +13,6 @@ class StoryForm(forms.ModelForm):
         self.fields["description"].required = False
         self.fields["cover"].required = False
         self.fields["body"].required = False
-
 
     title = forms.CharField(
         max_length=100,

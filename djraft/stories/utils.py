@@ -1,6 +1,5 @@
 from django.utils.text import slugify
 
-from random import randint
 
 def generate_slug(title, created_at):
     title = title.replace(" ", "-").lower()
@@ -8,4 +7,3 @@ def generate_slug(title, created_at):
     slug = slugify("%s-%s" % (title, unique))
 
     return slug
-

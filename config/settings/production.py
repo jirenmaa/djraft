@@ -93,7 +93,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # ------------------------------------------------------------------------------
 # DEFAULT_FILE_STORAGE = "djraft.utils.storages.MediaRootS3Boto3Storage"
 # MEDIA_URL = f"https://{aws_s3_domain}/media/"
-MEDIA_ROOT = str(APPS_DIR / "media")
+MEDIA_ROOT = str("https://djraft.herokuapp.com" / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = "/media/"
 
