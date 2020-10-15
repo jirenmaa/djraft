@@ -1,6 +1,6 @@
 from django.urls import path
 
-from djraft.users.views import (
+from .views import (
     user_detail_view,
     user_redirect_view,
     user_info_view,
