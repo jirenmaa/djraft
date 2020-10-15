@@ -80,6 +80,33 @@ The system is setup with reasonable defaults, including 404 logging and integrat
 You must set the DSN url in production.
 
 
+Development
+----------
+
+The following details how to start use this application in development.
+
+
+Installing Depedencies
+^^^^^^^^^^^^^^^^^^^^^^
+
+To install the development requirements::
+
+    $ pip install -r requirements/local.txt
+
+Setting up docker in development::
+
+    $ export USE_DOCKER=yes # linux
+    $ set USE_DOCKER=yes    # windows
+
+
+Using Docker
+------------
+
+development using docker, had been written in the django-cookiecutter `running docker locally`_.
+
+.. _`running docker locally`: https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html
+
+
 Deployment
 ----------
 
