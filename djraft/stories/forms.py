@@ -22,7 +22,8 @@ class StoryForm(forms.ModelForm):
                 "required": False,
                 "autofocus": "off",
                 "autocomplete": "off",
-                "class": "appearance-none w-full h-full py-2 px-3 mb-4 text-gray-900 text-4xl leading-tight focus:outline-none",
+                "class": "appearance-none w-full h-full py-2 px-3 mb-4"
+                         "text-gray-900 text-4xl leading-tight focus:outline-none",
             }
         ),
     )
