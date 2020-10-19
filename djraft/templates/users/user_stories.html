@@ -30,11 +30,29 @@
   </header>
 
   {% for data in stories %}
-    <article class="py-4">
-      <p class="text-xl font-bold text-gray-900">{{data.title}}.</p>
-      <p class="text-based text-gray-700">{{data.body | slice:":150"}}</p>
-      <small class="text-gray-700">Published on {{data.created_at | date:"M d" }} · 1 min read</small>
-    </article>
+    <div class="flex justify-between">
+      <article class="py-4">
+        <p>
+          <a
+            href="{% url 'users:story' username=user.username slug=data.slug %}"
+            class="text-xl font-bold text-gray-900"
+          >
+            {{data.title}}.
+          </a>
+        </p>
+        <small class="text-gray-700">
+          Published on {{data.created_at | date:"M d" }} · @ min read
+        </small>
+      </article>
+      <div>
+        <a href="{% url 'users:delete' username=user.username slug=data.slug %}">
+          edit |
+        </a>
+        <a href="{% url 'users:delete' username=user.username slug=data.slug %}">
+          delete
+        </a>
+      </div>
+    </div>
     <hr>
   {% endfor %}
 </section>

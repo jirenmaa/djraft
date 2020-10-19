@@ -6,6 +6,7 @@ from .views import (
     user_info_view,
     user_stories_view,
     user_story_detail_view,
+    user_story_delete,
     user_new_stories_view,
 )
 
@@ -18,5 +19,6 @@ urlpatterns = [
     # user related story or article
     path("stories", view=user_stories_view, name="stories"),
     path("<slug:slug>", view=user_story_detail_view, name="story"),
+    path("<slug:slug>/delete", view=user_story_delete, name="delete"),
     path("~new-story", view=user_new_stories_view, name="new-story"),
 ]

@@ -2,8 +2,9 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
+from django.shortcuts import HttpResponseRedirect
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView, RedirectView, UpdateView, ListView, CreateView
+from django.views.generic import (DetailView, RedirectView, UpdateView, ListView, CreateView)
 
 from stories.models import Story
 from stories.forms import StoryForm
@@ -93,7 +94,21 @@ class UserStoryDetailView(DetailView):
 user_story_detail_view = UserStoryDetailView.as_view()
 
 
+def user_story_delete(request, username, slug):
+    if request.user.username == username:
+        story = Story.objects.get(author=request.user, slug=slug)
+
+        if not story.author == request.user:
+            pass # not authorized
+        else:
+            story.delete()
+
+        url = reverse("users:stories", kwargs={"username":username})
+        return HttpResponseRedirect(url)
+
+
 class UserNewStoryView(LoginRequiredMixin, CreateView):
+
     template_name = "stories/story_form.html"
     form_class = StoryForm
 
