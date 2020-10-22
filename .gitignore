@@ -280,3 +280,6 @@ djraft/media/
 
 # custom local gitignore file
 *tailwind.css
+
+# custom local gitignore folder
+webtest/
