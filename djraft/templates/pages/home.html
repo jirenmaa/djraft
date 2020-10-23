@@ -1,7 +1,193 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block main %}
+<div id="homepage">
+  <div class="grid grid-cols-3">
+    <div id="content-left" class="col-span-2">
+      <header class="font-semibold">
+        <h1>Good Morning,</h1>
+        <h1>{{user.username}}</h1>
+      </header>
+      <div id="trending" class="mt-12">
+        <h2
+          class="text-lg tag-highlight inline-block font-semibold tracking-widest"
+        >
+          TRENDING
+        </h2>
+        <div class="wrapper grid grid-cols-2">
+          <div id="article--tranding-one" class="py-3 pr-4">
+            <small class="font-semibold">Linus Iain</small>
+            <p>
+              <a href="#" class="font-semibold text-lg">
+                In Your Bussines With Mr.E
+              </a>
+            </p>
+            <small class="text-gray-600">Oct 21 · 7 min read</small>
+          </div>
+          <div id="article--tranding-two" class="py-3 pr-4">
+            <small class="font-semibold">Vaimiti Savitri</small>
+            <p>
+              <a href="#" class="font-semibold text-lg">
+                A Tale of Two Kinds of Media Workers
+              </a>
+            </p>
+            <small class="text-gray-600">Oct 22 · 3 min read</small>
+          </div>
+          <div id="article--tranding-three" class="py-3 pr-4">
+            <small class="font-semibold">Sarika Mårten</small>
+            <p>
+              <a href="#" class="font-semibold text-lg">
+                10 Sign the Pandemic Is About to Get Much Worse
+              </a>
+            </p>
+            <small class="text-gray-600">Oct 19 · 8 min read</small>
+          </div>
+          <div id="article--tranding-four" class="py-3 pr-4">
+            <small class="font-semibold">Emma Méabh</small>
+            <p>
+              <a href="#" class="font-semibold text-lg">
+                5 Countires to Move if Trump Wins Again, Ranked
+              </a>
+            </p>
+            <small class="text-gray-600">Oct 20 · 2 min read</small>
+          </div>
+        </div>
+      </div>
+      <hr class="my-8" />
+      <div class="main-article" id="choice">
+        {% for article in articles %}
+        <article class="grid grid-cols-3 py-4">
+          <div id="kiri" class="col-span-2">
+            <div class="author flex content-center">
+              <picture>
+                {% if article.author.avatar %}
+                <img
+                  src="{{article.author.avatar.url}}"
+                  class="rounded"
+                  width="20"
+                  height="20"
+                />
+                {% else %}
+                <img src="#" class="rounded border" width="20" height="20" />
+                {% endif %}
+              </picture>
+              <small class="font-semibold ml-2">{{ article.author }}</small>
+            </div>
+            <a
+              href="{% url 'users:story' username=article.author.username slug=article.slug %}"
+            >
+              <p class="font-bold text-2xl">
+                {{ article.title }}
+              </p>
+              <p class="text-gray-700">
+                {% if article.body|length > 125 %}
+                  {{ article.body | slice:":125" }}   ...
+                {% else %}
+                  {{ article.body}}
+                {% endif %}
+              </p>
+            </a>
+            <div class="flex justify-between pt-5">
+              <small class="text-gray-600">
+                {{ article.created_at | date:"M d" }} · 7 min read
+              </small>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#000"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-bookmark"
+              >
+                <path
+                  d="M19 23l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div id="kanan" class="col-span-1">
+            <a
+              href="{% url 'users:story' username=article.author.username slug=article.slug %}"
+            >
+            {% if article.cover %}
+              <img
+                src="{{ article.cover.url }}"
+                class="border float-right"
+                style="width: 210px; height: 150px"
+              />
+            {% else %}
+              <img
+                src="#"
+                class="border float-right"
+                style="width: 210px; height: 150px"
+              />
+            {% endif %}
+            </a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="content-right" class="col-span-1">
+      <h2
+        class="text-lg tag-highlight inline-block font-semibold tracking-widest"
+      >
+        EXPLORE
+      </h2>
+      <div class="grid grid-cols-3 mb-6 mt-5">
+        <div class="col-span-2">
+          <small class="font-semibold">Roman Elmo</small>
+          <p class="font-semibold text-lg">
+            Top 10 Mistakes that Django Developers Make
+          </p>
+          <small class="text-gray-600">Oct 12 · 3 min read</small>
+        </div>
+        <div class="col-span-1">
+          <img
+            src="./251021.jpg"
+            class="border float-right"
+            style="width: 85px; height: 85px"
+          />
+        </div>
+      </div>
+      <div class="grid grid-cols-3 mb-6">
+        <div class="col-span-2">
+          <small class="font-semibold">Kuzman Lisette</small>
+          <p class="font-semibold text-lg">When DRY Doesn’t Work, Go WET</p>
+          <small class="text-gray-600">Oct 15 · 7 min read</small>
+        </div>
+        <div class="col-span-1">
+          <img
+            src="./251021.jpg"
+            class="border float-right"
+            style="width: 85px; height: 85px"
+          />
+        </div>
+      </div>
+      <div class="grid grid-cols-3 mb-6">
+        <div class="col-span-2">
+          <small class="font-semibold">Scheherazade Tomasa</small>
+          <p class="font-semibold text-lg">
+            Automating your daily tasks with Python
+          </p>
+          <small class="text-gray-600">Oct 9 · 6 min read</small>
+        </div>
+        <div class="col-span-1">
+          <img
+            src="./251021.jpg"
+            class="border float-right"
+            style="width: 85px; height: 85px"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-{% block modal %}
-<div class="mx-auto py-6 px-12 sm:px-24 lg:px-20">
+{% comment %}
+<div class="mx-auto py-8 px-12 sm:px-24 lg:px-40">
   <div class="grid grid-cols-2">
     <div class="col-span-1">
       {% for article in articles %}
@@ -11,24 +197,24 @@
             <div class="flex">
               <picture>
                 {% if article.author.avatar %}
-                  <img
-                    src="{{article.author.avatar.url}}"
-                    class="rounded-full"
-                    alt="avatar"
-                    width="45"
-                    height="45"
-                  />
-                  {% else %}
-                  <img
-                    src="#"
-                    class="rounded-full border"
-                    alt="avatar"
-                    width="45"
-                    height="45"
-                  />
+                <img
+                  src="{{article.author.avatar.url}}"
+                  class="rounded-full"
+                  alt="avatar"
+                  width="45"
+                  height="45"
+                />
+                {% else %}
+                <img
+                  src="#"
+                  class="rounded-full border"
+                  alt="avatar"
+                  width="45"
+                  height="45"
+                />
                 {% endif %}
-                </picture>
-                <div class="author mx-3">
+              </picture>
+              <div class="author mx-3">
                 <p class="text-based">
                   <span class="text-teal-600">{{ article.author }}</span> in
                   <span class="text-teal-600">moon</span>
@@ -39,7 +225,9 @@
               </div>
             </div>
           </div>
-          <a href="{% url 'users:story' username=article.author.username slug=article.slug %}">
+          <a
+            href="{% url 'users:story' username=article.author.username slug=article.slug %}"
+          >
             {% if article.cover %}
             <div class="article--image py-4">
               <div class="img">
@@ -53,7 +241,7 @@
             {% endif %}
             <div class="article--body">
               <h1 class="font-bold text-3xl text-gray-900">
-              {{ article.title }}.
+                {{ article.title }}.
               </h1>
               <p class="font-based">{{ article.body | slice:":150" }} ...</p>
             </div>
@@ -64,4 +252,4 @@
     </div>
   </div>
 </div>
-{% endblock modal %}
+{% endcomment %}{% endblock main %}

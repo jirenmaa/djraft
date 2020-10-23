@@ -1,37 +1,232 @@
-
-
-
-
-// project specific CSS goes here
-
 ////////////////////////////////
 		//Variables//
 ////////////////////////////////
 
-// Alert colors
-
-$white: #fff;
-$mint-green: #d6e9c6;
-$black: #000;
-$pink: #f2dede;
-$dark-pink: #eed3d7;
-$red: #b94a48;
 
 ////////////////////////////////
-		//Alerts//
+		//Styles//
 ////////////////////////////////
-
-// bootstrap alert CSS, translated to the django-standard levels of
-// debug, info, success, warning, error
-
-.alert-debug {
-  background-color: $white;
-  border-color: $mint-green;
-  color: $black;
+@font-face {
+	font-family: electroharmonix;
+	src: url('../fonts/electroharmonix.ttf');
 }
 
-.alert-error {
-  background-color: $pink;
-  border-color: $dark-pink;
-  color: $red;
+body {
+	padding: 0;
+	margin: 0;
+}
+
+.elex {
+	// font-family: electroharmonix;
+	font-family: 'Playfair Display', serif;
+	color: #000;
+}
+
+.nav {
+	// background-color: #000;
+	position: fixed;
+	width: 60px;
+	height: 100%;
+	text-align: center;
+	z-index: 3;
+	transform: translate3d(0, 0, 0);
+	transition: all 350ms 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.nav.is-hidden {
+	transform: translate3d(-100%, 0, 0);
+}
+.nav-logo {
+	display: block;
+	margin: 30px 17px;
+}
+.nav-items {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	list-style: none;
+}
+.nav-item--list {
+	pointer-events: none;
+}
+.has-list {
+	.nav-item--list {
+		pointer-events: auto;
+	}
+	.nav-item--main {
+		&:first-child {
+			transform: translate3d(0, 0, 0);
+		}
+		&:last-child {
+			transform: translate3d(0, 0, 0);
+		}
+	}
+}
+.nav-item {
+	position: relative;
+	overflow: hidden;
+	&:hover {
+		.nav-iconContainer {
+			.nav-icon--inactive {
+				transition: all 350ms 0ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+				transform: translate3d(40px, 0, 0);
+				opacity: 0;
+			}
+			.nav-icon--cus-inactive {
+				transition: all 350ms 0ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+				transform: translate3d(40px, 0, 0);
+				opacity: 0;
+			}
+			.nav-icon--active {
+				transition: all 350ms 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+				opacity: 1;
+				transform: translate3d(0, 0, 0);
+			}
+			.nav-icon--cus-active {
+				transition: all 350ms 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+				opacity: 1;
+				transform: translate3d(0, 0, 0);
+			}
+		}
+	}
+}
+.nav-item.is-active {
+	pointer-events: none;
+}
+.nav-item--main {
+	transition: all 400ms 600ms cubic-bezier(0.645, 0.045, 0.355, 1);
+	z-index: 2;
+	&:first-child {
+		transform: translate3d(0, 31px, 0);
+		z-index: 2;
+	}
+	&:last-child {
+		transform: translate3d(0, -30px, 0);
+	}
+}
+.nav-iconContainer {
+	display: block;
+	position: relative;
+	width: 40px;
+	height: 40px;
+}
+.nav-icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+}
+.nav-icon--inactive {
+	transition: all 350ms 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+	transform: translate3d(0, 0, 0);
+	opacity: 1;
+	path {
+		fill: #000;
+	}
+	rect {
+		fill: #000;
+	}
+}
+.nav-icon--cus-inactive {
+	transition: all 350ms 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+	transform: translate3d(0, 0, 0);
+	opacity: 1;
+}
+.nav-icon--active {
+	transition: all 350ms 0ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	transform: translate3d(-40px, 0, 0);
+	opacity: 0;
+	path {
+		fill: #b59e5c;
+	}
+	rect {
+		fill: #b59e5c;
+	}
+}
+.nav-icon--cus-active {
+	transition: all 350ms 0ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	transform: translate3d(-40px, 0, 0);
+	opacity: 0;
+	line {
+		fill: #b59e5c;
+	}
+}
+.nav-settings {
+	display: block;
+	position: absolute;
+	bottom: 40px;
+	height: 100px;
+	width: 100%;
+	text-decoration: none;
+	color: #fff;
+	font-size: 12px;
+	user-select: none;
+	span {
+		pointer-events: none;
+	}
+}
+.nav-login {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	height: 100px;
+	width: 100%;
+	text-decoration: none;
+	color: #fff;
+	font-size: 12px;
+	user-select: none;
+	span {
+		pointer-events: none;
+	}
+}
+.nav-logout {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	height: 100px;
+	width: 100%;
+	text-decoration: none;
+	color: #fff;
+	font-size: 12px;
+	user-select: none;
+	span {
+		pointer-events: none;
+	}
+}
+.nav-settings-iconContainer {
+	display: block;
+	position: relative;
+	width: 24px;
+	height: 24px;
+	margin: 23px auto 11px;
+	pointer-events: none;
+}
+.nav-login-iconContainer {
+	display: block;
+	position: relative;
+	width: 24px;
+	height: 24px;
+	margin: 23px auto 11px;
+	pointer-events: none;
+}
+.nav-logout-iconContainer {
+	display: block;
+	position: relative;
+	width: 24px;
+	height: 24px;
+	margin: 23px auto 11px;
+	pointer-events: none;
+}
+
+#homepage {
+	header {
+		font-family: 'Playfair Display', serif;
+		font-size: 55px;
+	}
+
+	.tag-highlight {
+		background: linear-gradient(to top, yellow 50%, transparent 50%);
+	}
 }

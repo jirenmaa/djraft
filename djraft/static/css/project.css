@@ -1,25 +1,4 @@
 /* These styles are generated from project.scss. */
-body {
-  font-family: 'Merriweather', serif;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Piazzolla', serif;
-}
-
-p {
-  font-weight: 300 !important;
-  font-family: 'Merriweather', serif;
-}
-
-a {
-  font-weight: 300;
-}
-
-#id_body {
-  overflow: hidden;
-}
-
 .alert-debug {
   color: black;
   background-color: white;
@@ -30,46 +9,4 @@ a {
   color: #b94a48;
   background-color: #f2dede;
   border-color: #eed3d7;
-}
-
-.outline-gray-500 {
-  outline: 1px solid #a0aec0;
-}
-
-#profile-dropdown {
-  cursor: pointer;
-  min-width: 5rem;
-}
-
-.dropdown {
-  position: absolute;
-  transition: all 0.5s ease;
-}
-
-.hidden {
-  visibility: hidden;
-  opacity: 0;
-  display: none;
-}
-
-.active {
-  visibility: visible;
-  opacity: 1;
-  display: block;
-}
-
-.article--image img {
-  width: 100%;
-  max-width: 100% !important;
-  height: auto;
-}
-
-.article--image .img {
-  overflow: hidden;
-  max-height: 200px;
-}
-
-.article--image .img img {
-  margin-top: -10%;
-  /* crop position */
 }
