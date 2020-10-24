@@ -3,8 +3,125 @@
 
 {% block title %}{{ object.username }} - Djraft{% endblock %}
 
-{% block modal %}
-<div class="mx-auto py-12 px-12 sm:px-24 lg:px-40">
+{% block main %}
+<div class="mx-auto mt-6 px-18 sm:px-18 lg:px-32">
+  <header class="grid grid-cols-3">
+    <div class="col-span-2">
+      <div class="flex">
+        <h2 class="font-semibold elex text-6xl">{{ user.username }}</h2>
+        <span>
+          <a href="{% url 'users:info' object.username %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          </a>
+        </span>
+      </div>
+      {% if object.name %}
+      <h2 class="text-gray-700">{{ object.name }}</h2>
+      {% endif %}
+    </div>
+    <div class="col-span-1">
+      <picture class="flex justify-center">
+      {% if user.avatar %}
+        <img
+          src="{{user.avatar.url}}"
+          class="rounded-full"
+          alt="avatar"
+          width="250"
+          height="250"
+        />
+      {% else %}
+        <img
+          src="#"
+          class="rounded-full border"
+          alt="avatar"
+          width="250"
+          height="250"
+        />
+      {% endif %}
+      </picture>
+    </div>
+  </header>
+  <hr class="my-8">
+  <div id="wrapper" class="mx-24">
+    <h2 class="font-semibold text-xl">Your Stories</h2>
+    {% for story in stories %}
+    <div class="my-6 border">
+      <article class="p-4">
+        <div class="author flex content-center">
+          <picture>
+            {% if story.author.avatar %}
+            <img
+              src="{{story.author.avatar.url}}"
+              class="rounded-full"
+              width="50"
+              height="50"
+            />
+            {% else %}
+            <img src="#" class="rounded border" width="20" height="20" />
+            {% endif %}
+          </picture>
+          <div class="ml-3">
+            <p class="font-semibold">
+              {{ story.author }}
+            </p>
+            <p>
+              <small class="text-gray-600">
+                created at {{ story.created_at | date:"M d, h:i:s a" }}
+              </small>
+            </p>
+          </div>
+        </div>
+
+        <!-- <div class="article--image py-4">
+          <div class="img">
+            <img
+              src="{{ story.cover.url }}"
+              class="article-image"
+              alt="article-image"
+            />
+          </div>
+        </div> -->
+
+        <div class="story-cover">
+          <div class="img my-6">
+            <a
+              href="{% url 'users:story' username=story.author.username slug=story.slug %}"
+            >
+            {% if story.cover %}
+              <img
+                src="{{ story.cover.url }}"
+              />
+            {% endif %}
+            </a>
+          </div>
+        </div>
+
+        <a
+          href="{% url 'users:story' username=story.author.username slug=story.slug %}"
+        >
+          <p class="font-bold text-4xl">
+            {{ story.title }}
+          </p>
+          <p class="text-gray-700">
+            {% if story.body|length > 125 %}
+              {{ story.body | slice:":125" }}   ...
+            {% else %}
+              {{ story.body}}
+            {% endif %}
+          </p>
+        </a>
+      </article>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+
+
+{% comment %} <div class="mx-auto px-12 sm:px-12 lg:px-20">
   <div
     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4"
   >
@@ -13,8 +130,7 @@
         <h1 class="font-bold text-gray-900 text-5xl">{{ object.username }}</h1>
         {% if object.name %}
         <h1 class="text-gray-900 text-lg">{{ object.name }}</h1>
-        {% endif %} 
-        
+        {% endif %}
         {% if object == request.user %}
         <div class="flex mt-6">
           <a
@@ -110,6 +226,6 @@
     </aside>
   </div>
   <div class="mx-1"></div>
-</div>
-{% endblock modal %}
+</div> {% endcomment %}
+{% endblock main %}
 

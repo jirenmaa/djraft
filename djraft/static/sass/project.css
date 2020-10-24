@@ -281,4 +281,24 @@ body {
   background: -webkit-gradient(linear, left bottom, left top, color-stop(50%, yellow), color-stop(50%, transparent));
   background: linear-gradient(to top, yellow 50%, transparent 50%);
 }
+
+.story-cover img {
+  width: 100%;
+  max-width: 100% !important;
+  height: auto;
+}
+
+.story-cover .img {
+  overflow: hidden;
+  max-height: 240px !important;
+}
+
+.story-cover .img a img {
+  /* crop position */
+  margin-top: -20%;
+}
+
+.feather-edit:hover {
+  stroke: #b59e5c;
+}
 /*# sourceMappingURL=project.css.map */

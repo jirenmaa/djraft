@@ -1,12 +1,13 @@
 {% extends "base.html" %}
-
 {% load crispy_forms_tags %}
-{% block title %}{{ user.username }} - Djraft{% endblock %}
 
-{% block modal %}
-<div class="mx-auto p-12 px-6 sm:px-24 lg:px-20" style="font-family: 'Piazzolla', serif !important;">
+{% block title %}
+  {{user.username }} - Djraft
+{% endblock %}
+
+{% block main %}
+<div class="mx-auto mt-5 px-18 sm:px-18 lg:px-32">
   <form
-    class="form-horizontal mx-auto p-12 px-6 sm:px-24 lg:px-56"
     method="post"
     enctype="multipart/form-data"
     action="{% url 'users:info' user.username %}"
@@ -17,8 +18,8 @@
         <input
           type="text"
           id="current_name"
-          class="outline-none border-0 text-6xl font-bold text-gray-900"
-          style="max-width: 25rem;"
+          class="outline-none border-0 text-6xl elex"
+          style="max-width: 25rem"
           value="{{ user.username }}"
           autocomplete="off"
         />
@@ -26,20 +27,49 @@
       <div class="col-span-2">
         <div class="flex justify-center items-center">
           {% if user.avatar %}
-            <img src="{{user.avatar.url}}" id="current_avatar" class="rounded-full" alt="avatar" style="height: 250px !important; width: 250px !important;">
+          <img
+            src="{{user.avatar.url}}"
+            id="current_avatar"
+            class="rounded-full"
+            alt="avatar"
+            style="height: 250px !important; width: 250px !important"
+          />
           {% else %}
-            <img src="#" id="current_avatar" class="rounded-full border" alt="avatar" style="height: 250px !important; width: 250px !important;">
+          <img
+            src="#"
+            id="current_avatar"
+            class="rounded-full border"
+            alt="avatar"
+            style="height: 250px !important; width: 250px !important"
+          />
           {% endif %}
         </div>
-        <input type="file" name="avatar" accept="image/*" id="id_avatar" onchange="loadFile(event)" style="display: none;">
-        <label for="id_avatar" style="cursor: pointer;" class="flex justify-center">Change Image</label>
+        <input
+          type="file"
+          name="avatar"
+          accept="image/*"
+          id="id_avatar"
+          onchange="loadFile(event)"
+          style="display: none"
+        />
+        <label
+          for="id_avatar"
+          style="cursor: pointer"
+          class="flex justify-center"
+          >Change Image</label
+        >
       </div>
     </div>
 
-    <input type="hidden" id="id_name" name="username" value="">
+    <input type="hidden" id="id_name" name="username" value="" />
     <div class="control-group py-4">
       <div class="controls">
-        <button type="submit" class="p-1 px-4 border rounded-md border-gray-900 text-gray-900">Save Change</button>
+        <button
+          type="submit"
+          class="p-1 px-4 border rounded-md border-gray-900 text-gray-900"
+        >
+          Save Change
+        </button>
       </div>
     </div>
   </form>
@@ -84,4 +114,4 @@
 
   InputLiveUpdater();
 </script>
-{% endblock %}
+{% endblock main %}

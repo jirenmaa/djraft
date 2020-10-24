@@ -230,3 +230,24 @@ body {
 		background: linear-gradient(to top, yellow 50%, transparent 50%);
 	}
 }
+
+/// user detail
+.story-cover img {
+	width: 100%;
+	max-width: 100% !important;
+	height: auto;
+}
+
+.story-cover .img {
+	overflow: hidden;
+	max-height: 240px !important;
+}
+
+.story-cover .img a img {
+	/* crop position */
+	margin-top: -20%;
+}
+
+.feather-edit:hover {
+	stroke:#b59e5c;
+}
