@@ -72,29 +72,19 @@
           </div>
         </div>
 
-        <!-- <div class="article--image py-4">
-          <div class="img">
-            <img
-              src="{{ story.cover.url }}"
-              class="article-image"
-              alt="article-image"
-            />
-          </div>
-        </div> -->
-
+        {% if story.cover %}
         <div class="story-cover">
           <div class="img my-6">
             <a
               href="{% url 'users:story' username=story.author.username slug=story.slug %}"
             >
-            {% if story.cover %}
               <img
                 src="{{ story.cover.url }}"
               />
-            {% endif %}
             </a>
           </div>
         </div>
+        {% endif %}
 
         <a
           href="{% url 'users:story' username=story.author.username slug=story.slug %}"
@@ -115,117 +105,4 @@
     {% endfor %}
   </div>
 </div>
-
-
-
-
-
-
-{% comment %} <div class="mx-auto px-12 sm:px-12 lg:px-20">
-  <div
-    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4"
-  >
-    <div class="col-span-2">
-      <div class="top-heading pb-4">
-        <h1 class="font-bold text-gray-900 text-5xl">{{ object.username }}</h1>
-        {% if object.name %}
-        <h1 class="text-gray-900 text-lg">{{ object.name }}</h1>
-        {% endif %}
-        {% if object == request.user %}
-        <div class="flex mt-6">
-          <a
-            class="mr-5 font-bold"
-            href="{% url 'users:detail' object.username %}"
-            >All</a
-          >
-          <a
-            class="mr-5"
-            href="{% url 'users:info' object.username %}"
-            role="button"
-            >My Info</a
-          >
-          <a class="mr-5" href="{% url 'account_email' %}" role="button"
-            >E-Mail</a
-          >
-          <a
-            class="mr-5"
-            href="{% url 'users:stories' object.username %}"
-            role="button"
-            >Stories</a
-          >
-          <!-- Your Stuff: Custom user template urls -->
-        </div>
-        {% endif %}
-      </div>
-      {% for story in stories %}
-      <div class="py-4">
-        <article class="card shadow-sm border rounded-sm p-6 py-4">
-          <div class="article--top mb-2">
-            <div class="flex">
-              {% if user.avatar %}
-              <picture>
-                <img
-                  src="{{user.avatar.url}}"
-                  class="rounded-full"
-                  alt="avatar"
-                  width="45"
-                  height="45"
-                />
-              </picture>
-              {% else %}
-              <picture>
-                <img
-                    src="#"
-                    class="rounded-full border"
-                    alt="avatar"
-                    width="45"
-                    height="45"
-                  />
-              </picture>
-              {% endif %}
-              <div class="author mx-3">
-                <p class="text-based">
-                  <span class="text-teal-600">{{ story.author }}</span> in
-                  <span class="text-teal-600">moon</span>
-                </p>
-                <p class="text-xs">
-                  {{ story.created_at | date:"M d" }} · @ min read &#9733;
-                </p>
-              </div>
-            </div>
-          </div>
-          <a
-            href="{% url 'users:story' username=object.username slug=story.slug %}"
-          >
-            {% if story.cover %}
-            <div class="article--image py-4">
-              <div class="img">
-                <img
-                  src="{{ story.cover.url }}"
-                  class="article-image"
-                  alt="article-image"
-                />
-              </div>
-            </div>
-            {% endif %}
-            <div class="article--body">
-              <h1 class="font-bold text-3xl text-gray-900">
-                {{ story.title }}.
-              </h1>
-              <p class="text-sm">{{ story.body | slice:":150" }} ...</p>
-            </div>
-          </a>
-        </article>
-      </div>
-      {% endfor %}
-    </div>
-    <aside class="col-span-2">
-      <div class="mx-8">
-        <h2>Most Viewed</h2>
-      </div>
-    </aside>
-  </div>
-  <div class="mx-1"></div>
-</div> {% endcomment %}
 {% endblock main %}
-

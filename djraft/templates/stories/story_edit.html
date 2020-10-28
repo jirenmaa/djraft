@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+  {{ slug }} - edit
+{% endblock %}
+
+{% block main %}
+<div class="mx-auto p-6 px-6 sm:px-24 lg:px-64">
+    <div class="w-full">
+      <form
+        class="bg-white px-8 pt-6 pb-8 mb-4"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="mb-6">
+          {% csrf_token %}
+          {{ form.title }}
+          {{ form.description }}
+          {{ form.cover }}
+          {{ form.body }}
+        </div>
+        <div class="mb-6">
+            {{ form.title.value }}
+        </div>
+        <div class="flex items-center justify-between">
+          <button
+            class="text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+            id="save_change"
+          >
+            {% trans "Save Change" %}
+          </button>
+        </div>
+      </form>
+    </div>
+</div>
+{% endblock main %}

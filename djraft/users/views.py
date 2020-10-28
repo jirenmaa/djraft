@@ -2,9 +2,15 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import HttpResponseRedirect, render
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import (DetailView, RedirectView, UpdateView, ListView, CreateView)
+from django.views.generic import (
+    DetailView,
+    RedirectView,
+    UpdateView,
+    ListView,
+    CreateView,
+)
 
 from stories.models import Story
 from stories.forms import StoryForm
@@ -19,14 +25,16 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     slug_url_kwarg = "username"
 
     def get_context_data(self, **kwargs):
-        detailed_username = self.kwargs['username']
+        detailed_username = self.kwargs["username"]
         current_username = self.request.user.username
         context = super().get_context_data(**kwargs)
 
         if detailed_username == current_username:
             context["stories"] = Story.objects.filter(author=self.request.user.id)
         else:
-            context["stories"] = Story.objects.filter(author__username=detailed_username)
+            context["stories"] = Story.objects.filter(
+                author__username=detailed_username
+            )
 
         return context
 
@@ -40,8 +48,7 @@ class UserInfoView(LoginRequiredMixin, UpdateView):
     fields = ["name", "username", "avatar"]
 
     def get_success_url(self):
-        user = User.objects.get(id=self.request.user.id)
-        return reverse("users:detail", kwargs={"username": user.username})
+        return reverse("users:detail", kwargs={"username": self.request.user.username})
 
     def get_object(self):
         return User.objects.get(username=self.request.user.username)
@@ -78,7 +85,7 @@ class UserStoriesView(LoginRequiredMixin, ListView):
         author = User.objects.get(pk=self.request.user.id)
         stories = Story.objects.filter(author=author)
 
-        data['stories'] = stories
+        data["stories"] = stories
         return data
 
 
@@ -99,12 +106,37 @@ def user_story_delete(request, username, slug):
         story = Story.objects.get(author=request.user, slug=slug)
 
         if not story.author == request.user:
-            pass # not authorized
+            pass  # not authorized
         else:
             story.delete()
 
-        url = reverse("users:stories", kwargs={"username":username})
+        url = reverse("users:stories", kwargs={"username": username})
         return HttpResponseRedirect(url)
+
+
+class UserStoryEditView(LoginRequiredMixin, UpdateView):
+
+    model = Story
+    form_class = StoryForm
+    template_name_suffix = "_edit"
+
+    def get_success_url(self):
+        return reverse("users:stories", kwargs={"username": self.request.user.username})
+
+    def get_context_data(self, **kwargs):
+        story_writer = self.kwargs["username"]
+        current_user = self.request.user
+        context = super().get_context_data(**kwargs)
+
+        if current_user.username == story_writer:
+            story = Story.objects.get(slug=self.kwargs["slug"])
+            context["slug"] = story.slug
+            context["author"] = story.author
+
+        return context
+
+
+user_story_edit_view = UserStoryEditView.as_view()
 
 
 class UserNewStoryView(LoginRequiredMixin, CreateView):

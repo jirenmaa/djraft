@@ -301,4 +301,8 @@ body {
 .feather-edit:hover {
   stroke: #b59e5c;
 }
+
+.feather-trash:hover {
+  stroke: red;
+}
 /*# sourceMappingURL=project.css.map */
