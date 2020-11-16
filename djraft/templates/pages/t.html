@@ -1,0 +1,79 @@
+<div class="grid grid-cols-3">
+    <div class="col-span-2 main-article" id="choice">
+      {% for article in articles %}
+      <article class="grid grid-cols-3 py-4 bg-grey-600 border">
+        <div id="kiri" class="col-span-2">
+          <div class="author flex content-center">
+            <picture>
+              {% if article.author.avatar %}
+              <img
+                src="{{article.author.avatar.url}}"
+                class="rounded"
+                width="20"
+                height="20"
+              />
+              {% else %}
+              <img src="#" class="rounded border" width="20" height="20" />
+              {% endif %}
+            </picture>
+            <small class="font-semibold ml-2">{{ article.author }}</small>
+          </div>
+          <a
+            href="{% url 'users:story' username=article.author.username slug=article.slug %}"
+          >
+            <p class="font-bold text-2xl">
+              {{ article.title }}
+            </p>
+            <p class="text-gray-700">
+              {% if article.body|length > 125 %}
+                {{ article.body | slice:":125" }}   ...
+              {% else %}
+                {{ article.body}}
+              {% endif %}
+            </p>
+          </a>
+          <div class="flex justify-between pt-5">
+            <small class="text-gray-600">
+              {{ article.created_at | date:"M d" }} · 7 min read
+            </small>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#000"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-bookmark"
+            >
+              <path
+                d="M19 23l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div id="kanan" class="col-span-1">
+          <a
+            href="{% url 'users:story' username=article.author.username slug=article.slug %}"
+          >
+          {% if article.cover %}
+            <img
+              src="{{ article.cover.url }}"
+              class="float-right"
+              style="width: 210px; height: 150px"
+            />
+          {% else %}
+            <img
+              src="#"
+              class="float-right"
+              style="width: 210px; height: 150px"
+            />
+          {% endif %}
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
