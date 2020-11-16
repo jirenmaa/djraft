@@ -125,12 +125,15 @@ class UserStoryEditView(LoginRequiredMixin, UpdateView):
         return reverse("users:stories", kwargs={"username": self.request.user.username})
 
     def get_context_data(self, **kwargs):
-        story_writer = self.kwargs["username"]
-        current_user = self.request.user
+        author = self.kwargs["username"]
+        slug = self.kwargs["slug"]
+
+        story = Story.objects.get(author__username=author, slug=slug)
+        current_user = self.request.user.username
         context = super().get_context_data(**kwargs)
 
-        if current_user.username == story_writer:
-            story = Story.objects.get(slug=self.kwargs["slug"])
+        if current_user == story.author:
+            story = Story.objects.get(slug=slug)
             context["slug"] = story.slug
             context["author"] = story.author
 
