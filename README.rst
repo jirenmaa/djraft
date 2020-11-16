@@ -1,7 +1,7 @@
 djraft
 ======
 
-project clone. [private (for now)]
+project clone. # private (for now)
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
      :target: https://github.com/pydanny/cookiecutter-django/
@@ -105,7 +105,7 @@ Setting up docker in development::
 Using Docker
 ------------
 
-development using docker, had been written in the django-cookiecutter `running docker locally`_.
+django-cookiecutter `running docker locally`_.
 
 .. _`running docker locally`: https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html
 
