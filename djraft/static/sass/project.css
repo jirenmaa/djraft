@@ -282,6 +282,33 @@ body {
   background: linear-gradient(to top, yellow 50%, transparent 50%);
 }
 
+#homepage article {
+  position: relative;
+  width: 100%;
+}
+
+#homepage article #article-body #bottom-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: absolute;
+  width: 65%;
+  bottom: 5px;
+  left: 0;
+}
+
+#homepage article #article-body #bottom-content .feather-bookmark:hover {
+  fill: #313131;
+  cursor: pointer;
+}
+
+#homepage article #article-body #bottom-content .feather-bookmark:hover line {
+  fill: #313131;
+}
+
 .story-cover img {
   width: 100%;
   max-width: 100% !important;

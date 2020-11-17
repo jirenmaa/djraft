@@ -229,6 +229,29 @@ body {
 	.tag-highlight {
 		background: linear-gradient(to top, yellow 50%, transparent 50%);
 	}
+
+	article {
+		position: relative;
+		width: 100%;
+
+		#article-body {
+			#bottom-content {
+				display: flex;
+				justify-content: space-between;
+				position: absolute;
+				width: 65%;
+				bottom: 5px;
+				left: 0;
+				.feather-bookmark:hover {
+					fill: rgb(49, 49, 49);
+					line {
+						fill: rgb(49, 49, 49);
+					}
+					cursor: pointer;
+				}
+			}
+		}
+	}
 }
 
 /// user detail
