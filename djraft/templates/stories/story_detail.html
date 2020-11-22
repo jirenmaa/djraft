@@ -16,9 +16,12 @@
     <div class="flex">
       <picture>
         {% if story.author.avatar %}
-          <img src="{{story.author.avatar.url}}" class="rounded-full" alt="avatar" width="50" height="50" />
+        <img
+          src="{{story.author.avatar.url}}"
+          class="rounded-full default-avatar-dim-50"
+        />
         {% else %}
-          <img src="#" class="border" alt="avatar" width="50" height="50" />
+        <div class="rounded-full border border-gray-500 mx-3 default-avatar-dim-50"></div>
         {% endif %}
       </picture>
       <div class="author mx-4">

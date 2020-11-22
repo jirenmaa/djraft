@@ -3,6 +3,7 @@
     <h1 style="font-size: 40px" class="elex font-bold">D</h1>
   </a>
   <ul class="nav-items">
+    <!-- navigation items -->
     {% if request.user.is_authenticated %}
     <li class="nav-item nav-item--main">
       <a
@@ -91,14 +92,11 @@
         {% if user.avatar %}
         <img
           src="{{request.user.avatar.url}}"
-          class="rounded-full shadow mx-3"
-          width="40"
-          height="40"
+          class="rounded-full shadow mx-3 default-avatar-dim-40"
         />
         {% else %}
         <div
-          class="rounded-full border border-gray-500 mx-3"
-          style="height: 40px !important; width: 40px !important"
+          class="rounded-full border border-gray-500 mx-3 default-avatar-dim-40"
         ></div>
         {% endif %}
       </a>
@@ -181,6 +179,7 @@
       </a>
     </li>
     {% endif %}
+    <!-- end of navigation items -->
   </ul>
 
   {% if request.user.is_authenticated %}

@@ -1,11 +1,26 @@
 from django.db import models
 from django.utils import timezone
+from django.db.models.aggregates import Count
+from random import randint
 
 from djraft.users.models import User
 from .utils import generate_slug
 
 
+
+class StoryManager(models.Manager):
+    def get_exclude_queryset(self):
+        return self.get_queryset().exclude(cover="")
+
+    def random(self):
+        count = self.get_exclude_queryset().count()
+        random_index = randint(0, count - 1)
+        print(random_index, count)
+        return self.get_exclude_queryset()[random_index]
+
+
 class Story(models.Model):
+    objects = StoryManager()
     slug = models.SlugField(max_length=100, unique=True)
     title = models.CharField(max_length=100)
 

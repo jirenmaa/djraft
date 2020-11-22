@@ -11,3 +11,17 @@
   border-color: #eed3d7;
 }
 
+.default-avatar-dim-40 {
+	height: 40px !important;
+	width: 40px !important;
+}
+
+.default-avatar-dim-50 {
+	height: 50px !important;
+	width: 50px !important;
+}
+
+.avatar-detail-dim {
+	height: 250px !important;
+	width: 250px !important;
+}
