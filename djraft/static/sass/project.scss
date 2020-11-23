@@ -2,14 +2,20 @@
 		//Variables//
 ////////////////////////////////
 $work-sans: 'Work Sans', sans-serif;
+$playfair: 'Playfair Display', serif;
+
 
 ////////////////////////////////
 		//Styles//
 ////////////////////////////////
-
 body {
 	padding: 0;
 	margin: 0;
+}
+
+.djraft-logo {
+	font-family: $playfair;
+	color: #000;
 }
 
 .nav {
@@ -231,7 +237,7 @@ body {
 
 #homepage {
 	header {
-		font-family: 'Playfair Display', serif;
+		font-family: $playfair;
 		font-size: 55px;
 	}
 
@@ -264,7 +270,22 @@ body {
 	}
 }
 
-/// user detail
+/// story detail ///
+.article--image {
+	max-height: 816px !important;
+	overflow: hidden !important;
+}
+
+.ar-title {
+	font-family: $playfair;
+}
+
+/// user detail ///
+.elex {
+	font-family: $playfair;
+	color: #000;
+}
+
 .story-cover img {
 	width: 100%;
 	max-width: 100% !important;
