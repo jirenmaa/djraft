@@ -31,10 +31,12 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
         if detailed_username == current_username:
             context["stories"] = Story.objects.filter(author=self.request.user.id)
+            context["can_edit"] = True
         else:
             context["stories"] = Story.objects.filter(
                 author__username=detailed_username
             )
+            context["can_edit"] = False
 
         return context
 
