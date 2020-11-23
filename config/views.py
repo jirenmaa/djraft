@@ -11,7 +11,7 @@ def home(request):
         # filter article that doesn't have the cover image but have description
         web_explore_articles = Story.objects.exclude(
             cover__regex='.', description__isnull=False
-        )
+        )[:4]
 
         return render(
             request, "pages/home.html",
