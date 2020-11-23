@@ -1,12 +1,12 @@
 /* Project specific Javascript goes here. */
 var d = new Date();
 var greet;
-var ch = d.getHours();
+var ch = d.getHours(); // current hour
 
 
-if (ch >= 5) { greet = "Good Morning,";}
-else if (ch >= 12) { greet = "Good Afternoon,";}
-else if (ch >= 17) { greet = "Good Evening,";}
+if (ch >= 5 && ch < 12) { greet = "Good Morning,";}
+else if (ch >= 12 && ch < 17) { greet = "Good Afternoon,";}
+else if (ch >= 17 && ch <= 24 || ch < 5) { greet = "Good Evening,";}
 document.getElementById("greet").innerHTML = greet;
 
 
