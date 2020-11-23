@@ -19,11 +19,11 @@ class StoryForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "placeholder": "Title",
-                "required": False,
+                "required": True,
                 "autofocus": "off",
                 "autocomplete": "off",
-                "class": "appearance-none w-full h-full py-2 px-3 mb-4"
-                         "text-gray-900 text-4xl leading-tight focus:outline-none",
+                "class": "appearance-none w-full h-full py-2 px-3 mb-4 "
+                         "text-gray-900 text-6xl leading-tight focus:outline-none elex",
             }
         ),
     )
@@ -32,7 +32,8 @@ class StoryForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "placeholder": "What is this about...",
-                "class": "appearance-none w-full py-2 px-3 mb-4 text-gray-900 text-lg leading-tight focus:outline-none",
+                "class": "appearance-none w-full py-2 px-3 mb-4 text-gray-900 "
+                         "text-2xl leading-tight focus:outline-none",
             }
         )
     )
@@ -41,7 +42,9 @@ class StoryForm(forms.ModelForm):
         widget=forms.FileInput(
             attrs={
                 "placeholder": "Media image",
-                "class": "appearance-none py-2 px-3 mb-4 text-gray-900 leading-tight focus:outline-none",
+                "class": "appearance-none py-2 px-3 mb-4 text-gray-900 "
+                         "leading-tight focus:outline-none",
+                "onchange": "loadFile(event)",
             }
         )
     )
@@ -52,7 +55,8 @@ class StoryForm(forms.ModelForm):
                 "placeholder": "Tell your story...",
                 "onkeyup": "AutoGrowTextArea(this)",
                 "style": "overflow:hidden",
-                "class": "appearance-none w-full py-2 px-3 mb-4 text-gray-700 text-lg leading-tight focus:outline-none",
+                "class": "appearance-none w-full py-2 px-3 mb-4 text-gray-700 "
+                         "text-lg leading-tight focus:outline-none",
             }
         )
     )
