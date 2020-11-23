@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n compress %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +21,11 @@
     <!-- Latest compiled and minified Tailwind CSS -->
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
+    {% compress css %}
     <!-- Your stuff: Third-party CSS libraries go here -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet" />
     <link href="{% static 'sass/project.css' %}" rel="stylesheet" />
+    {% endcompress %}
     {% endblock %}
   </head>
 

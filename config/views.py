@@ -11,12 +11,16 @@ def home(request):
         # filter article that doesn't have the cover image but have description
         web_explore_articles = Story.objects.exclude(
             cover__regex='.', description__isnull=False
-        )[:4]
+        )
+        # randomize explored articles
+        list_explore_article = []
+        for _ in range(4):
+            list_explore_article.append(Story.objects.random(web_explore_articles))
 
         return render(
             request, "pages/home.html",
             context={
                 "web_main_articles": web_main_articles,
-                "web_explore_articles": web_explore_articles
+                "web_explore_articles": list_explore_article
             }
         )
