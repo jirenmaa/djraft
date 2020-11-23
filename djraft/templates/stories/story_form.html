@@ -7,10 +7,10 @@
 {% endblock %}
 
 {% block main %}
-<div class="mx-auto p-6 px-6 sm:px-24 lg:px-64">
+<div class="mx-auto px-6 sm:px-24 lg:px-32">
   <div class="w-full">
     <form
-      class="bg-white px-8 pt-6 pb-8 mb-4"
+      class="bg-white px-8 pt-3 pb-8 mb-4"
       method="POST"
       enctype="multipart/form-data"
       action="{% url 'users:new-story' user.username %}"
@@ -19,6 +19,9 @@
         {% csrf_token %}
         {{ form.title }}
         {{ form.description }}
+        <div class="flex justify-center">
+          <img src="" id="show-cover">
+        </div>
         {{ form.cover }}
         {{ form.body }}
       </div>
@@ -34,4 +37,10 @@
     </form>
   </div>
 </div>
+<script>
+  var loadFile = function(event) {
+    var cover = document.getElementById('show-cover');
+    cover.src = URL.createObjectURL(event.target.files[0]);
+  };
+</script>
 {% endblock main %}
