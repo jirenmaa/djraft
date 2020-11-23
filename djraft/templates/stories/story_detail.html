@@ -5,41 +5,60 @@
 {% endblock %}
 
 {% block main %}
-<article class="mx-auto px-18 sm:px-18 lg:px-32">
-  <div class="article--top-heading">
-    <h1 class="font-bold text-gray-900 text-6xl">{{story.title}}</h1>
-    <div class="max-w-3xl">
-      <p class="text-gray-700 text-lg">{{story.description}}</p>
+<div id="article" class="mx-auto px-18 sm:px-18 lg:px-32 mt-3">
+  <article>
+    <div class="article--top-heading">
+      <h1 class="font-semibold ar-title text-gray-900 text-6xl">{{story.title}}</h1>
+      <div class="max-w-3xl my-6">
+        <p class="text-gray-600 font-medium text-2xl">{{story.description}}</p>
+      </div>
     </div>
-  </div>
-  <div class="article--top-author my-6">
-    <div class="flex">
+    <div class="article--top-author">
+      <div class="flex">
+        <picture>
+          {% if story.author.avatar %}
+          <img
+            src="{{story.author.avatar.url}}"
+            class="rounded-full default-avatar-dim-50"
+          />
+          {% else %}
+          <div class="rounded-full border border-gray-500 mx-3 default-avatar-dim-50"></div>
+          {% endif %}
+        </picture>
+        <div class="author mx-4">
+          <p class="text-gray-900">{{story.author}}.</p>
+          <small class="text-gray-700">{{story.created_at | date:"M d"}}</small>
+        </div>
+      </div>
+    </div>
+    {% if story.cover %}
+    <div class="article--image py-4">
+      <div class="flex justify-center">
+        <img src="{{story.cover.url}}" class="article-image" />
+      </div>
+    </div>
+    {% endif %}
+    <div class="article--body py-4 mx-3">
+      <p>{{story.body|linebreaksbr}}</p>
+    </div>
+  </article>
+  <div class="article-footer mt-16 border-t">
+    <div class="flex my-6">
       <picture>
         {% if story.author.avatar %}
-          <img src="{{story.author.avatar.url}}" class="rounded-full" alt="avatar" width="50" height="50" />
+        <img
+          src="{{story.author.avatar.url}}"
+          class="rounded-full default-avatar-dim-100"
+        />
         {% else %}
-          <img src="#" class="border" alt="avatar" width="50" height="50" />
+        <div class="rounded-full border border-gray-500 default-avatar-dim-100"></div>
         {% endif %}
       </picture>
-      <div class="author mx-4">
-        <p class="text-gray-900">{{story.author}}.</p>
-        <small class="text-gray-700">{{story.created_at | date:"M d"}}</small>
+      <div class="mx-4">
+        <h2 class="tracking-widest">WRITTEN BY</h2>
+        <h2 class="font-semibold text-2xl">{{story.author}}</h2>
       </div>
     </div>
   </div>
-  {% if story.cover %}
-  <div class="article--image py-4" style="max-height: 816px !important; overflow: hidden !important;">
-    <div class="img">
-      <img
-        src="{{story.cover.url}}"
-        class="article-image"
-        alt="article-image"
-      />
-    </div>
-  </div>
-  {% endif %}
-  <div class="article--body">
-    <p>{{story.body|linebreaksbr}}</p>
-  </div>
-</article>
+</div>
 {% endblock main %}

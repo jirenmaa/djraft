@@ -8,10 +8,11 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block inner %}
-  <h1>{% trans "Sign In" %}</h1>
+  <h1 class="font-medium text-6xl elex">{% trans "Sign In" %}</h1>
 
-  {% get_providers as socialaccount_providers %} {% if socialaccount_providers %}
-  <p>
+  {% get_providers as socialaccount_providers %}
+  {% if socialaccount_providers %}
+  <p class="my-5 text-lg">
     {% blocktrans with site.name as site_name %}Please sign in with one of your
     existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a> for
     a {{ site_name }} account and sign in below:{% endblocktrans %}
@@ -24,13 +25,13 @@
     <div class="login-or">{% trans 'or' %}</div>
   </div>
   {% include "socialaccount/snippets/login_extra.html" %} {% else %}
-  <p>
+  <p class="my-5 text-lg">
     {% blocktrans %}If you have not created an account yet, then please
     <a href="{{ signup_url }}" class="text-blue-500">sign up</a> first.{% endblocktrans %}
   </p>
   {% endif %}
 
-  <div class="w-full max-w-xs">
+  <div class="w-3/6">
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action="{% url 'account_login' %}">
       <div class="mb-6">
         {% csrf_token %}
@@ -60,7 +61,7 @@
       </div>
       <div class="flex items-center justify-between">
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          class="btn-primary rounded text-white"
           type="submit"
         >
         {% trans "Sign In" %}

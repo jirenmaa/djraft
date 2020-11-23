@@ -1,15 +1,10 @@
-@font-face {
-  font-family: electroharmonix;
-  src: url("../fonts/electroharmonix.ttf");
-}
-
 body {
   padding: 0;
   margin: 0;
 }
 
-.elex {
-  font-family: 'Playfair Display', serif;
+.djraft-logo {
+  font-family: "Playfair Display", serif;
   color: #000;
 }
 
@@ -273,11 +268,12 @@ body {
 }
 
 #homepage header {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 55px;
 }
 
 #homepage .tag-highlight {
+  font-family: "Work Sans", sans-serif;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(50%, yellow), color-stop(50%, transparent));
   background: linear-gradient(to top, yellow 50%, transparent 50%);
 }
@@ -307,6 +303,20 @@ body {
 
 #homepage article #article-body #bottom-content .feather-bookmark:hover line {
   fill: #313131;
+}
+
+.article--image {
+  max-height: 816px !important;
+  overflow: hidden !important;
+}
+
+.ar-title {
+  font-family: "Playfair Display", serif;
+}
+
+.elex {
+  font-family: "Playfair Display", serif;
+  color: #000;
 }
 
 .story-cover img {

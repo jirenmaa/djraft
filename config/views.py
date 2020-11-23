@@ -5,5 +5,18 @@ from stories.models import Story
 
 def home(request):
     if request.method == "GET":
-        articles = Story.objects.exclude(cover="")[:22]
-        return render(request, "pages/home.html", context={"articles": articles})
+        # filter articles only with cover image
+        web_main_articles = Story.objects.get_excover_queryset()[:18]
+
+        # filter article that doesn't have the cover image but have description
+        web_explore_articles = Story.objects.exclude(
+            cover__regex='.', description__isnull=False
+        )[:4]
+
+        return render(
+            request, "pages/home.html",
+            context={
+                "web_main_articles": web_main_articles,
+                "web_explore_articles": web_explore_articles
+            }
+        )

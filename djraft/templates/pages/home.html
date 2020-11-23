@@ -1,14 +1,18 @@
-{% extends "base.html" %} {% block main %}
+{% extends "base.html" %}
+
+{% block main %}
 <div id="homepage">
   <div class="grid grid-cols-3">
     <div id="content-left" class="col-span-2">
       <header class="font-semibold">
-        <h1>Good Morning,</h1>
+        <h1 id="greet"></h1>
         <h1>{{user.username}}</h1>
       </header>
+
+      <!-- trending articles -->
       <div id="trending" class="mt-12">
         <h2
-          class="text-lg tag-highlight inline-block font-semibold tracking-widest"
+          class="text-lg tag-highlight inline-block font-medium tracking-widest"
         >
           TRENDING
         </h2>
@@ -51,42 +55,40 @@
           </div>
         </div>
       </div>
+      <!-- end of trending articles -->
+
       <hr class="my-8" />
     </div>
+
+    <!-- explore more articles -->
     <div id="content-right" class="col-span-1 px-5">
       <h2
-        class="text-lg tag-highlight inline-block font-semibold tracking-widest"
+        class="text-lg tag-highlight inline-block font-medium tracking-widest mb-5"
       >
         EXPLORE
       </h2>
-      <div class="mb-6 mt-5">
-        <small class="font-semibold">Roman Elmo</small>
-        <p class="font-semibold text-lg">
-          Top 10 Mistakes that Django Developers Make
-        </p>
-        <small class="text-gray-600">Oct 12 · 3 min read</small>
-      </div>
-      <div class="mb-6">
-        <small class="font-semibold">Kuzman Lisette</small>
-        <p class="font-semibold text-lg">When DRY Doesn’t Work, Go WET</p>
-        <small class="text-gray-600">Oct 15 · 7 min read</small>
-      </div>
-      <div class="mb-6">
-        <small class="font-semibold">Scheherazade Tomasa</small>
-        <p class="font-semibold text-lg">
-          Automating your daily tasks with Python
-        </p>
-        <small class="text-gray-600">Oct 9 · 6 min read</small>
-      </div>
+      {% for article in web_explore_articles %}
+        <div class="mb-6">
+          <a href="{% url 'users:detail' article.author.username  %}" class="font-semibold text-sm">
+            {{article.author}}
+          </a>
+          <a href="{% url 'users:story' username=article.author.username slug=article.slug %}">
+            <p class="font-semibold text-lg">{{article.title}}</p>
+            <small class="text-gray-600">{{article.created_at|date:"M d"}}</small>
+          </a>
+        </div>
+      {% endfor %}
     </div>
+    <!-- end of explore more articles -->
+
   </div>
 
   <!-- main article -->
   <div class="grid grid-cols-3">
     <div class="col-span-2">
-      {% for article in articles %}
+      {% for article in web_main_articles %}
         <!-- article -->
-        <div id="article-content" class="py-4">
+        <div class="py-4">
           <article class="grid grid-cols-3">
             <div class="col-span-2">
               <!-- author section -->
@@ -94,15 +96,16 @@
                 {% if article.author.avatar %}
                   <img
                     src="{{article.author.avatar.url}}"
-                    class="rounded" width="20" height="20"
+                    class="rounded default-avatar-dim-20"
                   >
                 {% else %}
                   <div
-                    class="rounded border border-gray-500"
-                    style="height: 20px; width: 20px"
+                    class="rounded border border-gray-500 default-avatar-dim-20"
                   ></div>
                 {% endif %}
-                <small class="font-semibold ml-2">{{ article.author }}</small>
+                <a href="{% url 'users:detail' article.author.username %}" class="font-semibold text-sm ml-2">
+                  {{article.author}}
+                </a>
               </div>
               <!-- end of author -->
 

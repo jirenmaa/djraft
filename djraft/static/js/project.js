@@ -1,14 +1,14 @@
 /* Project specific Javascript goes here. */
-function profileDropdown() {
-  let el = document.getElementById("profile-setting-dropdown");
-  if (el.classList.contains("hidden")) {
-    el.classList.remove("hidden");
-    el.classList.add("active");
-  } else {
-    el.classList.remove("active");
-    el.classList.add("hidden");
-  }
-}
+var d = new Date();
+var greet;
+var ch = d.getHours(); // current hour
+
+
+if (ch >= 5 && ch < 12) { greet = "Good Morning,";}
+else if (ch >= 12 && ch < 17) { greet = "Good Afternoon,";}
+else if (ch >= 17 && ch <= 24 || ch < 5) { greet = "Good Evening,";}
+document.getElementById("greet").innerHTML = greet;
+
 
 function AutoGrowTextArea(textField) {
   if (textField.clientHeight < textField.scrollHeight) {

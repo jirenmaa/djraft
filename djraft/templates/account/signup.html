@@ -7,15 +7,16 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block inner %}
-  <h1>{% trans "Sign Up" %}</h1>
-  <p>
+<div>
+  <h1 class="font-medium text-6xl elex">{% trans "Sign Up" %}</h1>
+  <p class="my-5 text-lg">
     {% blocktrans %}
     Already have an account? Then please
-    <a href="{{ login_url }}" class="text-blue">sign in</a>.
+    <a href="{{ login_url }}" class="text-blue-500">sign in</a>.
     {% endblocktrans %}
   </p>
 
-  <div class="w-full max-w-xs">
+  <div class="w-3/6">
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" id="signup_form" method="post" action="{% url 'account_signup' %}">
       {% csrf_token %}
       <div class="mb-3">
@@ -46,11 +47,12 @@
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
       <div class="flex items-center justify-between">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+        <button class="btn-primary rounded text-white" type="submit">
           {% trans "Sign Up" %} &raquo;
         </button>
       </div>
     </form>
   </div>
+</div>
 {% endblock %}
 
