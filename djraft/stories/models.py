@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-from django.db.models.aggregates import Count
 from random import randint
 
 from djraft.users.models import User
