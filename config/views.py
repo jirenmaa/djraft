@@ -14,7 +14,7 @@ def home(request):
         )
         # randomize explored articles
         list_explore_articles = []
-        if web_explore_articles.exists() or web_main_articles.exists():
+        if web_explore_articles.exists():
             for _ in range(4):
                 list_explore_articles.append(Story.objects.random(web_explore_articles))
         else:
