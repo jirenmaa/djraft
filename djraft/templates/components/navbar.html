@@ -1,6 +1,6 @@
 <nav class="nav has-list">
   <a href="{% url 'home' %}" target="_self" class="nav-logo">
-    <h1 style="font-size: 40px" class="elex font-bold">D</h1>
+    <h1 style="font-size: 40px" class="djraft-logo font-bold">D</h1>
   </a>
   <ul class="nav-items">
     <!-- navigation items -->
@@ -89,7 +89,7 @@
     <li class="nav-item nav-item--list my-6 py-1">
       {% if request.user.is_authenticated %}
       <a href="{% url 'users:detail' request.user.username  %}">
-        {% if user.avatar %}
+        {% if request.user.avatar %}
         <img
           src="{{request.user.avatar.url}}"
           class="rounded-full shadow mx-3 default-avatar-dim-40"
