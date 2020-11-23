@@ -6,22 +6,14 @@ from djraft.users.models import User
 from .utils import generate_slug
 
 
-
 class StoryManager(models.Manager):
     def get_excover_queryset(self):
         return self.get_queryset().exclude(cover='')
 
-    def random(self):
-        count = self.get_excover_queryset().count()
+    def random(self, queryset):
+        count = queryset.count()
         random_index = randint(0, count - 1)
-        return self.get_excover_queryset()[random_index]
-
-    def get_x_queryset(self, x):
-        queryset = []
-        for _ in range(x):
-            queryset.append(self.random())
-
-        return queryset
+        return queryset[random_index]
 
 
 class Story(models.Model):
