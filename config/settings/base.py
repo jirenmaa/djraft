@@ -68,6 +68,7 @@ DJANGO_APPS = [
     "django.contrib.admin",
     "django.forms",
 ]
+
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "allauth",
@@ -76,6 +77,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",
+    'gdstorage',
 ]
 
 LOCAL_APPS = [
@@ -158,10 +160,12 @@ STATICFILES_FINDERS = [
 
 # MEDIA
 # ------------------------------------------------------------------------------
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS = env("GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = str(APPS_DIR / "media")
-# https://docs.djangoproject.com/en/dev/ref/settings/#media-url
-MEDIA_URL = "/media/"
+# MEDIA_ROOT = str(APPS_DIR / "media")
+# # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+# MEDIA_URL = "/media/"
 
 # TEMPLATES
 # ------------------------------------------------------------------------------

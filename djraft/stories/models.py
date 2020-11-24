@@ -1,9 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from random import randint
+from gdstorage.storage import GoogleDriveStorage
 
 from djraft.users.models import User
 from .utils import generate_slug
+
+# Define Google Drive Storage
+gd_storage = GoogleDriveStorage()
 
 
 class StoryManager(models.Manager):
@@ -28,7 +32,7 @@ class Story(models.Model):
     # many `Article`s.
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories")
 
-    cover = models.ImageField(blank=True)
+    cover = models.ImageField(blank=True, upload_to="cover", storage=gd_storage)
     description = models.TextField(blank=True)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

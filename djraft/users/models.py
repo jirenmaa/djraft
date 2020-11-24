@@ -3,6 +3,11 @@ from django.db.models import CharField
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from gdstorage.storage import GoogleDriveStorage
+
+
+# Define Google Drive Storage
+gd_storage = GoogleDriveStorage()
 
 
 class User(AbstractUser):
@@ -11,7 +16,7 @@ class User(AbstractUser):
     #: First and last name do not cover name patterns around the globe
     name = CharField(_("Name of User"), blank=True, max_length=255)
     # This field is not required. It may be blank.
-    avatar = models.ImageField(blank=True)
+    avatar = models.ImageField(blank=True, upload_to="avatar", storage=gd_storage)
 
     def get_absolute_url(self):
         """Get url for user's detail view.
