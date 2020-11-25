@@ -1,8 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import HttpResponseRedirect, get_object_or_404
+from django.core.exceptions import PermissionDenied
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import (
     DetailView,
@@ -117,21 +118,21 @@ def user_story_delete(request, username, slug):
         return HttpResponseRedirect(url)
 
 
-class UserStoryEditView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    permission_required = 'User.username'
-    permission_denied_message = 'P'
+class UserStoryEditView(LoginRequiredMixin, UpdateView):
 
     model = Story
     form_class = StoryForm
     template_name_suffix = "_edit"
 
-    def get_permission_required(self):
-        perms = super(UserStoryEditView, self).get_permission_required()
-        return perms
+    def get(self, request, *args, **kwargs):
+        current_user = self.request.user
+        article_slug = self.kwargs["slug"]
+        obj_queryset = get_object_or_404(Story, slug=article_slug)
 
-    def has_permission(self):
-        perms = super(UserStoryEditView, self).has_permission()
-        return perms
+        if current_user == obj_queryset.author:
+            return super().get(request, *args, **kwargs)
+
+        raise PermissionDenied()
 
     def get_success_url(self):
         return reverse("users:stories", kwargs={"username": self.request.user.username})
