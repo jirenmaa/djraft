@@ -147,7 +147,7 @@ class UserStoryEditView(LoginRequiredMixin, UpdateView):
     def get(self, request, *args, **kwargs):
         current_user = self.request.user
         article_slug = self.kwargs["slug"]
-        obj_queryset = get_object_or_404(Story, username=article_slug)
+        obj_queryset = get_object_or_404(Story, slug=article_slug)
 
         if current_user == obj_queryset.author:
             return super().get(request, *args, **kwargs)
