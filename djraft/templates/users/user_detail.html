@@ -17,9 +17,9 @@
         </span>
         {% endif %}
       </div>
-      {% if object.name %}
-      <h2 class="text-gray-700">{{ object.name }}</h2>
-      {% endif %}
+      <h2 class="text-gray-600 text-medium pt-3">
+        {% if can_edit %} {{object.email}} · {% endif %} {% if object.name %} {{ object.name }} {% endif %}
+      </h2>
     </div>
 
     <!-- user avatar -->
@@ -42,7 +42,12 @@
 
   <hr class="my-8">
   <div id="wrapper" class="mx-20">
+    {% if can_edit %}
     <h2 class="font-semibold text-xl">Your Stories</h2>
+    {% else %}
+    <h2 class="font-semibold text-xl">{{user.username}} Stories</h2>
+    {% endif %}
+
     {% for story in stories %}
     <div class="my-6 border">
       <article class="p-4">
