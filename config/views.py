@@ -24,6 +24,6 @@ def home(request):
             request, "pages/home.html",
             context={
                 "web_main_articles": web_main_articles,
-                "web_explore_articles": web_explore_articles
+                "web_explore_articles": list_explore_articles
             }
         )
