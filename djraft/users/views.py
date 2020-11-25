@@ -50,6 +50,16 @@ class UserInfoView(LoginRequiredMixin, UpdateView):
     model = User
     fields = ["name", "username", "avatar"]
 
+    def get(self, request, *args, **kwargs):
+        current_user = self.request.user
+        usrname_slug = self.kwargs["username"]
+        obj_queryset = get_object_or_404(User, username=usrname_slug)
+
+        if current_user == obj_queryset:
+            return super().get(request, *args, **kwargs)
+
+        raise PermissionDenied()
+
     def get_success_url(self):
         user = User.objects.get(id=self.request.user.id)
         return reverse("users:detail", kwargs={"username": user.username})
@@ -83,6 +93,16 @@ class UserStoriesView(LoginRequiredMixin, ListView):
     model = User
     slug_field = "username"
     template_name_suffix = "_stories"
+
+    def get(self, request, *args, **kwargs):
+        current_user = self.request.user
+        usrname_slug = self.kwargs["username"]
+        obj_queryset = get_object_or_404(User, username=usrname_slug)
+
+        if current_user == obj_queryset:
+            return super().get(request, *args, **kwargs)
+
+        raise PermissionDenied()
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
@@ -127,7 +147,7 @@ class UserStoryEditView(LoginRequiredMixin, UpdateView):
     def get(self, request, *args, **kwargs):
         current_user = self.request.user
         article_slug = self.kwargs["slug"]
-        obj_queryset = get_object_or_404(Story, slug=article_slug)
+        obj_queryset = get_object_or_404(Story, username=article_slug)
 
         if current_user == obj_queryset.author:
             return super().get(request, *args, **kwargs)
@@ -156,6 +176,16 @@ class UserNewStoryView(LoginRequiredMixin, CreateView):
 
     template_name = "stories/story_form.html"
     form_class = StoryForm
+
+    def get(self, request, *args, **kwargs):
+        current_user = self.request.user
+        usrname_slug = self.kwargs["username"]
+        obj_queryset = get_object_or_404(User, username=usrname_slug)
+
+        if current_user == obj_queryset:
+            return super().get(request, *args, **kwargs)
+
+        raise PermissionDenied()
 
     def get_success_url(self):
         return reverse("users:detail", kwargs={"username": self.request.user.username})
