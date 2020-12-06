@@ -3,5 +3,5 @@ from django.utils.translation import gettext_lazy as _
 
 
 class StoriesConfig(AppConfig):
-    name = "stories"
+    name = 'djraft.stories'
     verbose_name = _("Stories")

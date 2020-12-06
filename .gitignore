@@ -272,14 +272,6 @@ djraft/media/
 
 
 .ipython/
-.env
-
-.envs/*
-
-!.envs/.local/
-
-# custom local gitignore file
-*tailwind.css
-
-# custom local gitignore folder
-webtest/
+.env
+.envs/*
+!.envs/.local/

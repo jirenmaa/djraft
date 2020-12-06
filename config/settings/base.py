@@ -68,7 +68,6 @@ DJANGO_APPS = [
     "django.contrib.admin",
     "django.forms",
 ]
-
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "allauth",
@@ -78,12 +77,13 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "gdstorage",
+    "guardian",
 ]
 
 LOCAL_APPS = [
     "djraft.users.apps.UsersConfig",
     # Your stuff: custom apps go here
-    "stories.apps.StoriesConfig",
+    "djraft.stories.apps.StoriesConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -99,6 +99,7 @@ MIGRATION_MODULES = {"sites": "djraft.contrib.sites.migrations"}
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
+    'guardian.backends.ObjectPermissionBackend',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "users.User"
@@ -160,12 +161,9 @@ STATICFILES_FINDERS = [
 
 # MEDIA
 # ------------------------------------------------------------------------------
+# https://django-googledrive-storage.readthedocs.io/en/latest/#setup
 GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
 GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS = env("GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS")
-# https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-# MEDIA_ROOT = str(APPS_DIR / "media")
-# # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
-# MEDIA_URL = "/media/"
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
@@ -235,7 +233,7 @@ EMAIL_TIMEOUT = 5
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("""jirenmaa""", "jirenmaa@example.com")]
+ADMINS = [("""Jirenmaa""", "jirenmaa@gmail.com")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 

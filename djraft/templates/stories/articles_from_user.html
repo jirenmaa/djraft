@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+
+{% block content_section %}
+<section class="web-body px-48">
+  <user-stories>
+    <header>
+      <div class="flex justify-between items-center">
+        <h2 id="head-text" class="font-semibold text-5xl">Your Stories</h2>
+        <div class="button-items">
+          <a
+            href="{% url 'stories:new-story' %}"
+            class="border border-green-400 text-green-400 write-story hover:bg-green-400 hover:text-white"
+          >
+            Write Story
+          </a>
+          <a
+            href="#"
+            class="border border-gray-400 text-gray-500 ml-4 import-story"
+          >
+            Import Story
+          </a>
+        </div>
+      </div>
+    </header>
+    <div id="user-story-info" class="border-b border-gray-200 p-3 mt-12 mb-6">
+      <h2><span class="font-semibold text-lg">Published</span> <sup>{{ object_list.count }}</sup></h2>
+    </div>
+    <content>
+      <div>
+        {% for story in object_list %}
+        <article class="user-story border border-gray-200 mb-3 p-4">
+          <h2>
+            <a
+              href="{% url 'users:article_detail' username=request.user slug=story.slug %}"
+              class="font-semibold text-2xl"
+            >
+            {% if story.title|length > 45 %}
+              {{ story.title|slice:"45" }} ...
+            {% else %}
+              {{ story.title }}
+            {% endif %}
+            </a>
+          </h2>
+          <div class="flex justify-between items-center mt-2">
+            <wrap>
+              <small class="block text-gray-500">Published on, {{ story.created_at|date:"j F Y" }}</small>
+              {% if story.body|length > 80 %}
+                {{ story.body|slice:"79" }} ...
+              {% else %}
+                {{ story.body }}
+              {% endif %}
+            </wrap>
+            <wrap>
+              <a href="#" class="mx-1">edit</a>
+              <a href="#" class="mx-1">delete</a>
+            </wrap>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </content>
+  </user-stories>
+</section>
+{% endblock content_section %}

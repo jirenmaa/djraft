@@ -1,58 +1,23 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
-{% load utils %}
 {% load crispy_forms_tags %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block inner %}
-<div>
-  <h1 class="font-medium text-6xl elex">{% trans "Sign Up" %}</h1>
-  <p class="my-5 text-lg">
-    {% blocktrans %}
-    Already have an account? Then please
-    <a href="{{ login_url }}" class="text-blue-500">sign in</a>.
-    {% endblocktrans %}
-  </p>
+<h1>{% trans "Sign Up" %}</h1>
 
-  <div class="w-3/6">
-    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" id="signup_form" method="post" action="{% url 'account_signup' %}">
-      {% csrf_token %}
-      <div class="mb-3">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-          Email
-        </label>
-        {{ form.email | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
-      </div>
-      <div class="mb-3">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-          Username
-        </label>
-        {{ form.username | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
-      </div>
-      <div class="mb-3">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="password1">
-          Password
-        </label>
-        {{ form.password1 | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
-      </div>
-      <div class="mb-6">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="password2">
-          Password (again)
-        </label>
-        {{ form.password2 | addclass:"appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }}
-      </div>
-      {% if redirect_field_value %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      <div class="flex items-center justify-between">
-        <button class="btn-primary rounded text-white" type="submit">
-          {% trans "Sign Up" %} &raquo;
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form|crispy }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+
 {% endblock %}
 

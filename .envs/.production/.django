@@ -2,8 +2,8 @@
 # ------------------------------------------------------------------------------
 # DJANGO_READ_DOT_ENV_FILE=True
 DJANGO_SETTINGS_MODULE=config.settings.production
-DJANGO_SECRET_KEY=MTfywGurKb01EKPQNhiTZMr6aagq61jEa2fVzVI91UimCOiRBKYYWNy4k43YGHR6
-DJANGO_ADMIN_URL=drAGty0rpT3P6vlcaJ8IqOW5nfSsDj5l/
+DJANGO_SECRET_KEY=dZsvnqWNzVvF8pBGEjzb10TXTxeqEdTxcfYngWVxtdR0KxMT5E2OqoX44KjawhZs
+DJANGO_ADMIN_URL=EEwDaRR9wjxgrieYwFuAAo98bOrbH2Nk/
 DJANGO_ALLOWED_HOSTS=.djraft.herokuapp.com
 
 # Security
@@ -15,15 +15,6 @@ DJANGO_SECURE_SSL_REDIRECT=False
 # ------------------------------------------------------------------------------
 DJANGO_SERVER_EMAIL=
 
-MAILGUN_API_KEY=
-MAILGUN_DOMAIN=
-
-
-# AWS
-# ------------------------------------------------------------------------------
-DJANGO_AWS_ACCESS_KEY_ID=
-DJANGO_AWS_SECRET_ACCESS_KEY=
-DJANGO_AWS_STORAGE_BUCKET_NAME=
 
 # django-allauth
 # ------------------------------------------------------------------------------

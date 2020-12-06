@@ -1,29 +1,20 @@
-from django.shortcuts import render
+from django.views.generic import CreateView, ListView
 
-from stories.models import Story
+from djraft.stories.models import Story
 
 
-def home(request):
-    if request.method == "GET":
-        # filter articles only with cover image
-        web_main_articles = Story.objects.get_excover_queryset()[:18]
+class Home(ListView):
 
-        # filter article that doesn't have the cover image but have description
-        web_explore_articles = Story.objects.exclude(
-            cover__regex='.', description__isnull=False
-        )
-        # randomize explored articles
-        list_explore_articles = []
-        if web_explore_articles.exists():
-            for _ in range(4):
-                list_explore_articles.append(Story.objects.random(web_explore_articles))
-        else:
-            list_explore_articles = web_explore_articles
+    model = Story
+    template_name = "pages/home.html"
 
-        return render(
-            request, "pages/home.html",
-            context={
-                "web_main_articles": web_main_articles,
-                "web_explore_articles": list_explore_articles
-            }
-        )
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["uncover"] = Story.objects.only_uncover_article()
+        context["object_list"] = self.get_queryset().exclude(cover='');
+        return context
+
+
+
+landing_home_view = Home.as_view()
+

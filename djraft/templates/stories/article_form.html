@@ -1,0 +1,119 @@
+{% extends "base.html" %} {% load static%}
+
+{% block content_section %}
+<section class="web-body px-20 py-20">
+  <story-creation class="grid grid-cols-12">
+    <div class="col-span-1">
+      <div class="flex justify-center sticky top-12 mt-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          id="story-form-menu"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-grid"
+        >
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <div style="display: none;" id="this_nav">{{request.user.username}}</div>
+      </div>
+    </div>
+    <form
+      id="article-form"
+      action="{% url 'stories:new-story' %}"
+      method="POST"
+      enctype="multipart/form-data"
+      class="col-span-11 mx-12"
+    >
+      {% csrf_token %}
+      <article-title id="article-title" class="flex mb-3">
+        <h2
+          id="id_title"
+          contenteditable="true"
+          class="font-semibold fnt-plyfair text-5xl"
+          name="title"
+        >
+          This text can be edited by the user. [Title]
+        </h2>
+      </article-title>
+      <article-description id="article-description" class="mb-3 p-3">
+        <h2
+          id="id_description"
+          contenteditable="true"
+          class="font-semibold text-gray-600 text-lg"
+          name="description"
+        >
+          This text can be edited by the user. [Description]
+        </h2>
+      </article-description>
+      <article-cover id="article-cover" class="my-8 p-3">
+        <div class="border border-gray-200" id="show-cover">
+          <div class="flex justify-center">
+            <img src="#" id="load-cover" style="display: none" />
+          </div>
+          <input
+            type="file"
+            id="id_cover"
+            name="cover"
+            style="display: none"
+            onchange="loadFile(event)"
+          />
+          <label
+            for="id_cover"
+            id="cover-label"
+            class="flex justify-center p-12"
+            >Add Cover Image</label
+          >
+        </div>
+      </article-cover>
+      <article-body id="article-body" class="my-16 p-3">
+        <div contenteditable="true" id="id_body" name="body">
+          Tell your story ...
+        </div>
+      </article-body>
+      <button
+        class="text-white bg-green-400 hover:bg-green-500 rounded mb-8 py-2 px-8 mt-8"
+        type="submit"
+        id="publish"
+      >
+        Publish
+      </button>
+    </form>
+  </story-creation>
+</section>
+{% endblock content_section %}
+
+{% block javascript %}
+<script>
+  function loadFile(event) {
+    var cover = document.getElementById("load-cover");
+    var wrapper_cover = document.getElementById("show-cover");
+    var label_cover = document.getElementById("cover-label");
+    var article_body = document.getElementById("article-body");
+
+    // Do somethin with this
+    cover.removeAttribute("style");
+    wrapper_cover.classList.remove("border");
+
+    label_cover.innerHTML = "Change Cover Image";
+    label_cover.classList.remove("p-12");
+    label_cover.classList.add("p-3");
+
+    article_body.classList.remove("my-16");
+    article_body.classList.add("my-8");
+    // Done
+
+    cover.src = URL.createObjectURL(event.target.files[0]);
+  };
+</script>
+<script src="{% static 'js/postArticleForm.js' %}">
+</script>
+{% endblock javascript %}

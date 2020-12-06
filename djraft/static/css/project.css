@@ -1,4 +1,5 @@
 /* These styles are generated from project.scss. */
+
 .alert-debug {
   color: black;
   background-color: white;
@@ -11,36 +12,11 @@
   border-color: #eed3d7;
 }
 
-.btn-primary {
-	padding: 6px 16px 6px 16px;
-	background-color: rgb(59, 59, 59);
+.fnt-plyfair {
+  font-family: 'Playfair Display', serif;
 }
 
-.btn-primary:hover {
-	background-color: #222;
+.pl-23 {
+  padding-left: 5.75rem;
 }
 
-.default-avatar-dim-20 {
-	height: 20px !important;
-	width: 20px !important;
-}
-
-.default-avatar-dim-40 {
-	height: 40px !important;
-	width: 40px !important;
-}
-
-.default-avatar-dim-50 {
-	height: 50px !important;
-	width: 50px !important;
-}
-
-.default-avatar-dim-100 {
-	height: 100px !important;
-	width: 100px !important;
-}
-
-.avatar-detail-dim {
-	height: 250px !important;
-	width: 250px !important;
-}

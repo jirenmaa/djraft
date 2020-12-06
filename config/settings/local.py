@@ -8,7 +8,7 @@ DEBUG = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
-    default="39yyuUFBAkA0DgyBmntfXtAkAqUkgPu7BpIq2BMV4VzlKnFiNiwby2LYy1RqEMj7",
+    default="z6iXT6xgl2u9O1zh3y2Vk18rFOBCyQhQLAQrIDoZTFUF3BDAnbz3exFGPnoNSv3Z",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
@@ -32,9 +32,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env("DJRAFT_EMAIL")
 EMAIL_HOST_PASSWORD = env("DJRAFT_PASS")
-# EMAIL_BACKEND = env(
-#     "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
-# )
 
 # WhiteNoise
 # ------------------------------------------------------------------------------

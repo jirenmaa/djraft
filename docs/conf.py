@@ -14,18 +14,21 @@ import os
 import sys
 import django
 
-
-sys.path.insert(0, os.path.abspath("/app"))
-os.environ.setdefault("DATABASE_URL", "")
-
+if os.getenv("READTHEDOCS", default=False) == "True":
+    sys.path.insert(0, os.path.abspath(".."))
+    os.environ["DJANGO_READ_DOT_ENV_FILE"] = "True"
+    os.environ["USE_DOCKER"] = "no"
+else:
+    sys.path.insert(0, os.path.abspath("/app"))
+os.environ["DATABASE_URL"] = "sqlite:///readthedocs.db"
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
 django.setup()
 
 # -- Project information -----------------------------------------------------
 
 project = "djraft"
-copyright = """2020, jirenmaa"""
-author = "jirenmaa"
+copyright = """2020, Ahmad Alwi"""
+author = "Ahmad Alwi"
 
 
 # -- General configuration ---------------------------------------------------

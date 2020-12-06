@@ -1,112 +1,70 @@
 {% extends "base.html" %}
-{% load static %}
 
-{% block title %}{{ object.username }} - Djraft{% endblock %}
 
-{% block main %}
-<div class="mx-auto mt-6 px-18 sm:px-18 lg:px-32">
-  <header class="grid grid-cols-3">
-    <div class="col-span-2">
-      <div class="flex">
-        <h2 class="font-semibold elex text-6xl">{{ user.username }}</h2>
-        {% if can_edit %}
-        <span>
-          <a href="{% url 'users:info' object.username %}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-          </a>
-        </span>
-        {% endif %}
-      </div>
-      <h2 class="text-gray-600 text-medium pt-3">
-        {% if can_edit %} {{object.email}} · {% endif %} {% if object.name %} {{ object.name }} {% endif %}
-      </h2>
-    </div>
-
-    <!-- user avatar -->
-    <div class="col-span-1">
-      <picture class="flex justify-center">
-      {% if user.avatar %}
-        <img
-          src="{{user.avatar.url}}"
-          class="rounded-full avatar-detail-dim"
-        />
-      {% else %}
+{% block content_section %}
+<section class="web-body px-24">
+  <user-detail class="grid grid-cols-6">
+    <wrap-info class="col-span-1 items-center">
+      <div class="sticky top-12">
         <div
-          class="rounded-full border border-gray-500 avatar-detail-dim"
+          class="rounded border border-gray-200 mb-7"
+          style="width: 130px; height: 130px"
         ></div>
-      {% endif %}
-      </picture>
-    </div>
-    <!-- end of user avatar -->
-  </header>
-
-  <hr class="my-8">
-  <div id="wrapper" class="mx-20">
-    {% if can_edit %}
-    <h2 class="font-semibold text-xl">Your Stories</h2>
-    {% else %}
-    <h2 class="font-semibold text-xl">{{user.username}} Stories</h2>
-    {% endif %}
-
-    {% for story in stories %}
-    <div class="my-6 border">
-      <article class="p-4">
-        <div class="author flex content-center">
-          <picture>
-            {% if story.author.avatar %}
-            <img
-              src="{{story.author.avatar.url}}"
-              class="rounded-full default-avatar-dim-50"
-            />
+        <div class="w-32">
+          <p class="text-sm tracking-widest">ABOUT</p>
+          <p class="font-semibold mb-2">{{object.username}}</p>
+          <p class="text-sm">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis
+            quam eaque est cum, amet consequuntur eum eius alias hic pariatur
+            veritatis!
+          </p>
+        </div>
+      </div>
+    </wrap-info>
+    <wrap-stories class="col-span-5 mx-12 mb-24">
+      {% for story in stories %}
+      <article class="mb-8 p-3 border-b">
+        <p class="text-sm">Published on · {{ story.created_at|date:"j F Y" }}</p>
+        <a href="{{ story.get_url_story_detail }}">
+          <h2 class="font-bold text-5xl my-3">
+            {% if story.title|length > 45 %}
+              {{ story.title|slice:"45" }} ...
             {% else %}
-            <div class="rounded-full border border-grey-500 default-avatar-dim-50"></div>
-            {% endif %}
-          </picture>
-          <div class="ml-3">
-            <p class="font-semibold">
-              {{ story.author }}
-            </p>
-            <p>
-              <small class="text-gray-600">
-                created at {{ story.created_at | date:"M d, h:i a" }}
-              </small>
-            </p>
-          </div>
-        </div>
-
-        {% if story.cover %}
-        <div class="story-cover">
-          <div class="img my-6">
-            <a
-              href="{% url 'users:story' username=story.author.username slug=story.slug %}"
-            >
-              <img
-                src="{{ story.cover.url }}"
-              />
-            </a>
-          </div>
-        </div>
-        {% endif %}
-
-        <div class="py-2">
-          <a
-            href="{% url 'users:story' username=story.author.username slug=story.slug %}"
-          >
-            <p class="font-bold text-4xl">
               {{ story.title }}
-            </p>
-            <p class="text-gray-700">
-              {% if story.body|length > 125 %}
-                {{ story.body | slice:":125" }}   ...
-              {% else %}
-                {{ story.body}}
-              {% endif %}
-            </p>
-          </a>
+            {% endif %}
+          </h2>
+          <description class="text-lg text-gray-500">
+            {% if story.description|length > 225 %}
+              {{ story.description|slice:"225" }} ...
+            {% else %}
+              {{ story.description }}
+            {% endif %}
+          </description>
+          {% if story.cover %}
+          <div class="image-wrapper my-3 mb-10">
+            <div id="picture">
+              <img src="{{ story.cover.url }}" class="h-auto w-full" />
+            </div>
+          </div>
+          {% else %}
+          <hr class="my-4">
+          {% endif %}
+        </a>
+        <div id="body">
+          {% if story.body|length > 830 %}
+            {{ story.body|linebreaksbr|slice:"830" }} ...
+          {% else %}
+            {{ story.body|linebreaksbr }}
+          {% endif %}
         </div>
+        <p class="my-10">
+          <a href="{{ story.get_url_story_detail }}" class="text-green-500">
+            Read more about this article
+          </a>
+        </p>
       </article>
-    </div>
-    {% endfor %}
-  </div>
-</div>
-{% endblock main %}
+      {% endfor %}
+    </wrap-stories>
+  </user-detail>
+</section>
+{% endblock content_section %}

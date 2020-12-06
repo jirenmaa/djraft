@@ -2,17 +2,15 @@ from django import forms
 from .models import Story
 
 
-class StoryForm(forms.ModelForm):
+class StoryCreationForm(forms.ModelForm):
+
     class Meta:
         model = Story
-        exclude = ("slug", "author")
+        exclude = ('slug', 'author')
 
     def __init__(self, *args, **kwargs):
-        super(StoryForm, self).__init__(*args, **kwargs)
-        self.fields["title"].required = False
-        self.fields["description"].required = False
+        super(StoryCreationForm, self).__init__(*args, **kwargs)
         self.fields["cover"].required = False
-        self.fields["body"].required = False
 
     title = forms.CharField(
         max_length=100,

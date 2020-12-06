@@ -6,17 +6,22 @@ from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
 
-from .views import home
+from .views import landing_home_view
 
 urlpatterns = [
-    path("", home, name="home"),
-    path("about/", TemplateView.as_view(template_name="pages/about.html"), name="about"),
+    path("", landing_home_view, name="home"),
+    path(
+        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
+    ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
+
     # User management
     path("@<str:username>/", include("djraft.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
+
     # Your stuff: custom urls includes go here
+    path("me/", include("djraft.stories.urls", namespace="stories")),
 ]
 
 # API URLS

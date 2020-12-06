@@ -1,4 +1,4 @@
-{% load static i18n compress %}
+{% load static i18n compress%}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,37 +13,39 @@
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
 
     <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-    {% block css %}
-    <!-- Latest compiled and minified Tailwind CSS -->
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
 
     {% compress css %}
-    <!-- Your stuff: Third-party CSS libraries go here -->
+    <!-- This file stores project-specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet" />
     <link href="{% static 'sass/project.css' %}" rel="stylesheet" />
     {% endcompress %}
-    {% endblock %}
   </head>
 
   <body>
-    {% include 'components/navbar.html' %}
+    {% include 'components/sidenav.html' %}
+    {% block content_section %}{% endblock content_section %}
 
-    <section class="mx-auto py-6 px-24 sm:px-24 lg:px-32">
-      {% block main %}{% endblock main %}
-    </section>
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     {% block javascript %}
     <!-- Your stuff: Third-party javascript libraries go here -->
-
+    {% compress js %}
     <!-- place project specific Javascript in this file -->
     <script src="{% static 'js/project.js' %}"></script>
+    {% endcompress %}
     {% endblock javascript %}
   </body>
 </html>

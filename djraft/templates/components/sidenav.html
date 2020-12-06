@@ -1,0 +1,36 @@
+<nav class="sidenav border-r">
+  <a
+    href="{% url 'home' %}"
+    class="sidenav-logo djraft-logo font-bold"
+    style="font-size: 40px"
+    >D</a
+  >
+  <ul class="nav-items-wrapper-center">
+    <li class="nav-item py-3 my-3">
+      <a href="{% url 'stories:list' %}" class="py-3 px-4">A</a>
+    </li>
+    <li class="nav-item py-3 my-3">
+      <a href="{% url 'stories:new-story' %}" class="py-3 px-4">B</a>
+    </li>
+    <li class="nav-item py-3 my-3">
+      <a href="#" class="py-3 px-4">C</a>
+    </li>
+    <li class="nav-item py-3 my-3">
+      <a href="#" class="py-3 px-4">D</a>
+    </li>
+  </ul>
+  <ul class="nav-items-wrapper-bottom">
+    <li class="nav-item">
+      <div
+        class="m-3.5 rounded-full bg-gray-100 border border-gray-200"
+        style="width: 40px; height: 40px"
+      >
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'users:detail' request.user.username  %}" class="p-3.5"></a>
+        {% else %}
+        <a href="{% url 'account_login' %}" class="p-3.5"></a>
+        {% endif %}
+      </div>
+    </li>
+  </ul>
+</nav>
