@@ -227,6 +227,16 @@ EMAIL_BACKEND = env(
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
 EMAIL_TIMEOUT = 5
+# https://docs.djangoproject.com/en/3.1/ref/settings/#email-host
+EMAIL_HOST = "smtp.gmail.com"
+# https://docs.djangoproject.com/en/3.1/ref/settings/#email-port
+EMAIL_PORT = 587
+# https://docs.djangoproject.com/en/3.1/ref/settings/#email-use-tls
+EMAIL_USE_TLS = True
+# https://docs.djangoproject.com/en/3.1/ref/settings/#email-host-user
+EMAIL_HOST_USER = env("DJRAFT_EMAIL")
+# https://docs.djangoproject.com/en/3.1/ref/settings/#email-host-password
+EMAIL_HOST_PASSWORD = env("DJRAFT_PASS")
 
 # ADMIN
 # ------------------------------------------------------------------------------
