@@ -24,7 +24,10 @@
       </div>
     </header>
     <div id="user-story-info" class="border-b border-gray-200 p-3 mt-12 mb-6">
-      <h2><span class="font-semibold text-lg">Published</span> <sup>{{ object_list.count }}</sup></h2>
+      <h2>
+        <span class="font-semibold text-lg">Published</span>
+        <sup>{% if object_list.count %} {{ object_list.count }} {% endif %}</sup>
+      </h2>
     </div>
     <content>
       <div>
@@ -53,7 +56,12 @@
             </wrap>
             <wrap>
               <a href="#" class="mx-1">edit</a>
-              <a href="#" class="mx-1">delete</a>
+              <a
+                href="{% url 'users:article_delete' username=story.author.username slug=story.slug %}"
+                class="mx-1"
+              >
+                delete
+              </a>
             </wrap>
           </div>
         </article>
