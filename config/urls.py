@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
@@ -20,8 +19,8 @@ urlpatterns = [
     path("@<str:username>/", include("djraft.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
 
-    # Your stuff: custom urls includes go here
-    path("me/", include("djraft.stories.urls", namespace="stories")),
+    # user related things
+    path("me/", include("djraft.stories.urls", namespace="me")), # stories
 ]
 
 # API URLS
