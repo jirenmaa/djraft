@@ -19,8 +19,9 @@
 ////////////////////////////////
 //Variables//
 ////////////////////////////////
-$work-sans: "Work Sans", sans-serif;
-$playfair: "Playfair Display", serif;
+$playfair: "Playfair Display", serif; // head, sub
+$prata: 'Prata', serif; // head, sub
+$ostt: 'Old Standard TT', serif; // logo, icon?
 
 // Alert colors
 $white: #fff;
@@ -46,13 +47,14 @@ body {
     width: 5vw;
     height: 100%;
     text-align: center;
+    font-family: $ostt;
     z-index: 99;
     transform: translate3d(0, 0, 0);
     transition: all 350ms 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
 
     .sidenav-logo,
     .djraft-logo {
-        font-family: $playfair;
+        font-family: $ostt;
         display: block;
         margin-top: 0.75em;
         color: #1abca1;
@@ -97,7 +99,9 @@ body {
     padding-top: 2.25em;
 
     greet {
-        font-family: $playfair;
+        // font-family: $playfair;
+        font-family: $prata;
+        cursor: context-menu;
     }
 
     #content-right {
@@ -169,6 +173,12 @@ body {
 
         wrap-stories {
             @include crop-image(320px, -10%);
+        }
+
+        empty-story {
+            h2 {
+                font-family: $ostt;
+            }
         }
     }
 }
