@@ -1,9 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
+
+from django.views.generic import DetailView, UpdateView
+from django.shortcuts import HttpResponseRedirect, get_object_or_404
+
+from django.core.exceptions import PermissionDenied
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView, RedirectView, UpdateView
+from django.urls import reverse
 
 from djraft.stories.models import Story
 
@@ -19,6 +24,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["stories"] = Story.objects.filter(author=self.request.user)
+
         return context
 
 
@@ -46,17 +52,6 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 user_update_view = UserUpdateView.as_view()
 
 
-class UserRedirectView(LoginRequiredMixin, RedirectView):
-
-    permanent = False
-
-    def get_redirect_url(self):
-        return reverse("users:detail", kwargs={"username": self.request.user.username})
-
-
-user_redirect_view = UserRedirectView.as_view()
-
-
 # user related story or article
 
 class UserStoryDetailView(DetailView):
@@ -66,3 +61,14 @@ class UserStoryDetailView(DetailView):
 
 
 user_story_detail_view = UserStoryDetailView.as_view()
+
+
+@login_required
+def user_story_delete(request, username, slug):
+    if request.user.username == username:
+        story = get_object_or_404(Story, author=request.user, slug=slug)
+
+        story.delete()
+        url = reverse("me:stories")
+        return HttpResponseRedirect(url)
+    raise PermissionDenied()
