@@ -22,48 +22,59 @@
       </div>
     </wrap-info>
     <wrap-stories class="col-span-5 mx-12 mb-24">
-      {% for story in stories %}
-      <article class="mb-8 p-3 border-b">
-        <p class="text-sm">Published on · {{ story.created_at|date:"j F Y" }}</p>
-        <a href="{{ story.get_url_story_detail }}">
-          <h2 class="font-bold text-5xl my-3">
-            {% if story.title|length > 45 %}
-              {{ story.title|slice:"45" }} ...
+      {% if stories.count %}
+        {% for story in stories %}
+        <article class="mb-8 p-3 border-b">
+          <p class="text-sm">Published on · {{ story.created_at|date:"j F Y" }}</p>
+          <a href="{{ story.get_url_story_detail }}">
+            <h2 class="font-bold text-5xl my-3">
+              {% if story.title|length > 45 %}
+                {{ story.title|slice:"45" }} ...
+              {% else %}
+                {{ story.title }}
+              {% endif %}
+            </h2>
+            <description class="text-lg text-gray-500">
+              {% if story.description|length > 225 %}
+                {{ story.description|slice:"225" }} ...
+              {% else %}
+                {{ story.description }}
+              {% endif %}
+            </description>
+            {% if story.cover %}
+            <div class="image-wrapper my-3 mb-10">
+              <div id="picture">
+                <img src="{{ story.cover.url }}" class="h-auto w-full" />
+              </div>
+            </div>
             {% else %}
-              {{ story.title }}
+            <hr class="my-4">
             {% endif %}
-          </h2>
-          <description class="text-lg text-gray-500">
-            {% if story.description|length > 225 %}
-              {{ story.description|slice:"225" }} ...
+          </a>
+          <div id="body">
+            {% if story.body|length > 830 %}
+              {{ story.body|linebreaksbr|slice:"830" }} ...
             {% else %}
-              {{ story.description }}
+              {{ story.body|linebreaksbr }}
             {% endif %}
-          </description>
-          {% if story.cover %}
-          <div class="image-wrapper my-3 mb-10">
-            <div id="picture">
-              <img src="{{ story.cover.url }}" class="h-auto w-full" />
+          </div>
+          <p class="my-10">
+            <a href="{{ story.get_url_story_detail }}" class="text-green-500">
+              Read more about this article
+            </a>
+          </p>
+        </article>
+        {% endfor %}
+      {% else %}
+        <empty-story class="flex justify-center items-center">
+          <div>
+            <h2 class="text-5xl font-medium mb-5">You don't have any stories yet.</h2>
+            <div class="flex justify-center">
+              <a href="{% url 'me:new-story' %}" class="text-green-400">write new story</a>
             </div>
           </div>
-          {% else %}
-          <hr class="my-4">
-          {% endif %}
-        </a>
-        <div id="body">
-          {% if story.body|length > 830 %}
-            {{ story.body|linebreaksbr|slice:"830" }} ...
-          {% else %}
-            {{ story.body|linebreaksbr }}
-          {% endif %}
-        </div>
-        <p class="my-10">
-          <a href="{{ story.get_url_story_detail }}" class="text-green-500">
-            Read more about this article
-          </a>
-        </p>
-      </article>
-      {% endfor %}
+        </empty-story>
+      {% endif %}
     </wrap-stories>
   </user-detail>
 </section>
