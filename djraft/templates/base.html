@@ -19,7 +19,11 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap"
       rel="stylesheet"
     />
 
@@ -36,14 +40,14 @@
 
   <body>
     {% include 'components/sidenav.html' %}
-    {% block content_section %}{% endblock content_section %}
+
+    {% block content_section %}{%endblock content_section %}
 
     {% block javascript %}
     <!-- Your stuff: Third-party javascript libraries go here -->
     {% compress js %}
     <!-- place project specific Javascript in this file -->
     <script src="{% static 'js/project.js' %}"></script>
-    {% endcompress %}
-    {% endblock javascript %}
+    {% endcompress %} {% endblock javascript %}
   </body>
 </html>
