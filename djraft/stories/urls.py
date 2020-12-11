@@ -7,6 +7,6 @@ from .views import (
 
 app_name = "stories"
 urlpatterns = [
-    path("stories", view=story_list_view, name="list"),
+    path("stories", view=story_list_view, name="stories"),
     path("new-story", view=story_creation_view, name="new-story"),
 ]
