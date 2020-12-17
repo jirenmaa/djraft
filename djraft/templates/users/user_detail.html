@@ -6,10 +6,16 @@
   <user-detail class="grid grid-cols-6">
     <wrap-info class="col-span-1 items-center">
       <div class="sticky top-12">
-        <div
+          <img
+            src="{{request.user.avatar.url}}"
+            class="rounded mb-7"
+            width="130"
+            height="130"
+          />
+        {% comment %} <div
           class="rounded border border-gray-200 mb-7"
           style="width: 130px; height: 130px"
-        ></div>
+        ></div> {% endcomment %}
         <div class="w-32">
           <p class="text-sm tracking-widest">ABOUT</p>
           <p class="font-semibold mb-2">{{object.username}}</p>
@@ -66,14 +72,25 @@
         </article>
         {% endfor %}
       {% else %}
-        <empty-story class="flex justify-center items-center">
-          <div>
-            <h2 class="text-5xl font-medium mb-5">You don't have any stories yet.</h2>
-            <div class="flex justify-center">
-              <a href="{% url 'me:new-story' %}" class="text-green-400">write new story</a>
+        <default-story class="flex justify-center items-center">
+          <article class="mb-8 p-3 border-b">
+            <a href="#">
+              <h2 class="font-bold text-5xl mb-3">Hi Bossa!</h2>
+              <description class="text-lg text-gray-500">
+                Hello this is my first posts in djraft.
+              </description>
+              <div class="my-4"></div>
+            </a>
+            <div id="body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga in debitis voluptate quidem eius adipisci quod repellat, rem iure voluptatum provident aliquam maiores aspernatur fugit voluptates, velit consequatur odit consectetur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim iure sapiente commodi. Consequatur, fuga explicabo, quo possimus, non aspernatur culpa dicta excepturi recusandae reprehenderit ab quas tempora illum porro cum!
             </div>
-          </div>
-        </empty-story>
+            <p class="my-10">
+              <a href="#" class="text-green-500">
+                Read more about this article
+              </a>
+            </p>
+          </article>
+        </default-story>
       {% endif %}
     </wrap-stories>
   </user-detail>

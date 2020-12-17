@@ -21,7 +21,7 @@
     </li>
   </ul>
   <ul class="nav-items-wrapper-bottom">
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <div
         class="m-3.5 rounded-full bg-gray-200 border border-gray-300"
         style="width: 40px; height: 40px"
@@ -32,6 +32,27 @@
       <a href="{% url 'account_login' %}" class="p-3.5"></a>
       {% endif %}
       </div>
+    </li> -->
+    <li class="nav-item">
+      {% if request.user.is_authenticated %}
+      <div class="m-3.5">
+        <a href="{% url 'users:detail' request.user.username  %}">
+          <img
+            src="{{request.user.avatar.url}}"
+            class="rounded-full"
+            width="40"
+            height="40"
+          />
+        </a>
+      </div>
+      {% else %}
+      <div
+        class="m-3.5 rounded-full bg-gray-200 border border-gray-300"
+        style="width: 40px; height: 40px"
+      >
+        <a href="{% url 'account_login' %}" class="p-3.5"></a>
+      </div>
+      {% endif %}
     </li>
   </ul>
 </nav>

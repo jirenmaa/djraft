@@ -21,9 +21,17 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     slug_field = "username"
     slug_url_kwarg = "username"
 
+    def get_object(self, *args, **kwargs):
+        if self.request.user.username != self.kwargs["username"]:
+            obj = get_object_or_404(User, username=self.kwargs["username"])
+            return obj
+
+        super().get_object(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
+        user = get_object_or_404(User, username=self.kwargs["username"])
         context = super().get_context_data(**kwargs)
-        context["stories"] = Story.objects.filter(author=self.request.user)
+        context["stories"] = Story.objects.filter(author=user)
 
         return context
 

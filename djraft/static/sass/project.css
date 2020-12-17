@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Clara Antique';
+  src: url("../fonts/ClaraAntiqua.otf") format("opentype");
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -10,7 +15,7 @@ body {
   width: 5vw;
   height: 100%;
   text-align: center;
-  font-family: "Old Standard TT", serif;
+  font-family: "Clara Antique", serif;
   z-index: 99;
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
@@ -20,7 +25,7 @@ body {
 
 .sidenav .sidenav-logo,
 .sidenav .djraft-logo {
-  font-family: "Old Standard TT", serif;
+  font-family: "Clara Antique", serif;
   display: block;
   margin-top: 0.75em;
   color: #1abca1;
@@ -66,7 +71,7 @@ body {
 }
 
 .web-body greet {
-  font-family: "Prata", serif;
+  font-family: "Clara Antique", serif;
   cursor: context-menu;
 }
 
@@ -116,7 +121,8 @@ body {
 }
 
 .web-body user-stories #head-text {
-  font-family: "Playfair Display", serif;
+  cursor: context-menu;
+  font-family: "Clara Antique", serif;
 }
 
 .web-body user-stories .write-story {
@@ -153,7 +159,7 @@ body {
 }
 
 .web-body user-detail empty-story h2 {
-  font-family: "Old Standard TT", serif;
+  font-family: "Clara Antique", serif;
 }
 
 .web-body story-creation #story-form-menu {
