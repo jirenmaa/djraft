@@ -2,7 +2,6 @@ window.addEventListener(
   'DOMContentLoaded',
   function () {
     const articleForm = document.getElementById('article-form');
-    const username = document.getElementById('this_nav').textContent;
 
     function sentDataArticle() {
       const xhr = new XMLHttpRequest();
