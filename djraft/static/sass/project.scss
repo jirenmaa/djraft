@@ -2,10 +2,9 @@
 //Fonts//
 ////////////////////////////////
 @font-face {
-    font-family: 'Clara Antique';
-    src: url('../fonts/ClaraAntiqua.otf') format("opentype");
+    font-family: "Clara Antique";
+    src: url("../fonts/ClaraAntiqua.otf") format("opentype");
 }
-
 
 ////////////////////////////////
 //Mixins//
@@ -28,9 +27,9 @@
 ////////////////////////////////
 //Variables//
 ////////////////////////////////
-$playfair: 'Playfair Display', serif; // head, sub
-$prata: 'Prata', serif; // head, sub
-$clarantiq: 'Clara Antique', serif; // logo, icon?
+$playfair: "Playfair Display", serif; // head, sub
+$prata: "Prata", serif; // head, sub
+$clarantiq: "Clara Antique", serif; // logo, icon?
 
 // Alert colors
 $white: #fff;
@@ -40,7 +39,6 @@ $pink: #f2dede;
 $dark-pink: #eed3d7;
 $red: #b94a48;
 
-
 ////////////////////////////////
 //Styles//
 ////////////////////////////////
@@ -49,6 +47,10 @@ body {
     padding: 0;
     position: relative;
     overflow-x: hidden !important;
+}
+
+.text-gray-normal {
+    color: rgba(0, 0, 0, 0.54) !important;
 }
 
 .sidenav {
@@ -194,8 +196,45 @@ body {
 
 .web-body {
     story-creation {
-        #story-form-menu {
-            cursor: pointer;
+        #id_title {
+            font-family: $clarantiq;
+        }
+    }
+}
+
+.web-body {
+    user-settings {
+        left-aside {
+            .wrapper {
+                top: 30px;
+                position: -webkit-sticky;
+                position: sticky !important;
+            }
+        }
+        right-aside {
+            picture {
+                img {
+                    max-width: 85px;
+                    max-height: 85px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+                .label-image {
+                    z-index: 99;
+                    position: absolute;
+                    margin-top: -85px;
+                    width: 85px;
+                    height: 85px;
+                    cursor: pointer;
+                    opacity: 0;
+                    &:hover {
+                        background-color: #333;
+                        opacity: 0.5;
+                    }
+                }
+            }
         }
     }
 }

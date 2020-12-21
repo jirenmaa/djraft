@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'Clara Antique';
+  font-family: "Clara Antique";
   src: url("../fonts/ClaraAntiqua.otf") format("opentype");
 }
 
@@ -8,6 +8,10 @@ body {
   padding: 0;
   position: relative;
   overflow-x: hidden !important;
+}
+
+.text-gray-normal {
+  color: rgba(0, 0, 0, 0.54) !important;
 }
 
 .sidenav {
@@ -162,7 +166,37 @@ body {
   font-family: "Clara Antique", serif;
 }
 
-.web-body story-creation #story-form-menu {
+.web-body story-creation #id_title {
+  font-family: "Clara Antique", serif;
+}
+
+.web-body user-settings left-aside .wrapper {
+  top: 30px;
+  position: -webkit-sticky;
+  position: sticky !important;
+}
+
+.web-body user-settings right-aside picture img {
+  max-width: 85px;
+  max-height: 85px;
+}
+
+.web-body user-settings right-aside picture img:hover {
   cursor: pointer;
+}
+
+.web-body user-settings right-aside picture .label-image {
+  z-index: 99;
+  position: absolute;
+  margin-top: -85px;
+  width: 85px;
+  height: 85px;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.web-body user-settings right-aside picture .label-image:hover {
+  background-color: #333;
+  opacity: 0.5;
 }
 /*# sourceMappingURL=project.css.map */
