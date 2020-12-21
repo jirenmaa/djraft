@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block content_section %}
 <section class="web-body px-48">
   <user-stories>
@@ -26,7 +25,9 @@
     <div id="user-story-info" class="border-b border-gray-200 p-3 mt-12 mb-6">
       <h2>
         <span class="font-semibold text-lg">Published</span>
-        <sup>{% if object_list.count %} {{ object_list.count }} {% endif %}</sup>
+        <sup
+          >{% if object_list.count %} {{ object_list.count }} {% endif %}</sup
+        >
       </h2>
     </div>
     <content>
@@ -38,16 +39,18 @@
               href="{% url 'users:article_detail' username=request.user slug=story.slug %}"
               class="font-semibold text-2xl"
             >
-            {% if story.title|length > 45 %}
-              {{ story.title|slice:"45" }} ...
-            {% else %}
-              {{ story.title }}
-            {% endif %}
+              {% if story.title|length > 45 %}
+                {{ story.title|slice:"45" }} ...
+              {% else %}
+                {{ story.title }}
+              {% endif %}
             </a>
           </h2>
           <div class="flex justify-between items-center mt-2">
             <wrap>
-              <small class="block text-gray-500">Published on, {{ story.created_at|date:"j F Y" }}</small>
+              <small class="block text-gray-500"
+                >Published on, {{ story.created_at|date:"j F Y" }}</small
+              >
               {% if story.body|length > 80 %}
                 {{ story.body|slice:"79" }} ...
               {% else %}

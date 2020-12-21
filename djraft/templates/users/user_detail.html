@@ -1,21 +1,25 @@
 {% extends "base.html" %}
 
 
+{% block title %}
+{{object.username}} - Djraft
+{% endblock %}
+
 {% block content_section %}
 <section class="web-body px-24">
   <user-detail class="grid grid-cols-6">
-    <wrap-info class="col-span-1 items-center">
+    <wrap-info class="col-span-1 mt-5 items-center">
       <div class="sticky top-12">
-          <img
-            src="{{request.user.avatar.url}}"
-            class="rounded mb-7"
-            width="130"
-            height="130"
-          />
-        {% comment %} <div
-          class="rounded border border-gray-200 mb-7"
-          style="width: 130px; height: 130px"
-        ></div> {% endcomment %}
+        <div class="w-2/3">
+          <a href="{% url 'users:settings' username=object.username %}">
+            <img
+              src="{{object.avatar.url}}"
+              class="rounded mb-7"
+              width="130"
+              height="130"
+            />
+          </a>
+        </div>
         <div class="w-32">
           <p class="text-sm tracking-widest">ABOUT</p>
           <p class="font-semibold mb-2">{{object.username}}</p>
@@ -29,68 +33,77 @@
     </wrap-info>
     <wrap-stories class="col-span-5 mx-12 mb-24">
       {% if stories.count %}
-        {% for story in stories %}
-        <article class="mb-8 p-3 border-b">
-          <p class="text-sm">Published on · {{ story.created_at|date:"j F Y" }}</p>
-          <a href="{{ story.get_url_story_detail }}">
-            <h2 class="font-bold text-5xl my-3">
-              {% if story.title|length > 45 %}
-                {{ story.title|slice:"45" }} ...
-              {% else %}
-                {{ story.title }}
-              {% endif %}
-            </h2>
-            <description class="text-lg text-gray-500">
-              {% if story.description|length > 225 %}
-                {{ story.description|slice:"225" }} ...
-              {% else %}
-                {{ story.description }}
-              {% endif %}
-            </description>
-            {% if story.cover %}
-            <div class="image-wrapper my-3 mb-10">
-              <div id="picture">
-                <img src="{{ story.cover.url }}" class="h-auto w-full" />
-              </div>
-            </div>
+      {% for story in stories %}
+      <article class="mb-8 p-3 border-b">
+        <p class="text-sm">
+          Published on · {{ story.created_at|date:"j F Y" }}
+        </p>
+        <a href="{{ story.get_url_story_detail }}">
+          <h2 class="font-bold text-5xl my-3">
+            {% if story.title|length > 45 %}
+              {{ story.title|slice:"45" }} ...
             {% else %}
-            <hr class="my-4">
+              {{ story.title }}
             {% endif %}
+          </h2>
+          <description class="text-lg text-gray-500">
+            {% if story.description|length > 225 %}
+              {{ story.description|slice:"225" }} ...
+            {% else %}
+              {{ story.description }}
+            {% endif %}
+          </description>
+          {% if story.cover %}
+          <div class="image-wrapper my-3 mb-10">
+            <div id="picture">
+              <img src="{{ story.cover.url }}" class="h-auto w-full" />
+            </div>
+          </div>
+          {% else %}
+          <br /><br />
+          {% endif %}
+        </a>
+        <div id="body">
+          {% if story.body|length > 830 %}
+            {{ story.body|linebreaksbr|slice:"830" }} ...
+          {% else %}
+            {{ story.body|linebreaksbr }}
+          {% endif %}
+        </div>
+        <p class="my-10">
+          <a href="{{ story.get_url_story_detail }}" class="text-green-500">
+            Read more about this article
+          </a>
+        </p>
+      </article>
+      {% endfor %}
+      {% else %}
+      <default-story class="flex justify-center items-center">
+        <article class="mb-8 p-3 border-b">
+          <a href="#">
+            <h2 class="font-bold text-5xl mb-3">Hi Bossa!</h2>
+            <description class="text-lg text-gray-500">
+              Hello this is my first posts in djraft.
+            </description>
+            <div class="my-4"></div>
           </a>
           <div id="body">
-            {% if story.body|length > 830 %}
-              {{ story.body|linebreaksbr|slice:"830" }} ...
-            {% else %}
-              {{ story.body|linebreaksbr }}
-            {% endif %}
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga in
+            debitis voluptate quidem eius adipisci quod repellat, rem iure
+            voluptatum provident aliquam maiores aspernatur fugit voluptates,
+            velit consequatur odit consectetur? Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Enim iure sapiente commodi.
+            Consequatur, fuga explicabo, quo possimus, non aspernatur culpa
+            dicta excepturi recusandae reprehenderit ab quas tempora illum porro
+            cum!
           </div>
           <p class="my-10">
-            <a href="{{ story.get_url_story_detail }}" class="text-green-500">
+            <a href="#" class="text-green-500">
               Read more about this article
             </a>
           </p>
         </article>
-        {% endfor %}
-      {% else %}
-        <default-story class="flex justify-center items-center">
-          <article class="mb-8 p-3 border-b">
-            <a href="#">
-              <h2 class="font-bold text-5xl mb-3">Hi Bossa!</h2>
-              <description class="text-lg text-gray-500">
-                Hello this is my first posts in djraft.
-              </description>
-              <div class="my-4"></div>
-            </a>
-            <div id="body">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga in debitis voluptate quidem eius adipisci quod repellat, rem iure voluptatum provident aliquam maiores aspernatur fugit voluptates, velit consequatur odit consectetur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim iure sapiente commodi. Consequatur, fuga explicabo, quo possimus, non aspernatur culpa dicta excepturi recusandae reprehenderit ab quas tempora illum porro cum!
-            </div>
-            <p class="my-10">
-              <a href="#" class="text-green-500">
-                Read more about this article
-              </a>
-            </p>
-          </article>
-        </default-story>
+      </default-story>
       {% endif %}
     </wrap-stories>
   </user-detail>

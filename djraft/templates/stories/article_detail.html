@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
+{% block title %}
+{{object.title}} | by {{story.author}}
+{% endblock %}
 
 {% block content_section %}
 <section class="web-body px-48">
   <story-detail>
-    <h2 id="title" class="font-semibold text-6xl pt-1">
-      {{object.title}}
-    </h2>
+    <h2 id="title" class="font-semibold text-6xl pt-1">{{object.title}}</h2>
     <h4 id="description" class="font-medium text-xl py-4">
       {{object.description}}
     </h4>
@@ -20,9 +21,12 @@
       <div class="author-info ml-4">
         <a
           href="{% url 'users:detail' username=object.author.username %}"
-          class="font-semibold">{{object.author}}
+          class="font-semibold"
+          >{{object.author}}
         </a>
-        <p class="text-sm">Published on · {{ object.created_at|date:"j F Y" }}</p>
+        <p class="text-sm">
+          Published on · {{ object.created_at|date:"j F Y" }}
+        </p>
       </div>
     </div>
     <hr />
@@ -33,15 +37,14 @@
       </div>
     </div>
     {% else %}
-    <hr class="my-4">
-    {% endif %}
-    {% comment %} <div
+    <hr class="my-4" />
+    {% endif %} {% comment %}
+    <div
       class="my-3 mb-10 border border-gray-200"
       style="width: 100%; height: 400px"
-    ></div> {% endcomment %}
-    <article-body class="mb-16">
-      {{object.body|linebreaksbr}}
-    </article-body>
+    ></div>
+    {% endcomment %}
+    <article-body class="mb-16"> {{object.body|linebreaksbr}} </article-body>
     <footer class="my-10 border-t">
       <div class="flex mt-10">
         <div class="author-avatar">

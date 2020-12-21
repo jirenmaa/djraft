@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block title %}
-  {{ slug }} - edit
+{{ slug }} - edit
 {% endblock %}
 
 {% block main %}
@@ -17,12 +17,10 @@
         {% csrf_token %}
         {{ form.title }}
         {{ form.description }}
-        {{ form.cover }}
+        {{ form.cover}}
         {{ form.body }}
       </div>
-      <div class="mb-6">
-        {{ form.title.value }}
-      </div>
+      <div class="mb-6">{{ form.title.value }}</div>
       <div class="flex items-center justify-between">
         <button
           class="text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
