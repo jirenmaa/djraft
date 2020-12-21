@@ -14,10 +14,10 @@ gd_storage = GoogleDriveStorage()
 class User(AbstractUser):
     """Default user for djraft."""
 
-    #: First and last name do not cover name patterns around the globe
+    # First and last name do not cover name patterns around the globe
     name = CharField(_("Name of User"), blank=True, max_length=255)
-    about = TextField(_("About User"), default="Hi, I'm using Djraft.", max_length=255)
-    #: user avatar
+    bio = TextField(_("UserBio"), default="Hi, there.", max_length=160)
+    # user avatar
     avatar = ImageField(
         upload_to="avatar",
         storage=gd_storage,
