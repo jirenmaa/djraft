@@ -11,7 +11,7 @@ SECRET_KEY = env(
     default="z6iXT6xgl2u9O1zh3y2Vk18rFOBCyQhQLAQrIDoZTFUF3BDAnbz3exFGPnoNSv3Z",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "192.168.1.8"]
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -55,3 +55,12 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/3.1/topics/http/sessions/#configuring-the-session-engine
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# #https://docs.djangoproject.com/en/3.1/topics/cache/#memcached
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION': '127.0.0.1:11211',
+#     }
+# }
