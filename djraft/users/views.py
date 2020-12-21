@@ -22,11 +22,8 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     slug_url_kwarg = "username"
 
     def get_object(self, *args, **kwargs):
-        if self.request.user.username != self.kwargs["username"]:
-            obj = get_object_or_404(User, username=self.kwargs["username"])
-            return obj
-
-        super().get_object(*args, **kwargs)
+        obj = get_object_or_404(User, username=self.kwargs["username"])
+        return obj
 
     def get_context_data(self, **kwargs):
         user = get_object_or_404(User, username=self.kwargs["username"])
@@ -39,7 +36,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 user_detail_view = UserDetailView.as_view()
 
 
-class UserUpdateView(LoginRequiredMixin, UpdateView):
+class UserSettingsView(LoginRequiredMixin, UpdateView):
 
     model = User
     fields = ["name"]
@@ -57,7 +54,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-user_update_view = UserUpdateView.as_view()
+user_settings_view = UserSettingsView.as_view()
 
 
 # user related story or article
