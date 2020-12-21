@@ -42,8 +42,7 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     "default": env.db(
-        "DATABASE_URL",
-        default="postgres://postgres:postgres@localhost:5432/djraft"
+        "DATABASE_URL", default="postgres://postgres:postgres@localhost:5432/djraft"
     )
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
@@ -100,7 +99,7 @@ MIGRATION_MODULES = {"sites": "djraft.contrib.sites.migrations"}
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
-    'guardian.backends.ObjectPermissionBackend',
+    "guardian.backends.ObjectPermissionBackend",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "users.User"
@@ -164,7 +163,9 @@ STATICFILES_FINDERS = [
 # ------------------------------------------------------------------------------
 # https://django-googledrive-storage.readthedocs.io/en/latest/#setup
 GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
-GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS = env("GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS")
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS = env(
+    "GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS"
+)
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
@@ -311,13 +312,13 @@ SITE_ID = 1
 
 # google social account login
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
         ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
     }
 }
