@@ -28,12 +28,14 @@
       </div>
     </left-aside>
     <right-aside class="w-11/12 col-span-3 mx-5">
+      <!-- about user -->
       <div id="about-you" class="mb-14">
         <h2 class="border-b mb-3 py-3 font-semibold text-2xl">About You</h2>
+        <!-- username -->
         <div id="name-section" class="w-4/6 mb-3 py-3">
           <div class="border-b">
             <h2 class="my-2 font-semibold text-lg">Name</h2>
-            <p class="my-2" contenteditable="true">{{ user.username }}</p>
+            <p class="word-break my-2" contenteditable="true">{{ user.username }}</p>
           </div>
           <div class="w-4/5">
             <small class="text-gray-normal">
@@ -42,10 +44,12 @@
             </small>
           </div>
         </div>
+
+        <!-- bio -->
         <div id="bio-section" class="w-4/6 mb-3 py-3">
           <div class="border-b">
             <h2 class="my-2 font-semibold text-lg">Bio</h2>
-            <p class="my-2" contenteditable="true">{{ user.bio }}</p>
+            <p class="word-break my-2" contenteditable="true">{{ user.bio }}</p>
           </div>
           <div class="w-4/5">
             <small class="text-gray-normal">
@@ -53,6 +57,8 @@
             </small>
           </div>
         </div>
+
+        <!-- photo -->
         <div id="photo-section" class="mb-3 py-3">
           <h2 class="my-2 font-semibold text-lg">Photo</h2>
           <div class="flex items-center">
@@ -91,14 +97,18 @@
           </div>
         </div>
       </div>
+      <!-- end of about user -->
+
+      <!-- email settings -->
       <div id="email-settings" class="mb-14">
         <h2 class="border-b mb-3 py-3 font-semibold text-2xl">
           Email Settings
         </h2>
+        <!-- user email -->
         <div id="email-section" class="w-4/6 mb-3 py-3">
           <div class="border-b">
             <h2 class="my-2 font-semibold text-lg">Your Email</h2>
-            <p class="my-2" contenteditable="true">{{ user.email }}</p>
+            <p class="word-break my-2" contenteditable="true">{{ user.email }}</p>
           </div>
           <div class="w-4/5">
             <small class="text-gray-normal">
@@ -108,8 +118,12 @@
           </div>
         </div>
       </div>
+      <!-- end of email settings -->
+
+      <!-- account settings -->
       <div id="account" class="mb-14">
         <h2 class="border-b mb-3 py-3 font-semibold text-2xl">Account</h2>
+        <!-- user username -->
         <div id="username-section" class="w-4/6 mb-3 py-3">
           <h2 class="my-2 font-semibold text-lg">Your Username</h2>
           <p class="my-2" contenteditable="true">
@@ -117,6 +131,8 @@
             >/@{{user.username }}
           </p>
         </div>
+
+        <!-- download user info -->
         <div id="download-info-section" class="mb-3 py-3">
           <h2 class="my-2 font-semibold text-lg">Download your information</h2>
           <div class="flex justify-between items-center">
@@ -135,8 +151,12 @@
           </div>
         </div>
       </div>
+      <!-- end of account settings -->
+
+      <!-- security -->
       <div id="security" class="mb-14">
         <h2 class="border-b mb-3 py-3 font-semibold text-2xl">Security</h2>
+        <!-- sign out all session -->
         <div id="signout-session-section" class="mb-3 py-3">
           <h2 class="my-2 font-semibold text-lg">
             Sign out of all other sessions
@@ -156,6 +176,8 @@
             </a>
           </div>
         </div>
+
+        <!-- change password -->
         <div id="change-pass-section" class="mb-3 py-3">
           <h2 class="my-2 font-semibold text-lg">Change Password</h2>
           <div class="flex justify-between items-center">
@@ -175,6 +197,7 @@
           </div>
         </div>
       </div>
+      <!-- end of security -->
     </right-aside>
   </user-settings>
 </section>
