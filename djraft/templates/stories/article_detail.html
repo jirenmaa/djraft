@@ -1,22 +1,29 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{object.title}} | by {{story.author}}
+{{object.title}} | by {{object.author}}
 {% endblock %}
 
 {% block content_section %}
 <section class="web-body px-48">
   <story-detail>
-    <h2 id="title" class="font-semibold text-6xl pt-1">{{object.title}}</h2>
+    <h2 id="title" class="font-semibold text-6xl pt-1">{{ object.title }}</h2>
     <h4 id="description" class="font-medium text-xl py-4">
-      {{object.description}}
+      {{ object.description }}
     </h4>
-    <div class="flex py-3 mt-10">
+    <div class="flex py-3 mt-5">
       <div class="author-avatar">
-        <div
-          class="rounded border border-gray-200"
-          style="width: 45px; height: 45px"
-        ></div>
+        <a
+          href="{% url 'users:detail' username=object.author.username %}"
+          class="font-semibold"
+        >
+          <img
+            src="{{ object.author.avatar.url }}"
+            class="rounded"
+            width="45"
+            height="45"
+          />
+        </a>
       </div>
       <div class="author-info ml-4">
         <a
@@ -38,20 +45,19 @@
     </div>
     {% else %}
     <hr class="my-4" />
-    {% endif %} {% comment %}
-    <div
-      class="my-3 mb-10 border border-gray-200"
-      style="width: 100%; height: 400px"
-    ></div>
-    {% endcomment %}
+    {% endif %}
     <article-body class="mb-16"> {{object.body|linebreaksbr}} </article-body>
     <footer class="my-10 border-t">
       <div class="flex mt-10">
         <div class="author-avatar">
-          <div
-            class="rounded border border-gray-200"
-            style="width: 115px; height: 115px"
-          ></div>
+          <a href="#" class="font-semibold text-2xl">
+            <img
+              src="{{ object.author.avatar.url }}"
+              class="rounded"
+              width="115"
+              height="115"
+            />
+          </a>
         </div>
         <div class="author-info ml-4">
           <p class="tracking-widest">WRITTEN BY</p>
