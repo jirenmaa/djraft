@@ -308,8 +308,6 @@ CORS_URLS_REGEX = r"^/api/.*$"
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-SITE_ID = 1
-
 # google social account login
 SOCIALACCOUNT_PROVIDERS = {
     "google": {

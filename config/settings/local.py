@@ -55,6 +55,7 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
 # https://docs.djangoproject.com/en/3.1/topics/http/sessions/#configuring-the-session-engine
 # SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 # #https://docs.djangoproject.com/en/3.1/topics/cache/#memcached
