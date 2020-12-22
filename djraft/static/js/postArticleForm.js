@@ -2,6 +2,7 @@ window.addEventListener(
   'DOMContentLoaded',
   function () {
     const articleForm = document.getElementById('article-form');
+    const username = document.getElementById('reuser').innerText;
 
     function sentDataArticle() {
       const xhr = new XMLHttpRequest();
@@ -36,7 +37,6 @@ window.addEventListener(
 
     articleForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      console.log(document.getElementById('id_body').innerText)
       sentDataArticle();
     });
   },

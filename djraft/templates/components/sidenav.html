@@ -41,6 +41,7 @@
         <a href="{% url 'account_login' %}" class="p-3.5"></a>
       </div>
       {% endif %}
+      <p style="display:none" id="reuser">{{request.user.username}}</p>
     </li>
   </ul>
 </nav>
