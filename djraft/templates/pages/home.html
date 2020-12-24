@@ -46,9 +46,9 @@
         <article class="grid grid-cols-3 border border-gray-200 my-6 p-4">
           <div class="col-span-2">
             <div class="flex items-center">
-            <a class="flex" href="{% url 'users:detail' request.user.username  %}">
+            <a class="flex" href="{% url 'users:detail' article.author.username  %}">
               <img
-                src="{{request.user.avatar.url}}"
+                src="{{article.author.avatar.url}}"
                 class="rounded mt-1 mr-2"
                 width="18"
                 height="18"
