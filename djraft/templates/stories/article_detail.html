@@ -1,70 +1,76 @@
-{% extends "base.html" %}
+{% extends "base_app.html" %}
 
 {% block title %}
 {{object.title}} | by {{object.author}}
 {% endblock %}
 
-{% block content_section %}
-<section class="web-body px-48">
+
+{% block inner %}
+<section class="section-content pt-20">
   <story-detail>
-    <h2 id="title" class="font-semibold text-6xl pt-1">{{ object.title }}</h2>
-    <h4 id="description" class="font-medium text-xl py-4">
-      {{ object.description }}
-    </h4>
-    <div class="flex py-3 mt-5">
-      <div class="author-avatar">
-        <a
-          href="{% url 'users:detail' username=object.author.username %}"
-          class="font-semibold"
-        >
-          <img
-            src="{{ object.author.avatar.url }}"
-            class="rounded"
-            width="45"
-            height="45"
-          />
-        </a>
-      </div>
-      <div class="author-info ml-4">
-        <a
-          href="{% url 'users:detail' username=object.author.username %}"
-          class="font-semibold"
-          >{{object.author}}
-        </a>
-        <p class="text-sm">
-          Published on · {{ object.created_at|date:"j F Y" }}
-        </p>
-      </div>
-    </div>
-    <hr />
-    {% if object.cover %}
-    <div class="image-wrapper my-3 mb-16">
-      <div id="picture">
-        <img src="{{ story.cover.url }}" class="h-auto w-full" />
-      </div>
-    </div>
-    {% else %}
-    <hr class="my-4" />
-    {% endif %}
-    <article-body class="mb-16"> {{object.body|linebreaksbr}} </article-body>
-    <footer class="my-10 border-t">
-      <div class="flex mt-10">
+    <div class="px-44">
+      <h2 id="title" class="font-semibold text-6xl pt-1">{{ object.title }}</h2>
+      <h4 id="description" class="font-medium text-xl text-gray-normal py-4">
+        {{ object.description }}
+      </h4>
+      <div class="flex py-3 mt-5">
         <div class="author-avatar">
-          <a href="#" class="font-semibold text-2xl">
+          <a
+            href="{% url 'users:detail' username=object.author.username %}"
+            class="font-semibold"
+          >
             <img
               src="{{ object.author.avatar.url }}"
               class="rounded"
-              width="115"
-              height="115"
+              width="45"
+              height="45"
             />
           </a>
         </div>
         <div class="author-info ml-4">
-          <p class="tracking-widest">WRITTEN BY</p>
-          <a href="#" class="font-semibold text-2xl">{{object.author}}</a>
+          <a
+            href="{% url 'users:detail' username=object.author.username %}"
+            class="font-semibold"
+            >{{object.author}}
+          </a>
+          <p class="text-sm">
+            Published on {{ object.created_at|date:"M, j Y"}}
+          </p>
         </div>
       </div>
-    </footer>
+    </div>
+    {% if object.cover %}
+    <div class="mt-6 mb-16">
+      <picture class="image-wrapper">
+        <div id="picture">
+          <img src="{{ story.cover.url }}" class="h-auto w-full" />
+        </div>
+      </picture>
+    </div>
+    <div class="px-44">
+    {% else %}
+    <div class="px-44 pt-6">
+    {% endif %}
+      <article-body class="mb-16"> {{object.body|linebreaksbr}} </article-body>
+      <footer class="my-10 border-t">
+        <div class="flex mt-10">
+          <div class="author-avatar">
+            <a href="#" class="font-semibold text-2xl">
+              <img
+                src="{{ object.author.avatar.url }}"
+                class="rounded"
+                width="115"
+                height="115"
+              />
+            </a>
+          </div>
+          <div class="author-info ml-4">
+            <p class="tracking-widest">WRITTEN BY</p>
+            <a href="#" class="font-semibold text-2xl">{{object.author}}</a>
+          </div>
+        </div>
+      </footer>
+    </div>
   </story-detail>
 </section>
-{% endblock content_section %}
+{% endblock %}

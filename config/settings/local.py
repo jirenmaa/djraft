@@ -5,13 +5,15 @@ from .base import env
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = True
+# https://docs.djangoproject.com/en/dev/ref/settings/#site-id
+SITE_ID = 2
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
-    default="z6iXT6xgl2u9O1zh3y2Vk18rFOBCyQhQLAQrIDoZTFUF3BDAnbz3exFGPnoNSv3Z",
+    default="5WhtNTPWvnlDVVyz8HjbeCQTXbUlKl4LdKg5o9Il4JmTk75XLGHny7D40atMbU8l",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "192.168.1.8"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -22,6 +24,13 @@ CACHES = {
         "LOCATION": "",
     }
 }
+
+# EMAIL
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+EMAIL_BACKEND = env(
+    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
+)
 
 # WhiteNoise
 # ------------------------------------------------------------------------------
@@ -55,13 +64,3 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-
-# https://docs.djangoproject.com/en/3.1/topics/http/sessions/#configuring-the-session-engine
-# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-# #https://docs.djangoproject.com/en/3.1/topics/cache/#memcached
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#         'LOCATION': '127.0.0.1:11211',
-#     }
-# }

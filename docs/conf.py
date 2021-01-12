@@ -27,8 +27,8 @@ django.setup()
 # -- Project information -----------------------------------------------------
 
 project = "djraft"
-copyright = """2020, Ahmad Alwi"""
-author = "Ahmad Alwi"
+copyright = """2021, ahmad alwi"""
+author = "ahmad alwi"
 
 
 # -- General configuration ---------------------------------------------------

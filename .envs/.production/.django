@@ -2,8 +2,8 @@
 # ------------------------------------------------------------------------------
 # DJANGO_READ_DOT_ENV_FILE=True
 DJANGO_SETTINGS_MODULE=config.settings.production
-DJANGO_SECRET_KEY=dZsvnqWNzVvF8pBGEjzb10TXTxeqEdTxcfYngWVxtdR0KxMT5E2OqoX44KjawhZs
-DJANGO_ADMIN_URL=EEwDaRR9wjxgrieYwFuAAo98bOrbH2Nk/
+DJANGO_SECRET_KEY=dbo5VXqU3ijnpn4RUJGziGlIuPYulYVAeUHV5BQjEjB6BpoLGvS9Qxtv7EIGUGpR
+DJANGO_ADMIN_URL=6VBxMZffoO6iWtf3ssdMM3xpqjHQSSFG/
 DJANGO_ALLOWED_HOSTS=.djraft.herokuapp.com
 
 # Security

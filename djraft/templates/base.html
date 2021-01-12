@@ -1,53 +1,41 @@
 {% load static i18n compress%}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>{% block title %}Djraft{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="project clone." />
-    <meta name="author" content="jirenmaa" />
-
+    <meta name="description" content="medium like project clone" />
+    <meta name="author" content="ahmad alwi" />
+    <!-- favicon -->
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
-
-    <!-- Google fonts -->
+    <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Your stuff: Third-party CSS libraries go here -->
-    <link
-      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-
+    {% block css %}
+    <!-- Third-party CSS libraries go here -->
+    {% compress css %}
     <!-- This file stores project-specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet" />
-    <link href="{% static 'sass/project.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/account.css' %}" rel="stylesheet" />
+    <link href="{% static 'tailwind/tailwind.css' %}" rel="stylesheet" />
+    {% endcompress %} {% endblock %}
   </head>
-
   <body>
-    {% include 'components/sidenav.html' %}
+    {% block content %}{%endblock content %}
 
-    {% block content_section %}{%endblock content_section %}
-
-    {% block javascript %}
-    <!-- Your stuff: Third-party javascript libraries go here -->
-    {% compress js %}
+    <!-- Third-party javascript libraries go here -->
     <!-- place project specific Javascript in this file -->
-    <script src="{% static 'js/project.js' %}"></script>
-    {% endcompress %} {% endblock javascript %}
+    {% compress js %}
+    <script src="{% static 'js/project.min.js' %}"></script>
+    <script src="{% static 'js/functions.min.js' %}"></script>
+    {% endcompress %}
+    {% block javascript %}
+    {% endblock javascript %}
   </body>
 </html>

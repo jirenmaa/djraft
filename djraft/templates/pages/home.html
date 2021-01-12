@@ -1,125 +1,123 @@
-{% extends "base.html" %} {% block content_section %}
-<section class="web-body px-12">
-  <home class="body-content grid grid-cols-3">
-    <div id="content-left" class="col-span-2">
-      <greet class="text-7xl block">
-        <p>Good Morning,</p>
-        <p>Michel Smith.</p>
+{% extends "base_app.html" %}
+{% load static i18n %}
+{% load lorem %}
+
+
+{% block inner %}
+<section class="section-content">
+  <home class="grid grid-cols-3">
+    <content-left class="col-span-2">
+      <greet>
+        <h2 id="greet" class="text-7xl"></h2>
+        {% if not request.user.is_anonymous %}
+        <h2 class="text-7xl">{{ request.user.username }}</h2>
+        {% else %}
+        <h2 class="text-7xl">Our Guest.</h2>
+        {% endif %}
       </greet>
-      <trending class="block mt-16 mb-8">
-        <div class="flex justify-between mb-4">
-          <div class="tranding-item border border-gray-200 mx-2 p-3">
-            <a href="#">
-              <h2><span class="font-semibold text-xl">Title #1</span></h2>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit,
-              Doloremque voluptates ...
-            </a>
-          </div>
-          <div class="tranding-item border border-gray-200 mx-2 p-3">
-            <a href="#">
-              <h2><span class="font-semibold text-xl">Title #2</span></h2>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit,
-              Doloremque voluptates ...
-            </a>
-          </div>
-        </div>
-        <div class="flex justify-between">
-          <div class="tranding-item border border-gray-200 mx-2 p-3">
-            <a href="#">
-              <h2><span class="font-semibold text-xl">Title #3</span></h2>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit,
-              Doloremque voluptates ...
-            </a>
-          </div>
-          <div class="tranding-item border border-gray-200 mx-2 p-3">
-            <a href="#">
-              <h2><span class="font-semibold text-xl">Title #4</span></h2>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit,
-              Doloremque voluptates ...
-            </a>
-          </div>
-        </div>
-      </trending>
-      <hr />
-      <div class="my-8 mb-12">
-        {% for article in object_list %}
-        <article class="grid grid-cols-3 border border-gray-200 my-6 p-4">
-          <div class="col-span-2">
-            <div class="flex items-center">
-            <a class="flex" href="{% url 'users:detail' article.author.username  %}">
-              <img
-                src="{{article.author.avatar.url}}"
-                class="rounded mt-1 mr-2"
-                width="18"
-                height="18"
-              />
-            <p class="font-semibold text-sm">{{ article.author.username }}</p>
-            </a>
-            </div>
-            <a href="{{ article.get_url_story_detail }}">
-              <h2 class="font-semibold text-2xl mt-2">
-                {% if article.title|length > 47 %}
-                  {{ article.title|slice:"47" }} ...
-                {% else %}
-                  {{ article.title }}
-                {% endif %}
-              </h2>
-              {% if article.body|length > 175 %}
-                {{ article.body|slice:"175" }} ...
+      <trending class="w-full flex flex-wrap justify-between border-b">
+        {% for trending in trendings %}
+        <div class="border-gray-200">
+          <a href="{{ article.get_absolute_url }}">
+            <h2 class="font-semibold">
+              {% if trending.title|length > 25 %}
+                {{ trending.title|linebreaksbr|slice:"25" }} ...
               {% else %}
-                {{ article.body }}
+                {{ trending.title|linebreaksbr }}.
               {% endif %}
-            </a>
-          </div>
-          <a href="{{ article.get_url_story_detail }}">
-            <div class="flex justify-center mx-auto my-auto h-32">
-              <img src="{{ article.cover.url }}" class="h-32 w-56" />
-            </div>
+            </h2>
+            <p>{{ trending.body|linebreaksbr|slice:"110" }} ...</p>
           </a>
+        </div>
+        {% endfor %}
+      </trending>
+      <main-content>
+        {% for article in object_list %}
+        <article>
+          <a
+            href="{{ article.author.get_absolute_url }}"
+            class="flex inline-block items-center"
+          >
+            <img
+              src="{{ article.author.avatar.url }}"
+              style="width: 18px; height: 18px;"
+              width="18"
+              height="18"
+              class="rounded"
+              alt=""
+              srcset=""
+            >
+            <p class="text-sm font-semibold pl-1">{{ article.author.username }}</p>
+          </a>
+          <div class="flex">
+            <div class="w-8/12 pr-5">
+              <a href="{{ article.get_absolute_url }}">
+                <h2 class="font-semibold text-3xl mb-3 inline-block">
+                  {{ article.title }}
+                </h2>
+                <p>
+                  {% if article.body|length > 180 %}
+                    {{article.body|linebreaksbr|slice:"180" }} ...
+                  {% else %}
+                    {{ article.body|linebreaksbr }}
+                  {% endif %}
+                </p>
+              </a>
+              <small
+                >{{article.created_at|date:"M, j Y"}} · based on you like</small
+              >
+            </div>
+            <div class="w-4/12">
+              {% if article.cover %}
+              <a href="{{ article.get_absolute_url }}">
+                <picture class="image-wrapper">
+                  <div id="picture">
+                    <img
+                      src="{{ article.cover.url }}"
+                      class="w-full"
+                      alt=""
+                      srcset=""
+                    />
+                  </div>
+                </picture>
+              </a>
+              {% endif %}
+            </div>
+          </div>
         </article>
         {% endfor %}
+      </main-content>
+    </content-left>
+    <content-right class="col-span-1">
+      <div class="box">
+        <p>{% custom_lorem_ipsum 146 %}.</p>
       </div>
-    </div>
-    <div id="content-right" class="col-span-1">
-      <div class="mt-1">
-        {% for article in uncover %}
-        <div class="explore-item mx-8 mb-8">
-          <a href="#">
-            <h2 class="font-semibold text-xl">
-            {% if article.title|length > 30 %}
-              {{ article.title|slice:"30" }} ...
-            {% else %}
-              {{ article.title }}
-            {% endif %}
-            </h2>
-            {% if article.body|length > 80 %}
-              {{ article.body|slice:"80" }} ...
-            {% else %}
-              {{ article.body }}
-            {% endif %}
-          </a>
-        </div>
-        {% endfor %}
+      <div class="box">
+        <p>{% custom_lorem_ipsum 146 %}.</p>
       </div>
-      <div id="stick" class="border-t border-gray-200 mx-8">
-        <div class="mt-9">
-          <ul class="tags-ui-btn">
-            <li><a href="#">lorem</a></li>
-            <li><a href="#">loremlorem</a></li>
-            <li><a href="#">lorem</a></li>
-            <li><a href="#">lorem</a></li>
-            <li><a href="#">loremlorem</a></li>
-            <li><a href="#">lorem</a></li>
-            <li><a href="#">loremloremlorem</a></li>
-            <li><a href="#">lorem</a></li>
-            <li><a href="#">lorem</a></li>
-          </ul>
-          <summary>
-            <a href="/tags" class="text-sm text-blue-500">load more tags ...</a>
-          </summary>
-        </div>
+      <div class="box">
+        <p>{% custom_lorem_ipsum 146 %}.</p>
       </div>
-    </div>
+      <div class="href">
+        <a href="#" class="text-blue-600"> explore more ... </a>
+      </div>
+      <div class="tags sticky">
+        <ul class="tags-button">
+          <li><a href="#">lorem lorem lor</a></li>
+          <li><a href="#">lorem lorem</a></li>
+          <li><a href="#">lorem lorem lorem</a></li>
+          <li><a href="#">lorem lorem lo</a></li>
+          <li><a href="#">lorem lor</a></li>
+          <li><a href="#">lorem lorem lorem lor</a></li>
+          <li><a href="#">lorem</a></li>
+        </ul>
+      </div>
+    </content-right>
   </home>
 </section>
-{% endblock content_section %}
+{% endblock %}
+{% block javascript %}
+<script>
+  greetUser();
+</script>
+{% endblock javascript %}

@@ -1,36 +1,33 @@
-{% extends "base.html" %}
-{% load static%}
+{% extends "base_app.html" %}
+{% load static %}
+{% load lorem %}
 
-{% block content_section %}
-<section class="web-body px-56 py-20">
-  <story-creation>
+
+{% block inner %}
+<section class="section-content pt-20">
+  <story-form>
     <form
       id="article-form"
-      action="{% url 'me:new-story' %}"
+      action="{% url 'me:new_story' %}"
       method="POST"
       enctype="multipart/form-data"
     >
       {% csrf_token %}
-      <article-title id="article-title" class="flex mb-3">
-        <h2
-          id="id_title"
-          class="border-l border-gray-300 word-break text-7xl"
-          name="title"
-        >
-          <span contenteditable="true" class="ml-2">Title</span>
+      <div id="article-title" class="">
+        <h2 id="id_title" class="border-l border-gray-300 text-7xl">
+          <span contenteditable="true">My Title</span>
         </h2>
-      </article-title>
-      <article-description id="article-description" class="word-break">
+      </div>
+      <div id="article-description" class="py-5">
         <h2
           id="id_description"
+          class="text-xl text-gray-normal"
           contenteditable="true"
-          class="font-medium text-gray-500 text-xl my-5"
-          name="description"
         >
-          description
+          my story description
         </h2>
-      </article-description>
-      <article-cover id="article-cover">
+      </div>
+      <div id="article-cover">
         <div class="border border-gray-200" id="show-cover">
           <div class="flex justify-center">
             <img src="#" id="load-cover" style="display: none" />
@@ -49,24 +46,18 @@
             >Add Cover Image</label
           >
         </div>
-      </article-cover>
-      <article-body id="article-body" class="word-break">
-        <div contenteditable="true" id="id_body" name="body" class="my-5">
+      </div>
+      <div id="article-body" class="py-5">
+        <div contenteditable="true" id="id_body" class="">
           Tell your story ...
         </div>
-      </article-body>
-      <button
-        class="text-white bg-green-400 hover:bg-green-500 rounded mb-8 py-2 px-8 mt-8"
-        type="submit"
-        id="publish"
-      >
-        Publish
-      </button>
+      </div>
+      <div>
+        <button type="submit">publish</button>
+      </div>
     </form>
-  </story-creation>
+  </story-form>
 </section>
-{% endblock content_section %}
-{% block javascript %}
 <script>
   function loadFile(event) {
     var cover = document.getElementById("load-cover");
@@ -89,5 +80,5 @@
     cover.src = URL.createObjectURL(event.target.files[0]);
   }
 </script>
-<script src="{% static 'js/postArticleForm.js' %}"></script>
-{% endblock javascript %}
+<script src="{% static 'js/processAjax.js' %}"></script>
+{% endblock %}

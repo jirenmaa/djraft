@@ -1,12 +1,12 @@
 from django.urls import path
 
-from .views import (
-    story_list_view,
-    story_creation_view,
+from djraft.stories.views import (
+    like,
+    dislike
 )
 
 app_name = "stories"
 urlpatterns = [
-    path("stories", view=story_list_view, name="stories"),
-    path("new-story", view=story_creation_view, name="new-story"),
+    path("like/<int:_id>", view=like, name="like"),
+    path("dislike/<int:_id>", view=dislike, name="dislike"),
 ]

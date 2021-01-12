@@ -1,113 +1,128 @@
-{% extends "base.html" %}
-
-
-{% block title %}
-{{object.username}} - Djraft
-{% endblock %}
-
-{% block content_section %}
-<section class="web-body px-24">
-  <user-detail class="grid grid-cols-6">
-    <wrap-info class="col-span-1 mt-5 items-center">
-      <div class="sticky top-12">
-        <div class="w-2/3">
-          <a href="{% url 'users:settings' username=object.username %}">
-            <img
-              src="{{object.avatar.url}}"
-              class="rounded mb-7"
-              width="130"
-              height="130"
-            />
-          </a>
-        </div>
-        <div class="w-32">
-          <p class="text-sm tracking-widest">ABOUT</p>
+{% extends "base_app.html" %} {% load static %} {% block title %}
+{{object.username}} ‒ Djraft {% endblock %} {% block inner %}
+<section class="section-content">
+  <user-detail>
+    <div class="flex mx-10">
+      <user-info class="w-2/12 mx-4">
+        <div class="sticky">
+          <picture>
+            <a href="{% url 'me:settings' %}">
+              <img src="{{object.avatar.url}}" class="w-9/12" alt="" />
+            </a>
+          </picture>
+          <p class="tracking-widest pt-3">ABOUT</p>
           <p class="font-semibold mb-2">{{object.username}}</p>
-          <p class="text-sm">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis
-            quam eaque est cum, amet consequuntur eum eius alias hic pariatur
-            veritatis!
+          <div class="w-9/12 text-sm text-gray-600">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate
+            impedit ipsum eius illum eligendi libero cumque veniam!
+          </div>
+        </div>
+      </user-info>
+      <user-articles class="w-10/12 mt-5 mx-12">
+        {% for article in stories %}
+        <article>
+          <p class="pb-6 text-sm text-gray-600">
+            Published on {{article.created_at|date:"M, j Y"}}
           </p>
-        </div>
-      </div>
-    </wrap-info>
-    <wrap-stories class="col-span-5 mx-12 mb-24">
-      {% if stories.count %}
-      {% for story in stories %}
-      <article class="mb-8 p-3 border-b">
-        <p class="text-sm">
-          Published on · {{ story.created_at|date:"j F Y" }}
-        </p>
-        <a href="{{ story.get_url_story_detail }}">
-          <h2 class="font-bold text-5xl my-3">
-            {% if story.title|length > 45 %}
-              {{ story.title|slice:"45" }} ...
-            {% else %}
-              {{ story.title }}
-            {% endif %}
-          </h2>
-          <description class="text-lg text-gray-500">
-            {% if story.description|length > 225 %}
-              {{ story.description|slice:"225" }} ...
-            {% else %}
-              {{ story.description }}
-            {% endif %}
-          </description>
-          {% if story.cover %}
-          <div class="image-wrapper my-3 mb-10">
-            <div id="picture">
-              <img src="{{ story.cover.url }}" class="h-auto w-full" />
+          <a href="{{ article.get_url_story_detail }}" class="">
+            <h2 id="title" class="font-semibold text-6xl inline-block">
+              {{ article.title }}
+            </h2>
+            <h3 id="description" class="pt-3 pb-5 text-2xl text-gray-600">
+              {% if article.description|length > 225 %}
+                {{ article.description|slice:"225" }} ...
+              {% else %}
+                {{ article.description }}
+              {% endif %}
+            </h3>
+            {% if article.cover %}
+            <div>
+              <picture class="image-wrapper">
+                <div id="picture">
+                  <img
+                    src="{{ article.cover.url }}"
+                    class="w-full"
+                    alt=""
+                    srcset=""
+                  />
+                </div>
+              </picture>
             </div>
-          </div>
-          {% else %}
-          <br /><br />
-          {% endif %}
-        </a>
-        <div id="body">
-          {% if story.body|length > 830 %}
-            {{ story.body|linebreaksbr|slice:"830" }} ...
-          {% else %}
-            {{ story.body|linebreaksbr }}
-          {% endif %}
-        </div>
-        <p class="my-10">
-          <a href="{{ story.get_url_story_detail }}" class="text-green-500">
-            Read more about this article
+            {% endif %}
+            <div id="content" class="pt-6">
+              {% if article.body|length > 830 %}
+                {{article.body|linebreaksbr|slice:"830" }} ...
+              {% else %}
+                {{ article.body|linebreaksbr }}
+              {% endif %}
+            </div>
           </a>
-        </p>
-      </article>
-      {% endfor %}
-      {% else %}
-      <default-story class="flex justify-center items-center">
-        <article class="mb-8 p-3 border-b">
-          <a href="#">
-            <h2 class="font-bold text-5xl mb-3">Hi {{object.username}}!</h2>
-            <description class="text-lg text-gray-500">
-              Hello this is my first posts in djraft. (this is a template stories)
-            </description>
-            <div class="my-4"></div>
-          </a>
-          <div id="body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga in
-            debitis voluptate quidem eius adipisci quod repellat, rem iure
-            voluptatum provident aliquam maiores aspernatur fugit voluptates,
-            velit consequatur odit consectetur? Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Enim iure sapiente commodi.
-            Consequatur, fuga explicabo, quo possimus, non aspernatur culpa
-            dicta excepturi recusandae reprehenderit ab quas tempora illum porro
-            cum!
-            <br><br>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, itaque fugit ut voluptatum quis a cupiditate, dolores impedit repellendus odio debitis, dignissimos rerum rem. Similique tenetur ipsum tempora deserunt tempore.
-          </div>
-          <p class="my-10">
-            <a href="#" class="text-green-500">
+          <p class="mt-10 mb-8">
+            <a href="#" class="text-green-500 text-sm">
               Read more about this article
             </a>
           </p>
+          <div class="footer flex inline-block mb-8" id="{{article.id}}">
+            <div class="flex items-center upvote" onclick="like(this)">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-arrow-up mr-1"
+              >
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+              </svg>
+              {% if article.get_total_likes > 0 %}
+              <span class="mr-8">{{ article.get_total_likes }}</span>
+              {% endif %}
+            </div>
+
+            <div class="flex items-center response" onclick="like(this)">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-response-circle mr-1"
+              >
+                <path
+                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                ></path>
+              </svg>
+            </div>
+          </div>
         </article>
-      </default-story>
-      {% endif %}
-    </wrap-stories>
+        {% endfor %}
+      </user-articles>
+    </div>
   </user-detail>
 </section>
-{% endblock content_section %}
+<script>
+  function like(element) {
+    var parent = element.parentNode;
+    const url =
+      document.location.protocol +
+      "//" +
+      document.location.host +
+      "/story/like/" +
+      parent.id;
+    console.log();
+
+    fetch(url, {
+      method: "GET",
+    }).then((response) => console.log(response));
+  }
+</script>
+{% endblock %}

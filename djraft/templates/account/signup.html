@@ -1,4 +1,76 @@
 {% extends "account/base.html" %}
+{% load i18n %}
+
+{% block head_title %}
+{% trans "Sign Up" %}
+{%endblock %}
+
+
+{% block inner %}
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100 p-t-50 p-b-90">
+      <form
+        class="login100-form validate-form flex-sb flex-w"
+        method="POST"
+        action="{% url 'account_signup' %}"
+      >
+        {% csrf_token %}
+        <span class="login100-form-title pb-8">Sign Up</span>
+
+        <div
+          class="wrap-input100 validate-input m-b-16"
+          data-validate="Email is required"
+        >
+          <input
+            class="input100"
+            type="text"
+            placeholder="Email"
+            autocomplete="email"
+            maxlength="150"
+            required=""
+            id="id_login"
+          />
+          <span class="focus-input100"></span>
+        </div>
+
+        <div
+          class="wrap-input100 validate-input m-b-16"
+          data-validate="Password is required"
+        >
+          <input
+            class="input100"
+            name="password"
+            placeholder="Password"
+            autocomplete="current-password"
+            required=""
+            id="id_password"
+          />
+          <span class="focus-input100"></span>
+        </div>
+
+        <small>
+        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}" class="text-blue-500">sign in</a>.{% endblocktrans %}
+        </small>
+
+        {% if redirect_field_value %}
+        <input
+          type="hidden"
+          name="{{ redirect_field_name }}"
+          value="{{ redirect_field_value }}"
+        />
+        {% endif %}
+
+        <div class="container-login100-form-btn m-t-17">
+          <button class="login100-form-btn">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock inner %}
+
+{% comment %} {% extends "account/base.html" %}
 
 {% load i18n %}
 {% load crispy_forms_tags %}
@@ -19,5 +91,5 @@
   <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
 </form>
 
-{% endblock %}
+{% endblock %} {% endcomment %}
 

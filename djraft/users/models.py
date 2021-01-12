@@ -14,8 +14,8 @@ gd_storage = GoogleDriveStorage()
 class User(AbstractUser):
     """Default user for djraft."""
 
-    # First and last name do not cover name patterns around the globe
-    name = CharField(_("Name of User"), blank=True, max_length=255)
+    #: First and last name do not cover name patterns around the globe
+    name = CharField(_("Name of User"), blank=True, max_length=100)
     bio = TextField(_("UserBio"), default="Hi, there.", max_length=160)
     # user avatar
     avatar = ImageField(
@@ -33,8 +33,10 @@ class User(AbstractUser):
         return reverse("users:detail", kwargs={"username": self.username})
 
     def save(self, *args, **kwargs):
+        self.username = self.username[0].upper() + self.username[1:]
+
         if not self.avatar:
-            getImg = get_default_avatar(self.username)
-            self.avatar.save(getImg[0], getImg[1], save=True)
+            get_img = get_default_avatar(self.username)
+            self.avatar.save(get_img[0], get_img[1], save=True)
 
         super(User, self).save(*args, **kwargs)

@@ -1,21 +1,272 @@
-/* These styles are generated from project.scss. */
+@font-face {
+  font-family: "Clara Antique";
+  src: url("../fonts/ClaraAntiqua.otf") format("opentype"); }
+
 .alert-debug {
-  color: black;
-  background-color: white;
+  background-color: #fff;
   border-color: #d6e9c6;
-}
+  color: #000; }
 
 .alert-error {
-  color: #b94a48;
   background-color: #f2dede;
   border-color: #eed3d7;
-}
+  color: #b94a48; }
 
-.fnt-plyfair {
-  font-family: 'Playfair Display', serif;
-}
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow-x: hidden !important; }
 
-.pl-23 {
-  padding-left: 5.75rem;
-}
+.text-gray-normal {
+  color: rgba(0, 0, 0, 0.54) !important; }
 
+.section-content {
+  left: 68px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 20px 120px 48px 48px;
+  padding: 1.25rem 7.5rem 3rem 3rem; }
+
+.side-navigation {
+  width: 68px;
+  height: 100%;
+  z-index: 99;
+  position: fixed;
+  text-align: center;
+  font-family: "Clara Antique", serif;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: all 350ms 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 350ms 50ms cubic-bezier(0.645, 0.045, 0.355, 1); }
+  .side-navigation .sidenav-logo {
+    scale: 0.7;
+    padding: 16px 0 16px 0;
+    padding: 1rem 0 1rem 0; }
+  .side-navigation .items-wrapper {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%); }
+    .side-navigation .items-wrapper .nav-item {
+      position: relative;
+      padding-top: 16px;
+      padding-top: 1rem;
+      padding-bottom: 16px;
+      padding-bottom: 1rem; }
+  .side-navigation .items-bottom {
+    position: absolute;
+    top: 87.5%;
+    width: 100%; }
+    .side-navigation .items-bottom .nav-item {
+      position: relative; }
+
+home {
+  margin-top: 8px;
+  margin-top: 0.5rem; }
+  home content-left greet {
+    font-family: "Clara Antique", serif;
+    cursor: context-menu; }
+  home content-left trending {
+    margin-top: 32px;
+    margin-top: 2rem; }
+    home content-left trending div {
+      width: 49.25%;
+      padding: 12px;
+      padding: 0.75rem;
+      border: 1px solid #000; }
+      home content-left trending div h2 {
+        font-size: 23.2px;
+        font-size: 1.45rem;
+        line-height: 28px;
+        line-height: 1.75rem; }
+    home content-left trending div:nth-child(odd) {
+      margin-right: 5.6px;
+      margin-right: 0.35rem;
+      margin-bottom: 12px;
+      margin-bottom: 0.75rem; }
+    home content-left trending div:nth-child(even) {
+      margin-bottom: 12px;
+      margin-bottom: 0.75rem; }
+  home content-left main-content {
+    width: 100%;
+    height: 100%; }
+    home content-left main-content article {
+      padding: 16px;
+      padding: 1rem;
+      height: 192px;
+      height: 12rem;
+      max-height: 192px;
+      max-height: 12rem;
+      border: 1px solid #e5e7eb; }
+      home content-left main-content article .image-wrapper {
+        width: 100%;
+        max-width: 100% !important;
+        height: auto; }
+        home content-left main-content article .image-wrapper #picture {
+          overflow: hidden !important;
+          max-height: 142.5px !important; }
+          home content-left main-content article .image-wrapper #picture img {
+            top: 0%; }
+      home content-left main-content article:not(:first-child) {
+        margin-top: 24px;
+        margin-top: 1.5rem; }
+      home content-left main-content article small {
+        position: relative;
+        top: 12px;
+        top: 0.75rem;
+        color: #4b5563; }
+    home content-left main-content article:first-of-type {
+      margin-top: 16px;
+      margin-top: 1rem; }
+  home content-right {
+    padding: 0 24px 0 24px;
+    padding: 0 1.5rem 0 1.5rem; }
+    home content-right .box {
+      padding: 12px;
+      padding: 0.75rem;
+      border: 1px solid #e5e7eb; }
+      home content-right .box:not(:last-child) {
+        margin-bottom: 16px;
+        margin-bottom: 1rem; }
+    home content-right .href {
+      padding-bottom: 13.6px;
+      padding-bottom: 0.85rem; }
+    home content-right .sticky {
+      top: 0;
+      position: sticky !important; }
+    home content-right .tags {
+      padding: 20px 0 0 0;
+      padding: 1.25rem 0 0 0;
+      border-top: 1px solid #e5e7eb; }
+      home content-right .tags .tags-button {
+        list-style-type: none; }
+        home content-right .tags .tags-button li {
+          display: inline-block;
+          margin-bottom: 17px;
+          margin-right: 4px; }
+          home content-right .tags .tags-button li a {
+            padding: 6px 24px 6px 24px;
+            border: 1px solid #e5e7eb; }
+
+user-detail user-info {
+  width: 100%;
+  margin-top: 1.75em; }
+  user-detail user-info .sticky {
+    top: 6%;
+    position: sticky !important; }
+  user-detail user-info picture {
+    width: 16.666667%;
+    max-width: 16.666667%; }
+
+user-detail user-articles article {
+  margin-bottom: 2.5em;
+  border-bottom: 1px solid #e5e7eb; }
+  user-detail user-articles article .image-wrapper {
+    width: 100%;
+    max-width: 100% !important;
+    height: auto; }
+    user-detail user-articles article .image-wrapper #picture {
+      overflow: hidden !important;
+      max-height: 320px !important; }
+      user-detail user-articles article .image-wrapper #picture img {
+        top: -10%; }
+  user-detail user-articles article .footer svg {
+    stroke: #9ca3af; }
+  user-detail user-articles article .footer span {
+    color: #9ca3af; }
+  user-detail user-articles article .footer .upvote:hover {
+    cursor: pointer; }
+  user-detail user-articles article .footer .response:hover {
+    cursor: pointer; }
+  user-detail user-articles article .footer .response svg {
+    -webkit-transform: scaleX(-1);
+            transform: scaleX(-1); }
+
+user-settings left-aside .wrapper {
+  top: 30px;
+  position: sticky !important; }
+
+user-settings right-aside picture img {
+  width: 85px;
+  height: 85px;
+  max-width: 85px;
+  max-height: 85px; }
+  user-settings right-aside picture img:hover {
+    cursor: pointer; }
+
+user-settings right-aside picture .label-image {
+  z-index: 99;
+  position: absolute;
+  margin-top: -85px;
+  width: 85px;
+  height: 85px;
+  cursor: pointer;
+  opacity: 0; }
+  user-settings right-aside picture .label-image:hover {
+    background-color: #333;
+    opacity: 0.5; }
+
+user-settings right-aside button[type="submit"] {
+  background-color: #3a3a3a; }
+  user-settings right-aside button[type="submit"]:hover {
+    background-color: #222; }
+
+user-stories h2 {
+  display: inline-block; }
+
+user-stories .sub-head {
+  font-family: "Clara Antique", serif; }
+
+user-stories .wrapper .left-content article:not(:last-child) {
+  margin-bottom: 32px;
+  margin-bottom: 2rem; }
+
+user-stories .wrapper .right-content article {
+  border: 1px solid #e5e7eb; }
+  user-stories .wrapper .right-content article .content {
+    padding: 12px;
+    padding: 0.75rem; }
+  user-stories .wrapper .right-content article .tools {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
+    user-stories .wrapper .right-content article .tools a {
+      text-align: center;
+      padding: 16px;
+      padding: 1rem; }
+
+user-stories .wrapper .right-content article:not(:last-child) {
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem; }
+
+story-form form {
+  font-family: "Montserrat", sans-serif;
+  margin: 0 160px 0 160px;
+  margin: 0 10rem 0 10rem;
+  word-break: break-all !important; }
+  story-form form #article-title h2 {
+    font-family: "Clara Antique", serif; }
+    story-form form #article-title h2 span {
+      line-height: 50%;
+      margin-left: 16px;
+      margin-left: 1rem; }
+
+story-detail .image-wrapper {
+  width: 100%;
+  max-width: 100% !important;
+  height: auto; }
+  story-detail .image-wrapper #picture {
+    overflow: hidden !important;
+    max-height: 720px !important; }
+    story-detail .image-wrapper #picture img {
+      top: -100%; }

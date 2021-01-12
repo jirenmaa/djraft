@@ -1,0 +1,267 @@
+// fonts face
+@font-face {
+  font-family: "Clara Antique";
+  src: url("../fonts/ClaraAntiqua.otf") format("opentype");
+}
+
+////////////////////////////////
+//Variables//
+////////////////////////////////
+
+// Fonts
+$clarantiq: "Clara Antique", serif;
+
+////////////////////////////////
+//Website//
+////////////////////////////////
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.limiter {
+  width: 100%;
+  margin: 0 auto;
+
+  .container-login100 {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .p-t-50 {
+      padding-top: 50px;
+    }
+    .p-b-90 {
+      padding-bottom: 90px;
+    }
+
+    .wrap-login100 {
+      width: 390px;
+      background: #fff;
+      border-radius: 10px;
+      position: relative;
+
+      .flex-sb {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .flex-w {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -moz-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        -o-flex-wrap: wrap;
+        flex-wrap: wrap;
+      }
+
+      form {
+        font-family: "Montserrat", sans-serif;
+        padding-bottom: 51px;
+
+        .login100-form-title {
+          font-family: "Montserrat", sans-serif;
+          font-size: 30px;
+          color: #403866;
+          line-height: 1.2;
+          text-transform: uppercase;
+          text-align: center;
+
+          width: 100%;
+          display: block;
+        }
+
+        .m-b-16 {
+          margin-bottom: 16px;
+        }
+
+        .p-t-3 {
+          padding-top: 3px;
+        }
+
+        .p-b-24 {
+          padding-bottom: 24px;
+        }
+
+        .w-full {
+          width: 100%;
+        }
+
+        .sociallaccount-wrapper {
+          width: 100%;
+          .sociallaccount-providers {
+            ul {
+              list-style: none;
+              padding-left: 0;
+
+              li {
+                background-color: #403866;
+                a {
+                  width: 100%;
+                  display: block;
+                  padding: 1rem;
+                  color: #fff;
+                  text-decoration: none;
+                  text-align: center;
+                }
+              }
+            }
+          }
+
+          p {
+            text-align: center;
+          }
+        }
+
+        .wrap-input100 {
+          width: 100%;
+          position: relative;
+          background-color: #e6e6e6;
+
+          .input100 {
+            font-family: "Montserrat", sans-serif;
+            border: 1px solid rgba(229, 231, 235, 1);
+            color: #403866;
+            line-height: 1.2;
+            font-size: 18px;
+
+            width: 85%;
+            background: transparent;
+            height: 62px;
+            padding: 0 20px 0 37px;
+          }
+
+          .focus-input100 {
+            position: absolute;
+            display: block;
+            width: calc(100% + 2px);
+            height: calc(100% + 2px);
+            top: -1px;
+            left: -1px;
+            pointer-events: none;
+            border: 1px solid #827ffe;
+            border-radius: 3px;
+
+            visibility: hidden;
+            opacity: 0;
+          }
+        }
+
+        .flex-sb-m {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          justify-content: space-between;
+          -ms-align-items: center;
+          align-items: center;
+        }
+
+        .input-checkbox100 {
+          display: none;
+        }
+
+        .input-checkbox100:checked + .label-checkbox100::before {
+          color: #827ffe;
+        }
+
+        .input-checkbox100:checked + .label-checkbox100::before {
+          background-color: #827ffe;
+          color: #fff;
+          content: "✔";
+        }
+
+        .label-checkbox100 {
+          font-family: "Montserrat", sans-serif;
+          font-size: 16px;
+          color: #999999;
+          line-height: 1.2;
+
+          display: block;
+          position: relative;
+          padding-left: 26px;
+          cursor: pointer;
+        }
+
+        .label-checkbox100::before {
+          content: "\f00c";
+          font-size: 13px;
+          color: transparent;
+
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          width: 18px;
+          height: 18px;
+          border-radius: 3px;
+          background: #fff;
+          border: 2px solid #827ffe;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        .container-login100-form-btn {
+          width: 100%;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .m-t-17 {
+          margin-top: 17px;
+        }
+
+        .login100-form-btn {
+          font-family: "Montserrat", sans-serif;
+          font-size: 16px;
+          color: #fff;
+          line-height: 1.2;
+          text-transform: uppercase;
+
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 20px;
+          width: 100%;
+          height: 62px;
+          background-color: #827ffe;
+          border: 1px solid #827ffe;
+          border-radius: 3px;
+        }
+
+        .login100-form-btn:hover {
+          background-color: #403866;
+        }
+      }
+    }
+  }
+}

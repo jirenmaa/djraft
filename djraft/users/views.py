@@ -1,14 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-from django.views.generic import DetailView, UpdateView
-from django.shortcuts import HttpResponseRedirect, get_object_or_404
-
-from django.core.exceptions import PermissionDenied
-from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import DetailView, RedirectView, UpdateView
 
 from djraft.stories.models import Story
 
@@ -21,14 +16,9 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     slug_field = "username"
     slug_url_kwarg = "username"
 
-    def get_object(self, *args, **kwargs):
-        obj = get_object_or_404(User, username=self.kwargs["username"])
-        return obj
-
     def get_context_data(self, **kwargs):
-        user = get_object_or_404(User, username=self.kwargs["username"])
         context = super().get_context_data(**kwargs)
-        context["stories"] = Story.objects.filter(author=user)
+        context["stories"] = Story.objects.filter(author__username=self.kwargs["username"])
 
         return context
 
@@ -39,7 +29,7 @@ user_detail_view = UserDetailView.as_view()
 class UserSettingsView(LoginRequiredMixin, UpdateView):
 
     model = User
-    fields = ["name"]
+    fields = ["username", "bio", "avatar"]
     template_name = "users/user_settings.html"
 
     def get_success_url(self):
@@ -49,16 +39,25 @@ class UserSettingsView(LoginRequiredMixin, UpdateView):
         return User.objects.get(username=self.request.user.username)
 
     def form_valid(self, form):
-        messages.add_message(
-            self.request, messages.INFO, _("Infos successfully updated")
-        )
+        # messages.add_message(
+        #     self.request, messages.INFO, _("Infos successfully updated")
+        # )
         return super().form_valid(form)
 
 
 user_settings_view = UserSettingsView.as_view()
 
 
-# user related story or article
+class UserRedirectView(LoginRequiredMixin, RedirectView):
+
+    permanent = False
+
+    def get_redirect_url(self):
+        return reverse("users:detail", kwargs={"username": self.request.user.username})
+
+
+user_redirect_view = UserRedirectView.as_view()
+
 
 class UserStoryDetailView(DetailView):
 
@@ -67,14 +66,3 @@ class UserStoryDetailView(DetailView):
 
 
 user_story_detail_view = UserStoryDetailView.as_view()
-
-
-@login_required
-def user_story_delete(request, username, slug):
-    if request.user.username == username:
-        story = get_object_or_404(Story, author=request.user, slug=slug)
-
-        story.delete()
-        url = reverse("me:stories")
-        return HttpResponseRedirect(url)
-    raise PermissionDenied()

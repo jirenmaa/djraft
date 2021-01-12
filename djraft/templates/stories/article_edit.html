@@ -1,0 +1,97 @@
+{% extends "base_app.html" %}
+{% load static %}
+{% load lorem %}
+
+
+{% block inner %}
+<section class="section-content pt-20">
+  <!-- <form
+    action="{% url 'me:edit_story' slug=object.slug %}"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+  {% csrf_token %}
+  {{form}}
+  <button type="submit">save</button>
+  </form> -->
+  <story-form>
+    <form
+      id="article-form"
+      action="{% url 'me:edit_story' slug=object.slug %}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <div id="article-title">
+        <h2 id="id_title" class="border-l border-gray-300 text-7xl">
+          <span contenteditable="true">{{ object.title }}</span>
+        </h2>
+      </div>
+      <div id="article-description" class="py-5">
+        <h2
+          id="id_description"
+          class="text-xl text-gray-normal"
+          contenteditable="true"
+        >
+          {{ object.description }}
+        </h2>
+      </div>
+      <div id="article-cover">
+        <div class="border border-gray-200" id="show-cover">
+          <div class="flex justify-center">
+          {% if object.cover %}
+            <img src="{{ object.cover.url }}" id="load-cover" style="display: none" />
+          {% else %}
+            <img src="#" id="load-cover" style="display: none" />
+          {% endif %}
+          </div>
+          <input
+            type="file"
+            id="id_cover"
+            name="cover"
+            style="display: none"
+            onchange="loadFile(event)"
+          />
+          <label
+            for="id_cover"
+            id="cover-label"
+            class="flex justify-center p-12"
+            >Add Cover Image</label
+          >
+        </div>
+      </div>
+      <div id="article-body" class="py-5">
+        <div contenteditable="true" id="id_body">
+          {{ object.body }}
+        </div>
+      </div>
+      <div>
+        <button type="submit">Save Changes</button>
+      </div>
+    </form>
+  </story-form>
+</section>
+<script>
+  function loadFile(event) {
+    var cover = document.getElementById("load-cover");
+    var wrapper_cover = document.getElementById("show-cover");
+    var label_cover = document.getElementById("cover-label");
+    var article_body = document.getElementById("article-body");
+
+    // Do somethin with this
+    cover.removeAttribute("style");
+    wrapper_cover.classList.remove("border");
+
+    label_cover.innerHTML = "Change Cover Image";
+    label_cover.classList.remove("p-12");
+    label_cover.classList.add("p-3");
+
+    article_body.classList.remove("my-16");
+    article_body.classList.add("my-8");
+    // Done
+
+    cover.src = URL.createObjectURL(event.target.files[0]);
+  }
+</script>
+<script src="{% static 'js/processAjax.js' %}"></script>
+{% endblock %}

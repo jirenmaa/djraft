@@ -1,76 +1,84 @@
-{% extends 'base.html' %}
+{% extends 'base_app.html' %}
+{% load lorem %}
 
-{% block content_section %}
-<section class="web-body px-48">
+
+{% block inner %}
+
+<section class="section-content">
   <user-stories>
-    <header>
-      <div class="flex justify-between items-center">
-        <h2 id="head-text" class="text-7xl">Your Stories</h2>
-        <div class="button-items">
-          <a
-            href="{% url 'stories:new-story' %}"
-            class="border border-green-400 text-green-400 write-story hover:bg-green-400 hover:text-white"
-          >
-            Write Story
-          </a>
-          <a
-            href="#"
-            class="border border-gray-400 text-gray-500 ml-4 import-story"
-          >
-            Import Story
-          </a>
-        </div>
-      </div>
+    <header class="mb-8">
+      <h2 class="sub-head mt-2 text-6xl">Your Stories</h2>
     </header>
-    <div id="user-story-info" class="border-b border-gray-200 p-3 mt-12 mb-6">
-      <h2>
-        <span class="font-semibold text-lg">Published</span>
-        <sup
-          >{% if object_list.count %} {{ object_list.count }} {% endif %}</sup
-        >
-      </h2>
-    </div>
-    <content>
-      <div>
-        {% for story in object_list %}
-        <article class="user-story border border-gray-200 mb-3 p-4">
-          <h2>
-            <a
-              href="{% url 'users:article_detail' username=request.user slug=story.slug %}"
-              class="font-semibold text-2xl"
-            >
-              {% if story.title|length > 45 %}
-                {{ story.title|slice:"45" }} ...
+    <div class="wrapper mt-5 grid grid-cols-6">
+      <div class="left-content sticky col-span-2">
+        <h2 class="text-2xl font-semibold mb-5">Your most liked stories</h2>
+        {% for liked in most_liked %}
+        <article>
+          <a href="{{ liked.get_absolute_url }}">
+            <h2 class="font-semibold">{{ liked.title }}</h2>
+            <p>{{ liked.title|linebreaksbr|slice:"144" }} ...</p>
+          </a>
+        </article>
+        {% endfor %}
+      </div>
+      <div class="right-content col-span-4 mx-10">
+        {% for article in object_list %}
+        <article class="flex justify-between" id="{{ article.slug }}">
+          <div class="content">
+            <a href="{{ article.get_absolute_url }}">
+              <h2 class="font-semibold text-2xl">
+              {% if article.title|length > 45 %}
+                {{ article.title|slice:"45" }} ...
               {% else %}
-                {{ story.title }}
+                {{ article.title }}
               {% endif %}
+              </h2>
+              <p>
+                {% if article.description|length > 142 %}
+                  {{ article.description|slice:"142" }} ...
+                {% else %}
+                  {{ article.description }}
+                {% endif %}
+              </p>
             </a>
-          </h2>
-          <div class="flex justify-between items-center mt-2">
-            <wrap>
-              <small class="block text-gray-500"
-                >Published on, {{ story.created_at|date:"j F Y" }}</small
-              >
-              {% if story.body|length > 80 %}
-                {{ story.body|slice:"79" }} ...
-              {% else %}
-                {{ story.body }}
-              {% endif %}
-            </wrap>
-            <wrap>
-              <a href="#" class="mx-1">edit</a>
-              <a
-                href="{% url 'users:article_delete' username=story.author.username slug=story.slug %}"
-                class="mx-1"
-              >
-                delete
-              </a>
-            </wrap>
+            <p class="text-sm text-gray-normal mt-3">
+              Last edited about 1 minute ago
+            </p>
+          </div>
+          <div class="tools">
+            <a
+              href="{% url 'me:edit_story' slug=article.slug %}"
+              class="bg-gray-100 hover:bg-gray-400 hover:text-gray-100"
+              >edit
+            </a>
+            <a
+              href="#"
+              id=href-{{article.slug}}
+              onclick="deleteStory(this)"
+              class="bg-red-100 hover:bg-red-400 hover:text-red-100"
+              >delete
+            </a>
           </div>
         </article>
         {% endfor %}
       </div>
-    </content>
+    </div>
   </user-stories>
 </section>
-{% endblock content_section %}
+<script>
+  function deleteStory(el) {
+    var slug = el.id.split("href-")[1];
+    fetch(
+      document.location.protocol +
+        "//" +
+        document.location.host +
+        "/me/" +
+        slug +
+        "/delete",
+      {
+        method: "GET",
+      }
+    ).then((response) => document.getElementById(slug).remove());
+  }
+</script>
+{% endblock %}

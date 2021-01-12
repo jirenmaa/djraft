@@ -1,37 +1,41 @@
-{% load i18n %}
-<nav class="sidenav border-r">
-  <a
-    href="{% url 'home' %}"
-    class="sidenav-logo djraft-logo font-bold"
-    style="font-size: 40px"
-    >D</a
-  >
-  <ul class="nav-items-wrapper-center">
-    <li class="nav-item py-3 my-3">
-      <a href="{% url 'me:stories' %}" class="py-3 px-4">A</a>
+{% load static i18n %}
+<nav class="side-navigation border-r">
+  <a href="{% url 'home' %}">
+    <img
+      alt="djraft logo"
+      class="sidenav-logo"
+      src="{% static 'images/logo.png' %}"
+    />
+  </a>
+  <ul class="items-wrapper">
+    <li class="nav-item">
+      <a href="{% url 'me:stories' %}">A</a>
     </li>
-    <li class="nav-item py-3 my-3">
-      <a href="{% url 'me:new-story' %}" class="py-3 px-4">B</a>
+    <li class="nav-item">
+      <a href="{% url 'me:new_story' %}">B</a>
     </li>
-    <li class="nav-item py-3 my-3">
-      <a href="#" class="py-3 px-4">C</a>
+    <li class="nav-item">
+      <a href="">C</a>
     </li>
-    <li class="nav-item py-3 my-3">
-      <a href="#" class="py-3 px-4">D</a>
+    <li class="nav-item">
+      <a href="">D</a>
     </li>
   </ul>
-  <ul class="nav-items-wrapper-bottom">
+  <ul class="items-bottom">
     <li class="nav-item">
-      {% if request.user.is_authenticated %}
+      {% if request.user and request.user.is_authenticated %}
       <div class="m-3.5">
-        <a href="{% url 'users:detail' request.user.username  %}">
+        <a id="user_href_detail" href="{% url 'users:detail' request.user.username  %}">
           <img
             src="{{request.user.avatar.url}}"
+            id="user_avatar"
             class="rounded-full"
+            style="width: 40px; height: 40px;"
             width="40"
             height="40"
           />
         </a>
+        <p id="user-username" style="display: none;">{{request.user.username}}</p>
       </div>
       {% else %}
       <div
@@ -41,7 +45,6 @@
         <a href="{% url 'account_login' %}" class="p-3.5"></a>
       </div>
       {% endif %}
-      <p style="display:none" id="reuser">{{request.user.username}}</p>
     </li>
   </ul>
 </nav>

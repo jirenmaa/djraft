@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 from gdstorage.storage import GoogleDriveStorage
 
@@ -14,9 +15,9 @@ class StoryManager(models.Manager):
     def only_uncover_article(self):
         """Return article without cover image."""
 
-        return self.get_queryset().exclude(
-            cover__regex='.', description__isnull=False
-        )[:4]
+        return self.get_queryset().exclude(cover__regex=".", description__isnull=False)[
+            :4
+        ]
 
 
 # Create your models here.
@@ -30,12 +31,11 @@ class Story(models.Model):
     cover = models.ImageField(blank=True, upload_to="cover", storage=gd_storage)
     description = models.TextField(blank=True, max_length=225)
     body = models.TextField(max_length=5500)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ["-created_at", "-updated_at"]
-        permissions = (("do_something", "Do Something"),)
 
     def __str__(self):
         return self.title
@@ -45,8 +45,30 @@ class Story(models.Model):
         super().save(*args, **kwargs)
 
     @property
-    def get_url_story_detail(self):
+    def get_absolute_url(self):
         return reverse(
-            "users:article_detail",
+            "users:user_story_detail",
             kwargs={"username": self.author.username, "slug": self.slug},
         )
+
+    def get_total_likes(self):
+        return self.likes.users.count()
+
+    def get_total_dis_likes(self):
+        return self.dis_likes.users.count()
+
+
+class Like(models.Model):
+    story = models.OneToOneField(Story, related_name="likes", on_delete=models.CASCADE)
+    users = models.ManyToManyField(User, related_name="requirement_story_likes")
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class Dislike(models.Model):
+    story = models.OneToOneField(
+        Story, related_name="dis_likes", on_delete=models.CASCADE
+    )
+    users = models.ManyToManyField(User, related_name="requirement_story_dis_likes")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

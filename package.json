@@ -1,0 +1,32 @@
+{
+  "name": "djraft",
+  "version": "0.1.0",
+  "dependencies": {
+    "postcss": "^8.2.2",
+    "tailwindcss": "^2.0.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "browser-sync": "^2.14.0",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify-es": "^1.0.4",
+    "pixrem": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "scripts": {
+    "dev": "gulp",
+    "build-static": "gulp generate-assets",
+    "build-tailwind": "npx tailwindcss build djraft/static/tailwind/style.css -o djraft/static/tailwind/tailwind.css"
+  }
+}
