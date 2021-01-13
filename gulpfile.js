@@ -24,10 +24,12 @@ const uglify = require("gulp-uglify-es").default;
 // Relative paths function
 function pathsConfig(appName) {
   this.app = `./${pjson.name}`;
+  this.config = `./config`;
   const vendorsRoot = "node_modules";
 
   return {
     app: this.app,
+    config: this.config,
     templates: `${this.app}/templates`,
     css: `${this.app}/static/css`,
     sass: `${this.app}/static/sass`,
@@ -104,7 +106,7 @@ function initBrowserSync() {
     {
       // https://www.browsersync.io/docs/options/#option-proxy
       proxy: {
-        target: "django:8000",
+        target: "django:8080",
         proxyReq: [
           function (proxyReq, req) {
             // Assign proxy "host" header same as current request at Browsersync server
@@ -117,6 +119,19 @@ function initBrowserSync() {
       open: false,
     }
   );
+}
+
+// Delay watch
+function debounce(fn, delay) {
+  var timer = null;
+  return function () {
+    var context = this,
+      args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  };
 }
 
 // Watch
@@ -142,7 +157,7 @@ const generateAssets = parallel(
 );
 
 // Set up dev environment
-const dev = parallel(initBrowserSync, watchPaths);
+const dev = parallel(initBrowserSync, watchPaths, runServer);
 
 exports.default = series(generateAssets, dev);
 exports["generate-assets"] = generateAssets;

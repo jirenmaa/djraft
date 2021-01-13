@@ -13,8 +13,7 @@
           <p class="tracking-widest pt-3">ABOUT</p>
           <p class="font-semibold mb-2">{{object.username}}</p>
           <div class="w-9/12 text-sm text-gray-600">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate
-            impedit ipsum eius illum eligendi libero cumque veniam!
+            {{ object.bio }}
           </div>
         </div>
       </user-info>
@@ -24,7 +23,7 @@
           <p class="pb-6 text-sm text-gray-600">
             Published on {{article.created_at|date:"M, j Y"}}
           </p>
-          <a href="{{ article.get_url_story_detail }}" class="">
+          <a href="{{ article.get_absolute_url }}">
             <h2 id="title" class="font-semibold text-6xl inline-block">
               {{ article.title }}
             </h2>
@@ -50,8 +49,8 @@
             </div>
             {% endif %}
             <div id="content" class="pt-6">
-              {% if article.body|length > 830 %}
-                {{article.body|linebreaksbr|slice:"830" }} ...
+              {% if article.body|length > 1120 %}
+                {{article.body|linebreaksbr|slice:"1120" }} ...
               {% else %}
                 {{ article.body|linebreaksbr }}
               {% endif %}

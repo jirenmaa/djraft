@@ -26,7 +26,6 @@
   ],
   "scripts": {
     "dev": "gulp",
-    "build-static": "gulp generate-assets",
     "build-tailwind": "npx tailwindcss build djraft/static/tailwind/style.css -o djraft/static/tailwind/tailwind.css"
   }
 }

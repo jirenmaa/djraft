@@ -18,7 +18,7 @@
       <trending class="w-full flex flex-wrap justify-between border-b">
         {% for trending in trendings %}
         <div class="border-gray-200">
-          <a href="{{ article.get_absolute_url }}">
+          <a href="{{ trending.get_absolute_url }}">
             <h2 class="font-semibold">
               {% if trending.title|length > 25 %}
                 {{ trending.title|linebreaksbr|slice:"25" }} ...

@@ -142,8 +142,8 @@ home {
 
       article {
         padding: 1rem;
-        height: 12rem;
-        max-height: 12rem;
+        height: 13rem;
+        max-height: 13rem;
         border: 1px solid rgba(229, 231, 235, 1);
 
         .image-wrapper {
@@ -350,8 +350,9 @@ user-stories {
 
     .right-content {
       article {
+        height: 100%;
         .content {
-          padding: 0.75rem;
+          padding: 0.8rem;
         }
 
         .tools {
@@ -360,6 +361,10 @@ user-stories {
           justify-content: space-between;
 
           a {
+            height: 50%;
+            display: flex;
+            justify-content:center;
+            align-items: center;
             text-align: center;
             padding: 1rem;
           }

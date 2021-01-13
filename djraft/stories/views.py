@@ -14,6 +14,12 @@ class StoryListView(LoginRequiredMixin, ListView):
     model = Story
     template_name = "stories/articles_from_user.html"
 
+    def get_queryset(self):
+        """Show stories only to the user is entitled to."""
+
+        self.queryset = Story.objects.filter(author=self.request.user)
+        return self.queryset
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["most_liked"] = (
