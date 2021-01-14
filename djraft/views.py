@@ -11,7 +11,7 @@ class Home(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["trendings"] = (
-            context["object_list"].filter(likes__users__gte=3).distinct()[:4]
+            context["object_list"].filter(likes__users__gte=1).distinct()[:4]
         )
         return context
 
