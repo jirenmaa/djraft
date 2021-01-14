@@ -10,7 +10,7 @@ body {
 .limiter {
   width: 100%;
   margin: 0 auto; }
-  .limiter .container-login100 {
+  .limiter .container-process {
     width: 100%;
     min-height: 100vh;
     display: -webkit-box;
@@ -28,33 +28,33 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat; }
-    .limiter .container-login100 .p-t-50 {
+    .limiter .container-process .p-t-50 {
       padding-top: 50px; }
-    .limiter .container-login100 .p-b-90 {
+    .limiter .container-process .p-b-90 {
       padding-bottom: 90px; }
-    .limiter .container-login100 .wrap-login100 {
+    .limiter .container-process .wrap-process {
       width: 390px;
       background: #fff;
       border-radius: 10px;
       position: relative; }
-      .limiter .container-login100 .wrap-login100 .flex-sb {
+      .limiter .container-process .wrap-process .flex-sb {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
         -webkit-box-pack: justify;
             -ms-flex-pack: justify;
                 justify-content: space-between; }
-      .limiter .container-login100 .wrap-login100 .flex-w {
+      .limiter .container-process .wrap-process .flex-w {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
         -ms-flex-wrap: wrap;
         -o-flex-wrap: wrap;
         flex-wrap: wrap; }
-      .limiter .container-login100 .wrap-login100 form {
+      .limiter .container-process .wrap-process form {
         font-family: "Montserrat", sans-serif;
         padding-bottom: 51px; }
-        .limiter .container-login100 .wrap-login100 form .login100-form-title {
+        .limiter .container-process .wrap-process form .process-form-title {
           font-family: "Montserrat", sans-serif;
           font-size: 30px;
           color: #403866;
@@ -63,22 +63,27 @@ body {
           text-align: center;
           width: 100%;
           display: block; }
-        .limiter .container-login100 .wrap-login100 form .m-b-16 {
+        .limiter .container-process .wrap-process form .info {
+          font-family: "Montserrat", sans-serif;
+          text-align: center;
+          width: 100%;
+          display: block; }
+        .limiter .container-process .wrap-process form .m-b-16 {
           margin-bottom: 16px; }
-        .limiter .container-login100 .wrap-login100 form .p-t-3 {
+        .limiter .container-process .wrap-process form .p-t-3 {
           padding-top: 3px; }
-        .limiter .container-login100 .wrap-login100 form .p-b-24 {
+        .limiter .container-process .wrap-process form .p-b-24 {
           padding-bottom: 24px; }
-        .limiter .container-login100 .wrap-login100 form .w-full {
+        .limiter .container-process .wrap-process form .w-full {
           width: 100%; }
-        .limiter .container-login100 .wrap-login100 form .sociallaccount-wrapper {
+        .limiter .container-process .wrap-process form .sociallaccount-wrapper {
           width: 100%; }
-          .limiter .container-login100 .wrap-login100 form .sociallaccount-wrapper .sociallaccount-providers ul {
+          .limiter .container-process .wrap-process form .sociallaccount-wrapper .sociallaccount-providers ul {
             list-style: none;
             padding-left: 0; }
-            .limiter .container-login100 .wrap-login100 form .sociallaccount-wrapper .sociallaccount-providers ul li {
+            .limiter .container-process .wrap-process form .sociallaccount-wrapper .sociallaccount-providers ul li {
               background-color: #403866; }
-              .limiter .container-login100 .wrap-login100 form .sociallaccount-wrapper .sociallaccount-providers ul li a {
+              .limiter .container-process .wrap-process form .sociallaccount-wrapper .sociallaccount-providers ul li a {
                 width: 100%;
                 display: block;
                 padding: 16px;
@@ -86,13 +91,13 @@ body {
                 color: #fff;
                 text-decoration: none;
                 text-align: center; }
-          .limiter .container-login100 .wrap-login100 form .sociallaccount-wrapper p {
+          .limiter .container-process .wrap-process form .sociallaccount-wrapper p {
             text-align: center; }
-        .limiter .container-login100 .wrap-login100 form .wrap-input100 {
+        .limiter .container-process .wrap-process form .wrap-input100 {
           width: 100%;
           position: relative;
           background-color: #e6e6e6; }
-          .limiter .container-login100 .wrap-login100 form .wrap-input100 .input100 {
+          .limiter .container-process .wrap-process form .wrap-input100 .input100 {
             font-family: "Montserrat", sans-serif;
             border: 1px solid #e5e7eb;
             color: #403866;
@@ -102,7 +107,7 @@ body {
             background: transparent;
             height: 62px;
             padding: 0 20px 0 37px; }
-          .limiter .container-login100 .wrap-login100 form .wrap-input100 .focus-input100 {
+          .limiter .container-process .wrap-process form .wrap-input100 .focus-input100 {
             position: absolute;
             display: block;
             width: calc(100% + 2px);
@@ -114,7 +119,7 @@ body {
             border-radius: 3px;
             visibility: hidden;
             opacity: 0; }
-        .limiter .container-login100 .wrap-login100 form .flex-sb-m {
+        .limiter .container-process .wrap-process form .flex-sb-m {
           display: -webkit-box;
           display: -ms-flexbox;
           display: flex;
@@ -125,15 +130,15 @@ body {
           -webkit-box-align: center;
               -ms-flex-align: center;
                   align-items: center; }
-        .limiter .container-login100 .wrap-login100 form .input-checkbox100 {
+        .limiter .container-process .wrap-process form .input-checkbox100 {
           display: none; }
-        .limiter .container-login100 .wrap-login100 form .input-checkbox100:checked + .label-checkbox100::before {
+        .limiter .container-process .wrap-process form .input-checkbox100:checked + .label-checkbox100::before {
           color: #827ffe; }
-        .limiter .container-login100 .wrap-login100 form .input-checkbox100:checked + .label-checkbox100::before {
+        .limiter .container-process .wrap-process form .input-checkbox100:checked + .label-checkbox100::before {
           background-color: #827ffe;
           color: #fff;
           content: "✔"; }
-        .limiter .container-login100 .wrap-login100 form .label-checkbox100 {
+        .limiter .container-process .wrap-process form .label-checkbox100 {
           font-family: "Montserrat", sans-serif;
           font-size: 16px;
           color: #999999;
@@ -142,7 +147,7 @@ body {
           position: relative;
           padding-left: 26px;
           cursor: pointer; }
-        .limiter .container-login100 .wrap-login100 form .label-checkbox100::before {
+        .limiter .container-process .wrap-process form .label-checkbox100::before {
           content: "\f00c";
           font-size: 13px;
           color: transparent;
@@ -165,16 +170,16 @@ body {
           top: 50%;
           -webkit-transform: translateY(-50%);
                   transform: translateY(-50%); }
-        .limiter .container-login100 .wrap-login100 form .container-login100-form-btn {
+        .limiter .container-process .wrap-process form .container-process-form-btn {
           width: 100%;
           display: -webkit-box;
           display: -ms-flexbox;
           display: flex;
           -ms-flex-wrap: wrap;
               flex-wrap: wrap; }
-        .limiter .container-login100 .wrap-login100 form .m-t-17 {
+        .limiter .container-process .wrap-process form .m-t-17 {
           margin-top: 17px; }
-        .limiter .container-login100 .wrap-login100 form .login100-form-btn {
+        .limiter .container-process .wrap-process form .process-form-btn {
           font-family: "Montserrat", sans-serif;
           font-size: 16px;
           color: #fff;
@@ -195,5 +200,5 @@ body {
           background-color: #827ffe;
           border: 1px solid #827ffe;
           border-radius: 3px; }
-        .limiter .container-login100 .wrap-login100 form .login100-form-btn:hover {
-          background-color: #403866; }
+          .limiter .container-process .wrap-process form .process-form-btn:hover {
+            background-color: #403866; }
