@@ -1,22 +1,41 @@
 {% extends "account/base.html" %}
-
 {% load i18n %}
 
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
+
 {% block inner %}
-<h1>{% trans "Sign Out" %}</h1>
+<div class="limiter">
+  <div class="container-process">
+    <div class="wrap-process p-t-50 p-b-90">
+      <form
+        class="process-form validate-form flex-sb flex-w"
+        method="POST"
+        action="{% url 'account_logout' %}"
+      >
+        <div class="w-full">
+          <h2 class="process-form-title p-b-51">{% trans "Sign Out" %}</h2>
+          <p class="info my-3">
+            {% trans 'Are you sure you want to sign out?' %}
+            <a href="{% url 'home' %}" class="text-blue-500">cancel</a>
+          </p>
+        </div>
 
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
-
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <button class="btn btn-danger" type="submit">{% trans 'Sign Out' %}</button>
-</form>
-
+        <div class="flex-sb-m w-full">
+          {% csrf_token %} {% if redirect_field_value %}
+          <input
+            type="hidden"
+            name="{{ redirect_field_name }}"
+            value="{{ redirect_field_value }}"
+          />
+          {% endif %}
+          <div class="container-process-form-btn m-t-17">
+            <button class="process-form-btn">{% trans 'Sign Out' %}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
-

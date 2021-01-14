@@ -9,15 +9,15 @@
 
 {% block inner %}
 <div class="limiter">
-  <div class="container-login100">
-    <div class="wrap-login100 p-t-50 p-b-90">
+  <div class="container-process">
+    <div class="wrap-process p-t-50 p-b-90">
       <form
-        class="login100-form validate-form flex-sb flex-w"
+        class="process-form validate-form flex-sb flex-w"
         method="POST"
         action="{% url 'account_login' %}"
       >
         {% csrf_token %}
-        <span class="login100-form-title p-b-51">Sign In</span>
+        <span class="process-form-title p-b-51">Sign In</span>
 
         <div class="sociallaccount-wrapper my-5">
           <div class="sociallaccount-providers">
@@ -89,8 +89,8 @@
         />
         {% endif %}
 
-        <div class="container-login100-form-btn m-t-17">
-          <button class="login100-form-btn">Sign In</button>
+        <div class="container-process-form-btn m-t-17">
+          <button class="process-form-btn">Sign In</button>
         </div>
       </form>
     </div>
