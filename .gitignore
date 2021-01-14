@@ -279,4 +279,4 @@ djraft/media/
 !.envs/.local/
 
 # your stuff
-./djraft/static/tailwind/tailwind.css
+djraft/static/tailwind/tailwind.css
