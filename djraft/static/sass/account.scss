@@ -23,7 +23,7 @@ body {
   width: 100%;
   margin: 0 auto;
 
-  .container-login100 {
+  .container-process {
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -42,7 +42,7 @@ body {
       padding-bottom: 90px;
     }
 
-    .wrap-login100 {
+    .wrap-process {
       width: 390px;
       background: #fff;
       border-radius: 10px;
@@ -74,7 +74,7 @@ body {
         font-family: "Montserrat", sans-serif;
         padding-bottom: 51px;
 
-        .login100-form-title {
+        .process-form-title {
           font-family: "Montserrat", sans-serif;
           font-size: 30px;
           color: #403866;
@@ -82,6 +82,13 @@ body {
           text-transform: uppercase;
           text-align: center;
 
+          width: 100%;
+          display: block;
+        }
+
+        .info {
+          font-family: "Montserrat", sans-serif;
+          text-align: center;
           width: 100%;
           display: block;
         }
@@ -222,7 +229,7 @@ body {
           transform: translateY(-50%);
         }
 
-        .container-login100-form-btn {
+        .container-process-form-btn {
           width: 100%;
           display: -webkit-box;
           display: -webkit-flex;
@@ -236,7 +243,7 @@ body {
           margin-top: 17px;
         }
 
-        .login100-form-btn {
+        .process-form-btn {
           font-family: "Montserrat", sans-serif;
           font-size: 16px;
           color: #fff;
@@ -256,10 +263,10 @@ body {
           background-color: #827ffe;
           border: 1px solid #827ffe;
           border-radius: 3px;
-        }
 
-        .login100-form-btn:hover {
-          background-color: #403866;
+          &:hover {
+            background-color: #403866;
+          }
         }
       }
     }
