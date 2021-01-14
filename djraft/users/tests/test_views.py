@@ -7,14 +7,14 @@ from djraft.users.models import User
 from djraft.users.tests.factories import UserFactory
 from djraft.users.views import (
     UserRedirectView,
-    UserUpdateView,
+    UserSettingsView,
     user_detail_view,
 )
 
 pytestmark = pytest.mark.django_db
 
 
-class TestUserUpdateView:
+class TestUserSettingsView:
     """
     TODO:
         extracting view initialization code as class-scoped fixture
@@ -24,16 +24,16 @@ class TestUserUpdateView:
     """
 
     def test_get_success_url(self, user: User, rf: RequestFactory):
-        view = UserUpdateView()
+        view = UserSettingsView()
         request = rf.get("/fake-url/")
         request.user = user
 
         view.request = request
 
-        assert view.get_success_url() == f"/users/{user.username}/"
+        assert view.get_success_url() == f"/@{user.username}/"
 
     def test_get_object(self, user: User, rf: RequestFactory):
-        view = UserUpdateView()
+        view = UserSettingsView()
         request = rf.get("/fake-url/")
         request.user = user
 
@@ -50,7 +50,7 @@ class TestUserRedirectView:
 
         view.request = request
 
-        assert view.get_redirect_url() == f"/users/{user.username}/"
+        assert view.get_redirect_url() == f"/@{user.username}/"
 
 
 class TestUserDetailView:
