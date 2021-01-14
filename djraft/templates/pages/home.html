@@ -1,106 +1,105 @@
 {% extends "base_app.html" %}
 {% load static i18n %}
-{% load lorem %}
+{% load lorem ctx_length %}
 
 
 {% block inner %}
 <section class="section-content">
-  <home class="grid grid-cols-3">
-    <content-left class="col-span-2">
-      <greet>
-        <h2 id="greet" class="text-7xl"></h2>
-        {% if not request.user.is_anonymous %}
-        <h2 class="text-7xl">{{ request.user.username }}</h2>
-        {% else %}
-        <h2 class="text-7xl">Our Guest.</h2>
-        {% endif %}
-      </greet>
-      <trending class="w-full flex flex-wrap justify-between border-b">
+  <div class="home">
+    <!-- cotent left -->
+    <div class="content-left">
+      <!-- greeting user -->
+      <div class="greet-user">
+        <h2 id="greet"></h2>
+        <h2 id="username">
+          {% if not request.user.is_anonymous %}
+            {{ request.user.username }}
+          {% else %}
+            Guest.
+          {% endif %}
+        </h2>
+      </div>
+
+      <!-- trending stories -->
+      <div class="trending">
         {% for trending in trendings %}
-        <div class="border-gray-200">
+        <div class="story">
           <a href="{{ trending.get_absolute_url }}">
-            <h2 class="font-semibold">
-              {% if trending.title|length > 25 %}
-                {{ trending.title|linebreaksbr|slice:"25" }} ...
-              {% else %}
-                {{ trending.title|linebreaksbr }}.
-              {% endif %}
-            </h2>
-            <p>{{ trending.body|linebreaksbr|slice:"110" }} ...</p>
+            <h2>{% context_length trending.title 40 %}</h2>
+            <div><h3>{% context_length trending.body 90 %}</h3></div>
           </a>
         </div>
         {% endfor %}
-      </trending>
-      <main-content>
-        {% for article in object_list %}
-        <article>
-          <a
-            href="{{ article.author.get_absolute_url }}"
-            class="flex inline-block items-center"
-          >
-            <img
-              src="{{ article.author.avatar.url }}"
-              style="width: 18px; height: 18px;"
-              width="18"
-              height="18"
-              class="rounded"
-              alt=""
-              srcset=""
-            >
-            <p class="text-sm font-semibold pl-1">{{ article.author.username }}</p>
-          </a>
-          <div class="flex">
-            <div class="w-8/12 pr-5">
-              <a href="{{ article.get_absolute_url }}">
-                <h2 class="font-semibold text-3xl mb-3 inline-block">
-                  {{ article.title }}
-                </h2>
-                <p>
-                  {% if article.body|length > 180 %}
-                    {{article.body|linebreaksbr|slice:"180" }} ...
-                  {% else %}
-                    {{ article.body|linebreaksbr }}
-                  {% endif %}
-                </p>
-              </a>
-              <small
-                >{{article.created_at|date:"M, j Y"}} · based on you like</small
-              >
-            </div>
-            <div class="w-4/12">
-              {% if article.cover %}
-              <a href="{{ article.get_absolute_url }}">
-                <picture class="image-wrapper">
-                  <div id="picture">
-                    <img
-                      src="{{ article.cover.url }}"
-                      class="w-full"
-                      alt=""
-                      srcset=""
-                    />
+      </div>
+
+      <!-- main content -->
+      <hr class="my-3" />
+      <div class="main-content">
+        {% for story in object_list %}
+        <div class="story">
+          <div class="wrapper">
+            <div class="inner">
+              <div class="content-1">
+                <div class="user-information">
+                  <a href="{{ story.author.get_absolute_url }}" id="image"
+                    ><img src="{{ story.author.avatar.url }}" alt=""
+                  /></a>
+                  <a
+                    href="{{ story.author.get_absolute_url }}"
+                    id="userusername"
+                    class="font-semibold"
+                    >{{ story.author.username }}</a
+                  >
+                </div>
+                <a href="{{ story.get_absolute_url }}" class="content">
+                  <h2>{% context_length story.title 41 %}</h2>
+                  <div>
+                    <h3>{% context_length story.body 180 %}</h3>
                   </div>
-                </picture>
-              </a>
-              {% endif %}
+                </a>
+                <div class="story-information">
+                  <div>based on your read</div>
+                  <div>save</div>
+                </div>
+              </div>
+              <div class="content-2">
+                {% if story.cover %}
+                <a href="{{ story.get_absolute_url }}">
+                  <picture class="image-wrapper">
+                    <div id="picture">
+                      <img
+                        src="{{ story.cover.url }}"
+                        class="w-full"
+                        alt=""
+                        srcset=""
+                      />
+                    </div>
+                  </picture>
+                </a>
+                {% endif %}
+              </div>
             </div>
           </div>
-        </article>
+        </div>
         {% endfor %}
-      </main-content>
-    </content-left>
-    <content-right class="col-span-1">
+      </div>
+    </div>
+
+    <!-- content right -->
+    <div class="content-right">
       <div class="box">
-        <p>{% custom_lorem_ipsum 146 %}.</p>
+        <p>{% custom_lorem_ipsum 125 %}.</p>
       </div>
       <div class="box">
-        <p>{% custom_lorem_ipsum 146 %}.</p>
+        <p>{% custom_lorem_ipsum 125 %}.</p>
       </div>
       <div class="box">
-        <p>{% custom_lorem_ipsum 146 %}.</p>
+        <p>{% custom_lorem_ipsum 125 %}.</p>
       </div>
       <div class="href">
         <a href="#" class="text-blue-600"> explore more ... </a>
       </div>
+      <!-- tags -->
       <div class="tags sticky">
         <ul class="tags-button">
           <li><a href="#">lorem lorem lor</a></li>
@@ -112,11 +111,10 @@
           <li><a href="#">lorem</a></li>
         </ul>
       </div>
-    </content-right>
-  </home>
+    </div>
+  </div>
 </section>
-{% endblock %}
-{% block javascript %}
+{% endblock %} {% block javascript %}
 <script>
   greetUser();
 </script>
