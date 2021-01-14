@@ -1,5 +1,12 @@
-{% extends "base_app.html" %} {% load static %} {% block title %}
-{{object.username}} ‒ Djraft {% endblock %} {% block inner %}
+{% extends "base_app.html" %}
+{% load static %}
+
+{% block title %}
+{{object.username}} ‒ Djraft
+{% endblock %}
+
+
+{% block inner %}
 <section class="section-content">
   <user-detail>
     <div class="flex mx-10">
