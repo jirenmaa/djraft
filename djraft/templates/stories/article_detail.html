@@ -1,4 +1,5 @@
 {% extends "base_app.html" %}
+{% load lorem ctx_length %}
 
 {% block title %}
 {{object.title}} | by {{object.author}}
@@ -6,71 +7,62 @@
 
 
 {% block inner %}
-<section class="section-content pt-20">
-  <story-detail>
-    <div class="px-44">
-      <h2 id="title" class="font-semibold text-6xl pt-1">{{ object.title }}</h2>
-      <h4 id="description" class="font-medium text-xl text-gray-normal py-4">
-        {{ object.description }}
-      </h4>
-      <div class="flex py-3 mt-5">
-        <div class="author-avatar">
-          <a
-            href="{% url 'users:detail' username=object.author.username %}"
-            class="font-semibold"
-          >
-            <img
-              src="{{ object.author.avatar.url }}"
-              class="rounded"
-              width="45"
-              height="45"
-            />
-          </a>
+<section class="section-content">
+  <div class="story-detail">
+    <div class="wrapper">
+      <div class="inner">
+        <!-- story heading -->
+        <div class="heading">
+          <h2>{{ object.title }}</h2>
+          <h3>{{ object.description }}.</h2>
         </div>
-        <div class="author-info ml-4">
-          <a
-            href="{% url 'users:detail' username=object.author.username %}"
-            class="font-semibold"
-            >{{object.author}}
-          </a>
-          <p class="text-sm">
-            Published on {{ object.created_at|date:"M, j Y"}}
-          </p>
+
+        <!-- story author -->
+        <div class="author">
+          <div class="avatar">
+            <a href="{{ object.author.get_absolute_url }}">
+              <img src="{{ object.author.avatar.url }}" alt="" srcset="">
+            </a>
+          </div>
+          <div class="info">
+            <h3><a href="{{ object.author.get_absolute_url }}">{{ object.author.username }}</a></h3>
+            <span class="text-sm">Published on {{ object.created_at|date:"M, j Y"}}</span>
+          </div>
+        </div>
+
+        <!-- story cover -->
+        {% if object.cover %}
+        <div class="story-cover">
+          <div class="wrapper">
+            <div class="inner">
+              <img src="{{ object.cover.url }}" alt="" srcset="">
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- story body -->
+        <div class="body">
+          {{ object.body|linebreaksbr }}
+        </div>
+        <!-- story footer -->
+        <div class="footer">
+          <div class="wrapper">
+            <div class="inner">
+              <div class="author-image">
+                <a href="{{ object.author.get_absolute_url }}">
+                  <img src="{{ object.author.avatar.url }}" alt="" srcset="">
+                </a>
+              </div>
+              <div class="author-info">
+                <h3>written by</h3>
+                <h2><a href="{{ object.author.get_absolute_url }}">{{ object.author.username }}</a></h2>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    {% if object.cover %}
-    <div class="mt-6 mb-16">
-      <picture class="image-wrapper">
-        <div id="picture">
-          <img src="{{ story.cover.url }}" class="h-auto w-full" />
-        </div>
-      </picture>
-    </div>
-    <div class="px-44">
-    {% else %}
-    <div class="px-44 pt-6">
-    {% endif %}
-      <article-body class="mb-16"> {{object.body|linebreaksbr}} </article-body>
-      <footer class="my-10 border-t">
-        <div class="flex mt-10">
-          <div class="author-avatar">
-            <a href="#" class="font-semibold text-2xl">
-              <img
-                src="{{ object.author.avatar.url }}"
-                class="rounded"
-                width="115"
-                height="115"
-              />
-            </a>
-          </div>
-          <div class="author-info ml-4">
-            <p class="tracking-widest">WRITTEN BY</p>
-            <a href="#" class="font-semibold text-2xl">{{object.author}}</a>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </story-detail>
+  </div>
 </section>
 {% endblock %}
