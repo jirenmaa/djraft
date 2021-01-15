@@ -12,7 +12,7 @@ class StoryListView(LoginRequiredMixin, ListView):
     """Show stories only to the user is entitled to."""
 
     model = Story
-    template_name = "stories/articles_from_user.html"
+    template_name = "stories/story_users.html"
 
     def get_queryset(self):
         """Show stories only to the user is entitled to."""
@@ -23,7 +23,7 @@ class StoryListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["most_liked"] = (
-            context["object_list"].filter(likes__users__gte=3).distinct()[:3]
+            context["object_list"].filter(likes__users__gte=1).distinct()[:3]
         )
         return context
 
@@ -34,7 +34,7 @@ story_list_view = StoryListView.as_view()
 class StoryCreationView(LoginRequiredMixin, CreateView):
 
     model = Story
-    template_name = "stories/article_form.html"
+    template_name = "stories/story_form.html"
     fields = ["title", "description", "cover", "body"]
 
     def get_success_url(self):
@@ -54,7 +54,7 @@ class StoryUpdateView(LoginRequiredMixin, UpdateView):
 
     model = Story
     fields = ["title", "description", "cover", "body"]
-    template_name = "stories/article_edit.html"
+    template_name = "stories/story_edit.html"
 
     def get_success_url(self):
         return reverse("me:stories")
