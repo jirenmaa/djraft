@@ -62,7 +62,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 # MEDIA
 # ------------------------------------------------------------------------------
 
@@ -153,7 +153,7 @@ LOGGING = {
         "django.db.backends": {
             "level": "ERROR",
             "handlers": ["console"],
-            "propagate": False,
+            "propagate": True,
         },
         # Errors logged by the SDK itself
         "sentry_sdk": {"level": "ERROR", "handlers": ["console"], "propagate": False},
@@ -164,6 +164,8 @@ LOGGING = {
         },
     },
 }
+
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 # Sentry
 # ------------------------------------------------------------------------------
