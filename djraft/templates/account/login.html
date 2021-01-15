@@ -17,7 +17,7 @@
         action="{% url 'account_login' %}"
       >
         {% csrf_token %}
-        <span class="process-form-title p-b-51">Sign In</span>
+        <h2 class="process-form-title p-b-51">Sign In</h2>
 
         <div class="sociallaccount-wrapper my-5">
           <div class="sociallaccount-providers">
@@ -90,7 +90,7 @@
         {% endif %}
 
         <div class="container-process-form-btn m-t-17">
-          <button class="process-form-btn">Sign In</button>
+          <button type="submit" class="process-form-btn">Sign In</button>
         </div>
       </form>
     </div>
