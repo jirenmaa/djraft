@@ -27,8 +27,7 @@
   ],
   "scripts": {
     "dev": "gulp",
-    "build": "npx tailwindcss build djraft/static/tailwind/style.css -o djraft/static/tailwind/tailwind.css",
-    "build-tailwind": "npx tailwindcss build djraft/static/tailwind/style.css -o djraft/static/tailwind/tailwind.css"
+    "build": "npx tailwindcss build djraft/static/tailwind/style.css -o djraft/static/tailwind/tailwind.css"
   },
   "heroku-run-build-script": true
 }
