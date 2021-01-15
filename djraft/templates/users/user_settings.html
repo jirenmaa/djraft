@@ -210,20 +210,20 @@
 
           <!-- change password -->
           <div id="change-pass-section" class="mb-3 py-3">
-            <h2 class="my-2 font-semibold text-lg">Change Password</h2>
+            <h2 class="my-2 font-semibold text-lg">Reset Password</h2>
             <div class="flex justify-between items-center">
               <div class="w-9/12">
                 <small class="text-gray-normal">
-                  We will send the link to your email in order to change your
+                  We will send the link to your email in order to reset your
                   password. You can't use the same password to create your new
                   password.
                 </small>
               </div>
               <a
-                href="#"
+                href="{% url 'account_reset_password' %}"
                 class="rounded border border-gray-400 p-2 text-gray-400 hover:border-gray-600 hover:text-gray-600"
               >
-                Change Password
+                Reset Password
               </a>
             </div>
           </div>
