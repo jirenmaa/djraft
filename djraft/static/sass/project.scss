@@ -389,49 +389,97 @@ user-settings {
   }
 }
 
-user-stories {
-  h2 {
-    display: inline-block;
-  }
-
-  .sub-head {
-    font-family: $clarantiq;
-  }
-
+.stories-user {
   .wrapper {
-    .left-content {
-      article:not(:last-child) {
-        margin-bottom: 2rem;
-      }
-    }
+    margin-top: 0.35rem;
+    .inner {
 
-    .right-content {
-      article {
-        height: 100%;
-        .content {
-          padding: 0.8rem;
+      header {
+        margin-bottom: 1rem;
+        h2 {
+          font-family: $clarantiq;
+          font-size: 3.75rem;
+          line-height: 1;
         }
+      }
 
-        .tools {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
+      .content {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        .most-liked {
+          width: 100%;
+          grid-column: span 1 / span 1;
+          .subtitle {
+            font-size: 1.45rem;
+            font-weight: 600;
+            line-height: 1;
+            margin-bottom: 1rem;
+          }
 
-          a {
-            height: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 1rem;
+          .story-liked {
+            h2 {
+              font-size: 1.25rem;
+              font-weight: 600;
+              line-height: 1;
+            }
+            .wrapper-liked {
+              padding: 1rem;
+              margin-bottom: 1rem;
+              border: 1px solid rgba(229, 231, 235, 1);
+
+              .content-liked {
+                display: flex;
+              }
+            }
           }
         }
 
-        border: 1px solid rgba(229, 231, 235, 1);
-      }
+        .story-list {
+          width: 100%;
+          grid-column: span 2 / span 2;
+          .story {
 
-      article:not(:last-child) {
-        margin-bottom: 1.25rem;
+            .wrapper {
+              display: flex;
+              margin: 0 2rem 0 2rem;
+              justify-content: space-between;
+              border: 1px solid rgba(229, 231, 235, 1);
+              &:not(:first-child) {
+                margin-top: 1.5rem;
+              }
+
+              &:last-child {
+                margin-bottom: 1.5rem;
+              }
+
+              .content {
+                display: flex;
+                padding: 0 1rem 1rem 1rem;
+
+                h2 {
+                  font-weight: 600;
+                  font-size: 1.75rem;
+                  line-height: 2;
+                }
+              }
+
+              .perf {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                a {
+                  height: 50%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  padding: 1rem;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
