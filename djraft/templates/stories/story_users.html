@@ -1,0 +1,87 @@
+{% extends 'base_app.html' %}
+{% load ctx_length %}
+
+
+{% block inner %}
+<section class="section-content">
+  <div class="stories-user">
+    <div class="wrapper">
+      <div class="inner">
+        <header>
+          <h2>Your Stories</h2>
+        </header>
+        <div class="content">
+          <div class="most-liked">
+            <h2 class="subtitle">Your most liked stories</h2>
+            {% for liked in most_liked %}
+            <div class="story-liked">
+              <div class="wrapper-liked">
+                <div class="content-liked">
+                  <a href="{{ liked.get_absolute_url }}">
+                    <h2>{% context_length liked.title 25 %}</h2>
+                    <div>
+                      <h3>{% context_length liked.body 75 %}</h3>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="story-list">
+            {% for story in object_list %}
+            <div class="story" id="{{ story.slug }}">
+              <div class="wrapper">
+                <div class="content">
+                  <a href="{{ story.get_absolute_url }}">
+                    <h2>{% context_length story.title 45 %}</h2>
+                    <div>
+                      <h3>{% context_length story.body 142 %}</h3>
+                    </div>
+                    <div>
+                      <p class="text-sm text-gray-normal mt-3">
+                        Last edited about 1 minute ago
+                      </p>
+                    </div>
+                  </a>
+                </div>
+                <div class="perf">
+                  <a
+                    href="{% url 'me:edit_story' slug=story.slug %}"
+                    class="bg-gray-100 hover:bg-gray-400 hover:text-gray-100"
+                    >edit
+                  </a>
+                  <a
+                    href="#"
+                    id="href-{{ story.slug }}"
+                    onclick="deleteStory(this)"
+                    class="bg-red-100 hover:bg-red-400 hover:text-red-100"
+                    >delete
+                  </a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  function deleteStory(el) {
+    var slug = el.id.split("href-")[1];
+    fetch(
+      document.location.protocol +
+        "//" +
+        document.location.host +
+        "/me/" +
+        slug +
+        "/delete",
+      {
+        method: "GET",
+      }
+    ).then((response) => document.getElementById(slug).remove());
+  }
+</script>
+{% endblock %}
