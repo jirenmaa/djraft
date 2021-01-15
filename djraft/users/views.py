@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView
 
+from allauth.account.views import PasswordResetView
+
 from djraft.stories.models import Story
 
 User = get_user_model()
@@ -62,7 +64,7 @@ user_redirect_view = UserRedirectView.as_view()
 class UserStoryDetailView(DetailView):
 
     model = Story
-    template_name = "stories/article_detail.html"
+    template_name = "stories/story_detail.html"
 
 
 user_story_detail_view = UserStoryDetailView.as_view()
