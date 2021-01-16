@@ -44,7 +44,7 @@ class StoryCreationView(LoginRequiredMixin, CreateView):
         self.object = form.save(commit=False)
         self.object.author = self.request.user
 
-        # return super().form_valid(form)
+        return super().form_valid(form)
 
 
 story_creation_view = StoryCreationView.as_view()
