@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "dependencies": {
     "postcss": "^8.2.2",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.0.2",
+    "autoprefixer": "^9.8.6"
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
