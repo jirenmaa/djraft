@@ -65,7 +65,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 
 # STATIC
 # ------------------------
-STATIC_ROOT_PRODUCT = os.path.join(APPS_DIR, 'static/')
+STATIC_ROOT_PRODUCT = os.path.join(APPS_DIR, 'staticfiles/')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # MEDIA
 # ------------------------------------------------------------------------------
