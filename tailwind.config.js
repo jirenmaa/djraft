@@ -1,5 +1,8 @@
 module.exports = {
-  purge: [],
+  purge: {
+    enabled: true,
+    content: ['./djraft/templates/**/*.html'],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
