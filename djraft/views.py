@@ -1,4 +1,5 @@
 from django.views.generic import ListView
+from django.conf import settings
 
 from djraft.stories.models import Story
 

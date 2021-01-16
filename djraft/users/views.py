@@ -20,7 +20,9 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["stories"] = Story.objects.filter(author__username=self.kwargs["username"])
+        context["stories"] = Story.objects.filter(
+            author__username=self.kwargs["username"]
+        )
 
         return context
 

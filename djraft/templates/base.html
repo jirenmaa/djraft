@@ -19,31 +19,18 @@
 
     {% block css %}
     <!-- Third-party CSS libraries go here -->
-    {% compress css %}
     <!-- This file stores project-specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet" />
     <link href="{% static 'css/account.css' %}" rel="stylesheet" />
-    <link href="{% static 'tailwind/tailwind.css' %}" rel="stylesheet" />
-    {% endcompress %} {% endblock %}
+    <link href="{% static 'tailwind/tailwind.css' %}" rel="stylesheet" />{% endblock %}
   </head>
   <body>
     {% block content %}{%endblock content %}
 
     <!-- Third-party javascript libraries go here -->
     <!-- place project specific Javascript in this file -->
-    {% compress js %}
     <script src="{% static 'js/project.min.js' %}"></script>
     <script src="{% static 'js/functions.min.js' %}"></script>
-    {% endcompress %} {% block javascript %} {% endblock javascript %}
-    <script id="__bs_script__">
-      //<![CDATA[
-      document.write(
-        "<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.13'><\/script>".replace(
-          "HOST",
-          location.hostname
-        )
-      );
-      //]]>
-    </script>
+    {% block javascript %}{% endblock javascript %}
   </body>
 </html>

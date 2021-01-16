@@ -202,9 +202,7 @@ body {
   .home .content-right {
     grid-column: span 1 / span 1;
     margin-left: 40px;
-    margin-left: 2.5rem;
-    margin-right: 40px;
-    margin-right: 2.5rem; }
+    margin-left: 2.5rem; }
     .home .content-right .box {
       padding: 12px;
       padding: 0.75rem;
