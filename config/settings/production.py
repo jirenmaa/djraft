@@ -65,7 +65,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 # STATIC
 # ------------------------
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATIC_ROOT = str(ROOT_DIR / "static")
 # MEDIA
 # ------------------------------------------------------------------------------
 
