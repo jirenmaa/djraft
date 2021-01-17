@@ -23,7 +23,7 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     path("me/", include("djraft.urls", namespace="me")),
     path("story/", include("djraft.stories.urls", namespace="stories")),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 if settings.DEBUG:
