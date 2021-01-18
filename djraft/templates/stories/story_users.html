@@ -48,14 +48,14 @@
                 <div class="perf">
                   <a
                     href="{% url 'me:edit_story' slug=story.slug %}"
-                    class="bg-gray-100 hover:bg-gray-400 hover:text-gray-100"
+                    class="edit"
                     >edit
                   </a>
                   <a
                     href="#"
                     id="href-{{ story.slug }}"
                     onclick="deleteStory(this)"
-                    class="bg-red-100 hover:bg-red-400 hover:text-red-100"
+                    class="delete"
                     >delete
                   </a>
                 </div>

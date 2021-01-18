@@ -1,84 +1,100 @@
-{% extends "base_app.html" %}
-{% load static %}
-{% load lorem %}
-
-
-{% block inner %}
-<section class="section-content pt-20">
-  <story-form>
-    <form
-      id="article-form"
-      action="{% url 'me:new_story' %}"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      {% csrf_token %}
-      <div id="article-title" class="">
-        <h2 id="id_title" class="border-l border-gray-300 text-7xl">
-          <span contenteditable="true">My Title</span>
-        </h2>
-      </div>
-      <div id="article-description" class="py-5">
-        <h2
-          id="id_description"
-          class="text-xl text-gray-normal"
-          contenteditable="true"
+{% extends "base_app.html" %} {% load static lorem %} {% block inner %}
+<section class="section-content">
+  <div class="story-form">
+    <div class="wrapper">
+      <div class="inner">
+        <form
+          id="article-creation-form"
+          action="{% url 'me:new_story' %}"
+          method="POST"
+          class="story-creation-form"
+          enctype="multipart/form-data"
         >
-          my story description
-        </h2>
-      </div>
-      <div id="article-cover">
-        <div class="border border-gray-200" id="show-cover">
-          <div class="flex justify-center">
-            <img src="#" id="load-cover" style="display: none" />
+          {% csrf_token %}
+          <!-- title -->
+          <div class="title-wrapper">
+            <p id="id_title" class="title border-l border-gray-300 text-7xl">
+              <span contenteditable="true" id="editableDiv-title"
+                >My Title</span
+              >
+            </p>
           </div>
-          <input
-            type="file"
-            id="id_cover"
-            name="cover"
-            style="display: none"
-            onchange="loadFile(event)"
-          />
-          <label
-            for="id_cover"
-            id="cover-label"
-            class="flex justify-center p-12"
-            >Add Cover Image</label
-          >
-        </div>
+          <!-- description -->
+          <div class="descr-wrapper">
+            <p id="id_description" class="description text-gray-normal">
+              <span id="editableDiv-description" contenteditable="true"
+                >my story description</span
+              >
+            </p>
+          </div>
+          <!-- cover -->
+          <div class="cover-wrapper">
+            <div class="inner" id="show-cover">
+              <div class="i_cover">
+                <img src="#" id="load-cover" style="display: none" />
+              </div>
+              <input
+                type="file"
+                id="id_cover"
+                name="cover"
+                style="display: none"
+                onchange="loadFile(event)"
+              />
+              <label for="id_cover" id="cover-label">Add Cover Image</label>
+            </div>
+          </div>
+          <!-- body -->
+          <div class="body-wrapper">
+            <div contenteditable="true" id="id_body">
+              <span id="editableDiv-body" contenteditable="true"
+                >Tell your story ...</span
+              >
+            </div>
+          </div>
+          <div>
+            <button type="submit" class="publish">publish</button>
+          </div>
+        </form>
       </div>
-      <div id="article-body" class="py-5">
-        <div contenteditable="true" id="id_body" class="">
-          Tell your story ...
-        </div>
-      </div>
-      <div>
-        <button type="submit">publish</button>
-      </div>
-    </form>
-  </story-form>
+    </div>
+  </div>
 </section>
 <script>
+  var _title = document.getElementById("editableDiv-title");
+  var _descr = document.getElementById("editableDiv-description");
+  var _cbody = document.getElementById("editableDiv-body");
+
   function loadFile(event) {
     var cover = document.getElementById("load-cover");
-    var wrapper_cover = document.getElementById("show-cover");
-    var label_cover = document.getElementById("cover-label");
-    var article_body = document.getElementById("article-body");
+    var cover_show = document.getElementById("show-cover");
+    var cover_label = document.getElementById("cover-label");
 
     // Do somethin with this
     cover.removeAttribute("style");
-    wrapper_cover.classList.remove("border");
-
-    label_cover.innerHTML = "Change Cover Image";
-    label_cover.classList.remove("p-12");
-    label_cover.classList.add("p-3");
-
-    article_body.classList.remove("my-16");
-    article_body.classList.add("my-8");
-    // Done
+    cover_show.classList.add("no-border", "cover-get");
+    cover_label.innerHTML = "Change Cover Image";
 
     cover.src = URL.createObjectURL(event.target.files[0]);
   }
+
+  function handlePaste(e) {
+    var clipboardData, pastedData;
+
+    // Stop data actually being pasted into div
+    e.stopPropagation();
+    e.preventDefault();
+
+    // Get pasted data via clipboard API
+    clipboardData = e.clipboardData || window.clipboardData;
+    pastedData = clipboardData.getData("Text");
+
+    // paste the data
+    e.target.innerHTML = pastedData;
+  }
+
+  _title.addEventListener("paste", handlePaste.bind(_title));
+  _descr.addEventListener("paste", handlePaste.bind(_descr));
+  _cbody.addEventListener("paste", handlePaste.bind(_cbody));
 </script>
 <script src="{% static 'js/processAjax.js' %}"></script>
 {% endblock %}

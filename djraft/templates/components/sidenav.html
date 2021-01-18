@@ -1,12 +1,19 @@
 {% load static i18n %}
 <nav class="side-navigation border-r">
-  <a href="{% url 'home' %}">
+  <!-- <a href="{% url 'home' %}">
     <img
       alt="djraft logo"
       class="sidenav-logo"
-      src="{% static 'images/logo.png' %}"
+      src="{% static 'images/logo-sm.png' %}"
     />
-  </a>
+  </a> -->
+  <div>
+    <img
+      alt="djraft logo"
+      class="sidenav-logo"
+      src="{% static 'images/logo-sm.png' %}"
+    />
+  </div>
   <ul class="items-wrapper">
     <li class="nav-item">
       <a href="{% url 'me:stories' %}">A</a>
@@ -24,24 +31,17 @@
   <ul class="items-bottom">
     <li class="nav-item">
       {% if request.user and request.user.is_authenticated %}
-      <div class="m-3.5">
+      <div class="avatar-wrapper">
         <a id="user_href_detail" href="{% url 'users:detail' request.user.username  %}">
           <img
             src="{{request.user.avatar.url}}"
             id="user_avatar"
-            class="rounded-full"
-            style="width: 40px; height: 40px;"
-            width="40"
-            height="40"
           />
         </a>
         <p id="user-username" style="display: none;">{{request.user.username}}</p>
       </div>
       {% else %}
-      <div
-        class="m-3.5 rounded-full bg-gray-200 border border-gray-300"
-        style="width: 40px; height: 40px"
-      >
+      <div class="not-logged" style="width: 40px; height: 40px">
         <a href="{% url 'account_login' %}" class="p-3.5"></a>
       </div>
       {% endif %}

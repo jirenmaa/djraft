@@ -40,6 +40,30 @@ $clarantiq: "Clara Antique", serif;
 }
 
 ////////////////////////////////
+//Custom Classes//
+////////////////////////////////
+
+.text-gray-normal {
+  color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.not-logged {
+  margin: 0.875rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(209, 213, 219, 1);
+  background-color: rgba(229, 231, 235, 1);
+}
+
+.no-border {
+  border: none !important;
+}
+.cover-get {
+  label {
+    padding: 1rem !important;
+  }
+}
+
+////////////////////////////////
 //Website//
 ////////////////////////////////
 
@@ -48,10 +72,6 @@ body {
   padding: 0;
   position: relative;
   overflow-x: hidden !important;
-}
-
-.text-gray-normal {
-  color: rgba(0, 0, 0, 0.54) !important;
 }
 
 // main body
@@ -73,9 +93,10 @@ body {
   font-family: $clarantiq;
   transform: translate3d(0, 0, 0);
   transition: all 350ms 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  border-right: 1px solid rgba(229, 231, 235, 1);
 
   .sidenav-logo {
-    scale: 0.7;
+    scale: 0.5;
     padding: 1rem 0 1rem 0;
   }
 
@@ -84,6 +105,8 @@ body {
     top: 50%;
     width: 100%;
     transform: translateY(-50%);
+    list-style-type: none;
+    padding-left: 0;
 
     .nav-item {
       position: relative;
@@ -96,9 +119,17 @@ body {
     position: absolute;
     top: 87.5%;
     width: 100%;
-
     .nav-item {
       position: relative;
+
+      .avatar-wrapper {
+        margin: 0.875rem;
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 9999px;
+        }
+      }
     }
   }
 }
@@ -175,11 +206,13 @@ body {
                 display: flex;
                 align-items: center;
                 #image > img {
-                  width: 18px;
-                  height: 18px;
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 4px;
                 }
 
                 #userusername {
+                  font-weight: 600;
                   margin-left: 0.5rem;
                 }
               }
@@ -276,65 +309,112 @@ body {
   }
 }
 
-user-detail {
-  user-info {
-    width: 100%;
-    margin-top: 1.75em;
+.user-detail {
+  .wrapper {
+    .inner {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    .sticky {
-      top: 6%;
-      position: -webkit-sticky;
-      position: sticky !important;
-    }
-
-    picture {
-      width: 16.666667%;
-      max-width: 16.666667%;
-    }
-  }
-
-  user-articles {
-    article {
-      margin-bottom: 2.5em;
-      border-bottom: 1px solid rgba(229, 231, 235, 1);
-
-      .image-wrapper {
-        width: 100%;
-        max-width: 100% !important;
-        height: auto;
-
-        #picture {
-          overflow: hidden !important;
-          max-height: 320px !important;
-
+      .info {
+        width: 10rem;
+        margin: 0 3rem 0 3rem;
+        grid-column: span 1 / span 1;
+        .sticky {
+          top: 20%;
+          position: -webkit-sticky;
+          position: sticky !important;
+        }
+        .sticky {
+          a {
+            display: inline-block;
+          }
           img {
-            top: -10%;
+            width: 10rem;
+            height: 10rem;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+          .about {
+            .tracking-widest {
+              letter-spacing: 0.35rem;
+              font-size: 1.2rem;
+              margin-top: 0.5rem;
+            }
+            .username {
+              margin-bottom: 0.5rem;
+              font-size: 1.2rem;
+              line-height: 1.75rem;
+            }
           }
         }
       }
 
-      .footer {
-        svg {
-          stroke: rgba(156, 163, 175, 1);
-        }
-
-        span {
-          color: rgba(156, 163, 175, 1);
-        }
-
-        .upvote {
-          &:hover {
-            cursor: pointer;
+      .stories {
+        margin: 0 1rem 0 1rem;
+        grid-column: span 2 / span 2;
+        .story {
+          &:not(:first-child) {
+            margin-top: 2rem;
           }
-        }
+          .wrapper {
+            border-bottom: 1px solid rgba(229, 231, 235, 1);
 
-        .response {
-          &:hover {
-            cursor: pointer;
-          }
-
-          svg {
-            transform: scaleX(-1);
+            .inner {
+              display: block;
+              margin-bottom: 1rem;
+              .content {
+                margin-top: 0.5rem;
+                .title > h2 {
+                  font-weight: 600;
+                  font-size: 3.75rem;
+                  line-height: 1;
+                  word-break: break-all;
+                }
+                .description {
+                  margin-top: 0.5rem;
+                  font-size: 1.35rem;
+                  line-height: 2.25rem;
+                  word-break: break-all;
+                }
+                .cover {
+                  margin: 1.5rem 0 1.5rem 0;
+                  .cover-wrapper {
+                    width: 100%;
+                    max-width: 100% !important;
+                    height: auto;
+                    .cover-inner {
+                      overflow: hidden !important;
+                      max-height: 370px !important;
+                      img {
+                        width: 100%;
+                        height: auto;
+                        top: -10%;
+                      }
+                    }
+                  }
+                }
+              }
+              .footer {
+                margin: 4rem 0 3rem 0;
+                display: flex;
+                span {
+                  margin-left: 0.25rem;
+                }
+                .upvote {
+                  margin: 0 1rem 0 0;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                }
+                .response {
+                  margin: 0 1rem 0 1rem;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                }
+              }
+            }
           }
         }
       }
@@ -392,7 +472,6 @@ user-settings {
   .wrapper {
     margin-top: 0.35rem;
     .inner {
-
       header {
         margin-bottom: 1rem;
         h2 {
@@ -438,7 +517,6 @@ user-settings {
           width: 100%;
           grid-column: span 2 / span 2;
           .story {
-
             .wrapper {
               display: flex;
               margin: 0 2rem 0 2rem;
@@ -475,8 +553,84 @@ user-settings {
                   text-align: center;
                   padding: 1rem;
                 }
+                .edit {
+                  background-color: rgba(243, 244, 246, 2);
+                  &:hover {
+                    color: rgba(243, 244, 246, 2);
+                    background-color: rgba(156, 163, 175, 1);
+                  }
+                }
+                .delete {
+                  background-color: rgba(254, 226, 226, 1);
+                  &:hover {
+                    color: rgba(254, 226, 226, 1);
+                    background-color: rgba(248, 113, 113, 1);
+                  }
+                }
               }
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+.story-form {
+  .wrapper {
+    margin: 5rem 12rem 0 12rem;
+    .inner {
+      .story-creation-form {
+        font-family: "Montserrat", sans-serif;
+        word-break: break-all !important;
+
+        .title-wrapper {
+          .title {
+            // font-family: $clarantiq;
+            display: inline-block;
+            align-items: center;
+            font-size: 6rem;
+            font-weight: 600;
+            line-height: 1;
+            border-left: 1px solid rgba(209, 213, 219, 1);
+            span {
+              margin-left: 1rem;
+            }
+          }
+        }
+        .descr-wrapper {
+          padding: 1.25rem 0 1.25rem 0;
+          .description {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+          }
+        }
+        .cover-wrapper {
+          .inner {
+            border: 1px solid rgba(229, 231, 235, 1);
+            .i_cover {
+              display: flex;
+              justify-content: center;
+            }
+            label {
+              cursor: pointer;
+              padding: 3rem;
+              display: flex;
+              justify-content: center;
+            }
+          }
+        }
+        .body-wrapper {
+          padding: 1.5rem 0 1.5rem 0;
+        }
+        .publish {
+          color: #fff;
+          margin-top: 3rem;
+          border-radius: 4px;
+          padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+          background-color: rgba(16, 185, 129, 1);
+          &:hover {
+            background-color: rgb(18, 136, 97);
           }
         }
       }
@@ -571,7 +725,7 @@ story-form {
       }
 
       .footer {
-        .wrapper{
+        .wrapper {
           padding-top: 1rem;
           margin: 8rem 8rem 0 8rem;
           border-top: 1px solid rgba(229, 231, 235, 1);

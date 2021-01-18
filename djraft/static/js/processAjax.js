@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
-  const storyForm = document.getElementById("article-form");
+  const storyForm = document.getElementById("article-creation-form");
   const settingForm = document.getElementById("settings-form");
 
   /**

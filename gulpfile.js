@@ -56,7 +56,11 @@ function styles() {
     cssnano({ preset: "default" }), // minify result
   ];
 
-  return src([`${paths.sass}/project.scss`, `${paths.sass}/account.scss`])
+  return src([
+    `${paths.sass}/project.scss`,
+    `${paths.sass}/account.scss`,
+    `${paths.sass}/default.scss`,
+  ])
     .pipe(
       sass({
         includePaths: [paths.sass],
