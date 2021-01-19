@@ -369,6 +369,10 @@ body {
               font-size: 1.2rem;
               line-height: 1.75rem;
             }
+            .bio {
+              font-size: 0.875rem;
+              line-height: 1.25rem;
+            }
           }
         }
       }
@@ -592,55 +596,22 @@ body {
                   }
                 }
               }
+
+              .submit-wrapper {
+                margin-top: 5rem;
+                .save-change {
+                  color: #fff;
+                  border-radius: 4px;
+                  padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+                  background-color: rgba(16, 185, 129, 1);
+                  &:hover {
+                    background-color: rgb(18, 136, 97);
+                  }
+                }
+              }
             }
           }
         }
-      }
-    }
-  }
-}
-
-user-settings {
-  left-aside {
-    .wrapper {
-      top: 30px;
-      position: -webkit-sticky;
-      position: sticky !important;
-    }
-  }
-
-  right-aside {
-    picture {
-      img {
-        width: 85px;
-        height: 85px;
-        max-width: 85px;
-        max-height: 85px;
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      .label-image {
-        z-index: 99;
-        position: absolute;
-        margin-top: -85px;
-        width: 85px;
-        height: 85px;
-        cursor: pointer;
-        opacity: 0;
-        &:hover {
-          background-color: #333;
-          opacity: 0.5;
-        }
-      }
-    }
-
-    button[type="submit"] {
-      background-color: rgb(58, 58, 58);
-
-      &:hover {
-        background-color: #222;
       }
     }
   }

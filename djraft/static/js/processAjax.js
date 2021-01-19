@@ -66,12 +66,7 @@ window.addEventListener("DOMContentLoaded", function () {
     fetch(url, {
       method: "POST",
       body: _formContents,
-    }).then((response) =>
-      newUserHrefDt.setAttribute(
-        "href",
-        redirect + document.getElementById("id_username").innerText
-      )
-    );
+    });
   }
 
   if (storyForm) {

@@ -37,6 +37,7 @@
                 id="settings-form"
                 action="{% url 'me:settings' %}"
               >
+                {% csrf_token %}
                 <!-- about user -->
                 <div class="form-content" id="about-me">
                   <h2>About you</h2>
@@ -214,9 +215,11 @@
                 </div>
                 <!-- end password settings -->
 
-                <button type="submit" class="px-8 py-3 text-gray-100 rounded">
-                  Save Changes
-                </button>
+                <div class="submit-wrapper">
+                  <button type="submit" class="save-change px-8 py-3 text-gray-100 rounded">
+                    Save Changes
+                  </button>
+                </div>
               </form>
             </div>
           </div>

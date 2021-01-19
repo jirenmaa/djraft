@@ -311,6 +311,11 @@ body {
       font-size: 1.2rem;
       line-height: 28px;
       line-height: 1.75rem; }
+    .user-detail .wrapper .inner .info .sticky .about .bio {
+      font-size: 14px;
+      font-size: 0.875rem;
+      line-height: 20px;
+      line-height: 1.25rem; }
   .user-detail .wrapper .inner .stories {
     margin: 0 16px 0 16px;
     margin: 0 1rem 0 1rem;
@@ -545,35 +550,17 @@ body {
           width: 65%; }
           .user-settings .wrapper .inner .user-content .content-wrapper .content-inner form .form-content #name .info, .user-settings .wrapper .inner .user-content .content-wrapper .content-inner form .form-content #bio .info, .user-settings .wrapper .inner .user-content .content-wrapper .content-inner form .form-content .emails .info {
             width: 90%; }
-
-user-settings left-aside .wrapper {
-  top: 30px;
-  position: sticky !important; }
-
-user-settings right-aside picture img {
-  width: 85px;
-  height: 85px;
-  max-width: 85px;
-  max-height: 85px; }
-  user-settings right-aside picture img:hover {
-    cursor: pointer; }
-
-user-settings right-aside picture .label-image {
-  z-index: 99;
-  position: absolute;
-  margin-top: -85px;
-  width: 85px;
-  height: 85px;
-  cursor: pointer;
-  opacity: 0; }
-  user-settings right-aside picture .label-image:hover {
-    background-color: #333;
-    opacity: 0.5; }
-
-user-settings right-aside button[type="submit"] {
-  background-color: #3a3a3a; }
-  user-settings right-aside button[type="submit"]:hover {
-    background-color: #222; }
+      .user-settings .wrapper .inner .user-content .content-wrapper .content-inner form .submit-wrapper {
+        margin-top: 80px;
+        margin-top: 5rem; }
+        .user-settings .wrapper .inner .user-content .content-wrapper .content-inner form .submit-wrapper .save-change {
+          color: #fff;
+          border-radius: 4px;
+          padding: 12px 40px 12px 40px;
+          padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+          background-color: #10b981; }
+          .user-settings .wrapper .inner .user-content .content-wrapper .content-inner form .submit-wrapper .save-change:hover {
+            background-color: #128861; }
 
 .stories-user .wrapper {
   margin-top: 5.6px;
