@@ -1,8 +1,4 @@
-{% extends "base_app.html" %}
-{% load static i18n %}
-{% load lorem ctx_length %}
-
-
+{% extends "base_app.html" %} {% load static i18n %} {% load lorem ctx_length %}
 {% block inner %}
 <section class="section-content">
   <div class="home">
@@ -14,9 +10,7 @@
         <h2 id="username">
           {% if not request.user.is_anonymous %}
             {{ request.user.username }}
-          {% else %}
-            Guest.
-          {% endif %}
+          {% else %} Guest. {% endif %}
         </h2>
       </div>
 
@@ -35,7 +29,7 @@
       <!-- main content -->
       <hr class="my-3" />
       <div class="main-content">
-        {% for story in object_list %}
+        {% for story in page_obj %}
         <div class="story">
           <div class="wrapper">
             <div class="inner">
@@ -81,6 +75,43 @@
           </div>
         </div>
         {% endfor %}
+        <ul class="pagination">
+          {% if page_obj.has_previous %}
+          <li>
+            <a href="?page={{ page_obj.previous_page_number }}"
+              >&#8249;</a>
+          </li>
+          {% else %}
+          <li><a href="#">&#8249;</a></li>
+          {% endif %}
+
+          {% if page_obj.number|add:'-4' > 1 %}
+          <li><a href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a></li>
+          {% endif %}
+
+          {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+            <li class="active">
+              <span><a href="#">{{ i }}</a></span>
+            </li>
+            {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+              <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+          <li><a href="#">&hellip;</a></li>
+          {% endif %}
+
+          {% if page_obj.has_next %}
+          <li>
+            <a href="?page={{ page_obj.next_page_number }}"
+              >&#8250;</a>
+          </li>
+          {% else %}
+          <li><a href="#">&#8250;</a></li>
+          {% endif %}
+        </ul>
       </div>
     </div>
 

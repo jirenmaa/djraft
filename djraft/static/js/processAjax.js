@@ -1,9 +1,9 @@
 window.addEventListener("DOMContentLoaded", function () {
-  const storyForm = document.getElementById("article-creation-form");
+  const storyForm = document.getElementById("story-form");
   const settingForm = document.getElementById("settings-form");
 
   /**
-   * Function Article Creation
+   * Function Story Creation and Edit
    */
   function storyProcessForm() {
     const url = window.location.pathname;

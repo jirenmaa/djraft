@@ -60,8 +60,6 @@ class StoryUpdateView(LoginRequiredMixin, UpdateView):
         return reverse("me:stories")
 
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-
         return super().form_valid(form)
 
 

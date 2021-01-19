@@ -1,10 +1,15 @@
-{% extends "base_app.html" %} {% load static lorem %} {% block inner %}
+{% extends "base_app.html" %}
+{% load static lorem %}
+
+
+{% block inner %}
 <section class="section-content">
   <div class="story-form">
     <div class="wrapper">
       <div class="inner">
+        <span id="user-username" style="display: none">{{request.user.username}}</span>
         <form
-          id="article-creation-form"
+          id="story-form"
           action="{% url 'me:new_story' %}"
           method="POST"
           class="story-creation-form"

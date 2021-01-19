@@ -269,6 +269,25 @@ body {
         }
       }
     }
+
+    .pagination {
+      margin: 5rem 0 1rem 0;
+      display: flex;
+      li {
+        position: relative;
+        border: 1px solid rgba(229, 231, 235, 1);
+        a {
+          display: block;
+          padding: 0.5rem 1.25rem 0.5rem 1.25rem;
+        }
+        &:not(:last-child) {
+          border-right: none;
+        }
+      }
+      .active {
+        background-color: rgba(52, 211, 153, 1);
+      }
+    }
   }
 
   .content-right {
@@ -368,6 +387,7 @@ body {
               display: block;
               margin-bottom: 1rem;
               .content {
+                word-break: break-all !important;
                 margin-top: 0.5rem;
                 .title > h2 {
                   font-weight: 600;
@@ -416,6 +436,160 @@ body {
                   cursor: pointer;
                   display: flex;
                   align-items: center;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.user-settings {
+  .wrapper {
+    .inner {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+
+      .navigation {
+        grid-column: span 1 / span 1;
+        .nav-wrapper {
+          top: 50px;
+          margin: 2rem;
+          position: -webkit-sticky;
+          position: sticky !important;
+          .nav-item {
+            padding: 1rem;
+            color: rgb(41, 41, 41);
+            h2 {
+              font-weight: 600;
+              font-size: 1.5rem;
+            }
+            a {
+              color: rgb(121, 121, 121);
+              font-size: 1.15rem;
+            }
+          }
+        }
+      }
+
+      .user-content {
+        width: 100%;
+        margin-top: 2rem;
+        grid-column: span 3 / span 3;
+        .content-wrapper {
+          margin: 0 2rem 0 2rem;
+          .content-inner {
+
+            form {
+              .form-content {
+                color: rgb(41, 41, 41);
+                word-break: break-all;
+                h2 {
+                  font-weight: 700;
+                  font-size: 1.5rem;
+                  line-height: 2rem;
+                  padding-bottom: 0.5rem;
+                  border-bottom: 1px solid rgb(236, 237, 240);
+                }
+                &:not(:first-child) {
+                  margin-top: 5rem;
+                }
+                .form-item {
+                  margin: 1.5rem 0 1.5rem 0;
+                  label {
+                    font-weight: 600;
+                    font-size: 1.25rem;
+                    line-height: 1.75rem;
+                    padding: 0.5rem 0 0.5rem 0;
+                  }
+                  .item-name, .item-bio {
+                    border-bottom: 1px solid rgba(229, 231, 235, 1);
+                    h3 {
+                      font-size: 1.05rem;
+                      padding-bottom: 0.25rem;
+                    }
+                  }
+                  .info {
+                    margin-top: 1rem;
+                  }
+                  .button {
+                    a {
+                      border-radius: 4px;
+                      border: 1px solid rgba(229, 231, 235, 1);
+                      padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+                      transition: 0.3s;
+                      &:hover {
+                        transition: 0.3s;
+                        color: rgba(0, 0, 0, 0.64) !important;
+                        border: 1px solid rgb(119, 119, 119);
+                      }
+                    }
+                  }
+                  .photo-wrapper {
+                    display: flex;
+                    align-items: center;
+                    .info {
+                      width: 65%;
+                    }
+                    .picture {
+                      width: 35%;
+                      display: flex;
+                      justify-content: center;
+                      img {
+                        width: 85px;
+                        height: 85px;
+                        border-radius: 9999px;
+                      }
+                      .label-image {
+                        display: flex;
+                        position: absolute;
+                        cursor: pointer;
+                        justify-content: center;
+                        border-radius: 9999px;
+                        z-index: 99;
+                        width: 85px;
+                        height: 85px;
+                        opacity: 0;
+                        &:hover {
+                          background-color: #333;
+                          opacity: 0.5;
+                        }
+                      }
+                    }
+                  }
+                  .emails {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-top: 1rem;
+                    padding: 0.75rem 1rem 1rem 1rem;
+                    border: 1px solid rgba(229, 231, 235, 1);
+                    .verified {
+                      font-weight: 600;
+                      display: flex;
+                      align-items: center;
+                      color: rgba(37, 99, 235, 1);
+                      svg {
+                        margin-left: 0.25rem;
+                      }
+                    }
+                  }
+                  .sosion-wrapper, .reset-wrapper {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .info {
+                      width: 65%;
+                    }
+                  }
+                }
+                #name, #bio, .emails {
+                  width: 65%;
+                  .info {
+                    width: 90%;
+                  }
                 }
               }
             }
@@ -537,6 +711,9 @@ user-settings {
               .content {
                 display: flex;
                 padding: 0 1rem 1rem 1rem;
+                h2, h3 {
+                  word-break: break-all;
+                }
 
                 h2 {
                   font-weight: 600;
@@ -596,10 +773,6 @@ user-settings {
             font-size: 6rem;
             font-weight: 600;
             line-height: 1;
-            border-left: 1px solid rgba(209, 213, 219, 1);
-            span {
-              margin-left: 1rem;
-            }
           }
         }
         .descr-wrapper {

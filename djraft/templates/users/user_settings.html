@@ -4,237 +4,226 @@
 
 {% block inner %}
 <section class="section-content">
-  <user-settings class="grid grid-cols-4">
-    <left-aside class="col-span-1 px-12">
-      <div class="wrapper">
-        <ul>
-          <li class="my-5">
-            <h2 class="font-semibold text-2xl">Settings</h2>
-          </li>
-          <li class="my-6">
-            <a href="#about-you" class="text-gray-normal">About You</a>
-          </li>
-          <li class="my-6">
-            <a href="#email-settings" class="text-gray-normal"
-              >Email Settings</a
-            >
-          </li>
-          <li class="my-6">
-            <a href="#account" class="text-gray-normal">Account</a>
-          </li>
-          <li class="my-6">
-            <a href="#security" class="text-gray-normal">Security</a>
-          </li>
-        </ul>
+  <div class="user-settings">
+    <div class="wrapper">
+      <div class="inner">
+        <div class="navigation">
+          <ul class="nav-wrapper">
+            <li class="nav-item">
+              <h2>Settings</h2>
+            </li>
+            <li class="nav-item">
+              <a href="#about-me">About you</a>
+            </li>
+            <li class="nav-item">
+              <a href="#email-setting">Email settings</a>
+            </li>
+            <li class="nav-item">
+              <a href="#account-setting">Account</a>
+            </li>
+            <li class="nav-item">
+              <a href="#security-setting">Security</a>
+            </li>
+            <li class="nav-item">
+              <a href="#password-setting">Password</a>
+            </li>
+          </ul>
+        </div>
+        <div class="user-content">
+          <div class="content-wrapper">
+            <div class="content-inner">
+              <form
+                method="POST"
+                id="settings-form"
+                action="{% url 'me:settings' %}"
+              >
+                <!-- about user -->
+                <div class="form-content" id="about-me">
+                  <h2>About you</h2>
+                  <!-- name -->
+                  <div class="form-item" id="name">
+                    <label for="id_username">Name</label>
+                    <div class="item-name">
+                      <h3 id="id_username" contenteditable="true">
+                        {{ user.username }}
+                      </h3>
+                    </div>
+                    <div class="info">
+                      <small class="text-gray-normal">
+                        Your name appears on your Profile page, as your byline,
+                        and in your responses. It is a required field.
+                      </small>
+                    </div>
+                  </div>
+                  <!-- end name -->
+
+                  <!-- bio -->
+                  <div class="form-item" id="bio">
+                    <label for="id_bio">Bio</label>
+                    <div class="item-bio">
+                      <h3 id="id_bio" contenteditable="true">{{ user.bio }}</h3>
+                    </div>
+                    <div class="info">
+                      <small class="text-gray-normal">
+                        Your bio appears on your Profile page. Max 160
+                        characters.
+                      </small>
+                    </div>
+                  </div>
+                  <!-- end bio -->
+
+                  <!-- photo -->
+                  <div class="form-item" id="photo">
+                    <label for="user_photo">Photo</label>
+                    <div class="photo-wrapper">
+                      <div class="info">
+                        <small class="text-gray-normal">
+                          Your photo appears on your Profile page and your
+                          stories. <br />
+                          Recommended size: Square, at least 1000 pixels per
+                          side. File type: JPG, PNG.
+                        </small>
+                      </div>
+                      <div class="picture">
+                        <img
+                          src="{{user.avatar.url}}"
+                          width="85"
+                          height="85"
+                          id="current_avatar"
+                        />
+                        <input
+                          type="file"
+                          name="avatar"
+                          accept="image/*"
+                          id="id_avatar"
+                          onchange="getAvatarImage(event)"
+                          style="display: none"
+                        />
+                        <label for="id_avatar" class="label-image"></label>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end photo -->
+                </div>
+                <!-- end about user -->
+
+                <!-- email settings -->
+                <div class="form-content" id="email-setting">
+                  <h2>Email settings</h2>
+                  <!-- emails -->
+                  <div class="form-item" id="email">
+                    <label for="id_email">Your Email</label>
+                    <div class="emails">
+                      <h3>{{ user.email }}</h3>
+                      <span class="verified">
+                        <small>primary</small>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#1d4ed8"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="feather feather-check ml-2"
+                        >
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      </span>
+                    </div>
+                    <div class="info">
+                      <small class="text-gray-normal">
+                        Your email by default will not appears on your Profile
+                        page, It is a required field.
+                      </small>
+                    </div>
+                  </div>
+                  <!-- end emails -->
+                </div>
+                <!-- end email settings -->
+
+                <!-- account settings -->
+                <div class="form-content" id="account-setting">
+                  <h2>Account</h2>
+                  <!-- user username url -->
+                  <div class="form-item" id="uuname-url">
+                    <label for="id_bio">Username</label>
+                    <h3 id="id_bio" contenteditable="true">
+                      <span class="text-gray-normal"
+                        >https://djraft.herokuapp.com</span
+                      >/@{{ user.username }}
+                    </h3>
+                    <div class="info">
+                      <small class="text-gray-normal">
+                        This will appear in Djraft url
+                      </small>
+                    </div>
+                  </div>
+                  <!-- end user username url -->
+                </div>
+                <!-- end account settings -->
+
+                <!-- security settings -->
+                <div class="form-content" id="security-setting">
+                  <h2>Security</h2>
+                  <!-- signout sessions -->
+                  <div class="form-item" id="sosion">
+                    <label for="id_sosion"
+                      >Sign out of all other sessions</label
+                    >
+                    <div class="sosion-wrapper">
+                      <div class="info">
+                        <small class="text-gray-normal">
+                          This will sign you out of sessions in other browsers
+                          or on other computers.
+                        </small>
+                      </div>
+                      <div class="button">
+                        <a href="#" class="text-gray-normal">Sign out sessions</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end signout sessions -->
+                </div>
+                <!-- end security settings -->
+
+                <!-- password settings -->
+                <div class="form-content" id="password-setting">
+                  <h2>Password settings</h2>
+                  <!-- password reset -->
+                  <div class="form-item" id="reset-pass">
+                    <label>Reset password</label>
+                    <div class="reset-wrapper">
+                      <div class="info">
+                        <small class="text-gray-normal">
+                          We will send the link to your email in order to reset
+                          your password. You can't use the same password to
+                          create your new password.
+                        </small>
+                      </div>
+                      <div class="button">
+                        <a href="{% url 'account_reset_password' %}" class="text-gray-normal"
+                          >Reset Password</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end password reset -->
+                </div>
+                <!-- end password settings -->
+
+                <button type="submit" class="px-8 py-3 text-gray-100 rounded">
+                  Save Changes
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-    </left-aside>
-    <right-aside class="w-11/12 col-span-3 mx-5">
-      <form method="POST" id="settings-form" action="{% url 'me:settings' %}">
-        {% csrf_token %}
-        <!-- {{ form }}
-        <input type="submit" value="save"> -->
-
-        <!-- about user -->
-        <div id="about-you" class="mb-14">
-          <h2 class="border-b mb-3 py-3 font-semibold text-2xl">About You</h2>
-          <!-- username -->
-          <div id="name-section" class="w-4/6 mb-3 py-3">
-            <div class="border-b">
-              <h2 class="my-2 font-semibold text-lg">Username</h2>
-              <p class="word-break my-2" id="id_username" contenteditable="true">
-                {{ user.username }}
-              </p>
-            </div>
-            <div class="w-4/5">
-              <small class="text-gray-normal">
-                Your name appears on your Profile page, as your byline, and in
-                your responses. It is a required field.
-              </small>
-            </div>
-          </div>
-
-          <!-- bio -->
-          <div id="bio-section" class="w-4/6 mb-3 py-3">
-            <div class="border-b">
-              <h2 class="my-2 font-semibold text-lg">Bio</h2>
-              <p class="word-break my-2" id="id_bio" contenteditable="true">
-                {{ user.bio }}
-              </p>
-            </div>
-            <div class="w-4/5">
-              <small class="text-gray-normal">
-                Your bio appears on your Profile page. Max 160 characters.
-              </small>
-            </div>
-          </div>
-
-          <!-- photo -->
-          <div id="photo-section" class="mb-3 py-3">
-            <h2 class="my-2 font-semibold text-lg">Photo</h2>
-            <div class="flex items-center">
-              <div class="w-10/12 text-gray-normal">
-                <small
-                  >Your photo appears on your Profile page and your
-                  stories.</small
-                >
-                <br />
-                <small
-                  >Recommended size: Square, at least 1000 pixels per side. File
-                  type: JPG, PNG.</small
-                >
-              </div>
-              <picture>
-                <img
-                  src="{{user.avatar.url}}"
-                  class="rounded-full"
-                  width="85"
-                  height="85"
-                  id="current_avatar"
-                />
-                <input
-                  type="file"
-                  name="avatar"
-                  accept="image/*"
-                  id="id_avatar"
-                  onchange="getAvatarImage(event)"
-                  style="display: none"
-                />
-                <label
-                  for="id_avatar"
-                  class="label-image flex justify-center rounded-full"
-                ></label>
-              </picture>
-            </div>
-          </div>
-        </div>
-        <!-- end of about user -->
-
-        <!-- email settings -->
-        <div id="email-settings" class="mb-14">
-          <h2 class="border-b mb-3 py-3 font-semibold text-2xl">
-            Email Settings
-          </h2>
-          <!-- user email -->
-          <div id="email-section" class="w-4/6 mb-3 py-3">
-            <div class="border-b">
-              <h2 class="my-2 font-semibold text-lg">Your Email</h2>
-              <div class="flex items-center justify-between p-2 px-5 border">
-                <p class="word-break my-2">{{ user.email }}</p>
-                <span class="text-blue-600 flex items-center">
-                  <small>primary</small>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#1d4ed8"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-check ml-2"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </span>
-              </div>
-            </div>
-            <div class="w-4/5">
-              <small class="text-gray-normal">
-                Your email by default will not appears on your Profile page, It
-                is a required field.
-              </small>
-            </div>
-          </div>
-        </div>
-        <!-- end of email settings -->
-
-        <!-- account settings -->
-        <div id="account" class="mb-14">
-          <h2 class="border-b mb-3 py-3 font-semibold text-2xl">Account</h2>
-          <!-- user username -->
-          <div id="username-section" class="w-4/6 mb-3 py-3">
-            <h2 class="my-2 font-semibold text-lg">Your Username</h2>
-            <p class="my-2" contenteditable="true">
-              <span class="text-gray-500">https://djraft.herokuapp.com</span
-              >/@{{user.username }}
-            </p>
-          </div>
-
-          <!-- download user info -->
-          <div id="download-info-section" class="mb-3 py-3">
-            <h2 class="my-2 font-semibold text-lg">
-              Download your information
-            </h2>
-            <div class="flex justify-between items-center">
-              <div class="w-9/12">
-                <small class="text-gray-normal">
-                  Download a copy of the information you’ve shared on Djraft to
-                  a .zip file.
-                </small>
-              </div>
-              <a
-                href="#"
-                class="rounded border border-gray-400 p-2 text-gray-400 hover:border-gray-600 hover:text-gray-600"
-              >
-                Download .zip
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- end of account settings -->
-
-        <!-- security -->
-        <div id="security" class="mb-14">
-          <h2 class="border-b mb-3 py-3 font-semibold text-2xl">Security</h2>
-          <!-- sign out all session -->
-          <div id="signout-session-section" class="mb-3 py-3">
-            <h2 class="my-2 font-semibold text-lg">
-              Sign out of all other sessions
-            </h2>
-            <div class="flex justify-between items-center">
-              <div class="w-9/12">
-                <small class="text-gray-normal">
-                  This will sign you out of sessions in other browsers or on
-                  other computers.
-                </small>
-              </div>
-              <a
-                href="#"
-                class="rounded border border-gray-400 p-2 text-gray-400 hover:border-gray-600 hover:text-gray-600"
-              >
-                Sign out sessions
-              </a>
-            </div>
-          </div>
-
-          <!-- change password -->
-          <div id="change-pass-section" class="mb-3 py-3">
-            <h2 class="my-2 font-semibold text-lg">Reset Password</h2>
-            <div class="flex justify-between items-center">
-              <div class="w-9/12">
-                <small class="text-gray-normal">
-                  We will send the link to your email in order to reset your
-                  password. You can't use the same password to create your new
-                  password.
-                </small>
-              </div>
-              <a
-                href="{% url 'account_reset_password' %}"
-                class="rounded border border-gray-400 p-2 text-gray-400 hover:border-gray-600 hover:text-gray-600"
-              >
-                Reset Password
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- end of security -->
-        <button type="submit" class="px-8 py-3 text-gray-100 rounded">
-          Save Changes
-        </button>
-      </form>
-    </right-aside>
-  </user-settings>
+    </div>
+  </div>
 </section>
 <script lang="javascript">
   var getAvatarImage = function(event) {
