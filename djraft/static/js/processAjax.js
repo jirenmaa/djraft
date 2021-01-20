@@ -44,10 +44,9 @@ window.addEventListener("DOMContentLoaded", function () {
    */
   function editUserSettings() {
     const url = window.location.pathname;
-    var _formContents = new FormData();
-    var newUserHrefDt = document.getElementById("user_href_detail");
-    let redirect =
-      document.location.protocol + "//" + document.location.host + "/@";
+    let _formContents = new FormData();
+    let _newUsernames = document.getElementById("profile_href");
+    let _newLink = document.location.protocol + "//" + document.location.host;
 
     _formContents.append(
       "csrfmiddlewaretoken",
@@ -66,6 +65,11 @@ window.addEventListener("DOMContentLoaded", function () {
     fetch(url, {
       method: "POST",
       body: _formContents,
+    }).then((response) => () => {
+      _newUsernames.setAttribute(
+        "href",
+        _newLink + "/@" + document.getElementById("id_username").innerText
+      );
     });
   }
 
