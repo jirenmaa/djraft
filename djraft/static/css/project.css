@@ -32,6 +32,9 @@
   padding: 16px !important;
   padding: 1rem !important; }
 
+.display-none {
+  display: none; }
+
 body {
   margin: 0;
   padding: 0;
@@ -89,6 +92,35 @@ body {
           width: 40px;
           height: 40px;
           border-radius: 9999px; }
+      .side-navigation .items-bottom .nav-item .btn-menu {
+        cursor: pointer; }
+      .side-navigation .items-bottom .nav-item .menus {
+        font-family: "Montserrat", sans-serif;
+        width: auto;
+        max-width: 200px;
+        top: 75%;
+        left: 90%;
+        position: fixed;
+        background-color: #fff;
+        border: 1px solid #c3c3c3;
+        border-radius: 4px; }
+        .side-navigation .items-bottom .nav-item .menus .item {
+          text-align: left !important;
+          color: #909090;
+          font-size: 14px;
+          font-size: 0.875rem;
+          line-height: 20px;
+          line-height: 1.25rem;
+          padding: 10.4px 29.6px 10.4px 28px;
+          padding: 0.65rem 1.85rem 0.65rem 1.75rem; }
+          .side-navigation .items-bottom .nav-item .menus .item:hover {
+            color: #5c5c5c; }
+        .side-navigation .items-bottom .nav-item .menus .profile {
+          color: #10b981; }
+          .side-navigation .items-bottom .nav-item .menus .profile:hover {
+            color: #10b981; }
+        .side-navigation .items-bottom .nav-item .menus .logout:hover {
+          color: #ca0f34; }
 
 .home {
   display: grid;
@@ -334,6 +366,7 @@ body {
           margin-top: 8px;
           margin-top: 0.5rem; }
           .user-detail .wrapper .inner .stories .story .wrapper .inner .content .title > h2 {
+            font-family: "Montserrat", sans-serif;
             font-weight: 600;
             font-size: 60px;
             font-size: 3.75rem;
@@ -424,6 +457,9 @@ body {
       .user-settings .wrapper .inner .user-content .content-wrapper .content-inner form .form-content {
         color: #292929;
         word-break: break-all; }
+        .user-settings .wrapper .inner .user-content .content-wrapper .content-inner form .form-content:not(:first-of-type) {
+          margin-top: 80px;
+          margin-top: 5rem; }
         .user-settings .wrapper .inner .user-content .content-wrapper .content-inner form .form-content h2 {
           font-weight: 700;
           font-size: 24px;
@@ -433,9 +469,6 @@ body {
           padding-bottom: 8px;
           padding-bottom: 0.5rem;
           border-bottom: 1px solid #ecedf0; }
-        .user-settings .wrapper .inner .user-content .content-wrapper .content-inner form .form-content:not(:first-child) {
-          margin-top: 80px;
-          margin-top: 5rem; }
         .user-settings .wrapper .inner .user-content .content-wrapper .content-inner form .form-content .form-item {
           margin: 24px 0 24px 0;
           margin: 1.5rem 0 1.5rem 0; }
@@ -725,18 +758,6 @@ body {
       background-color: #10b981; }
       .story-form .wrapper .inner .story-creation-form .publish:hover {
         background-color: #128861; }
-
-story-form form {
-  font-family: "Montserrat", sans-serif;
-  margin: 0 160px 0 160px;
-  margin: 0 10rem 0 10rem;
-  word-break: break-all !important; }
-  story-form form #article-title h2 {
-    font-family: "Clara Antique", serif; }
-    story-form form #article-title h2 span {
-      line-height: 50%;
-      margin-left: 16px;
-      margin-left: 1rem; }
 
 .story-detail .wrapper {
   margin-top: 80px;

@@ -1,4 +1,6 @@
-// fonts face
+////////////////////////////////
+//Fonts//
+////////////////////////////////
 @font-face {
   font-family: "Clara Antique";
   src: url("../fonts/ClaraAntiqua.otf") format("opentype");
@@ -7,32 +9,26 @@
 ////////////////////////////////
 //Variables//
 ////////////////////////////////
-
 // Alert colors
-
 $white: #fff;
 $mint-green: #d6e9c6;
 $black: #000;
 $pink: #f2dede;
 $dark-pink: #eed3d7;
 $red: #b94a48;
-
 // Fonts
 $clarantiq: "Clara Antique", serif;
 
 ////////////////////////////////
 //Alerts//
 ////////////////////////////////
-
 // alert CSS, translated to the django-standard levels of
 // debug, info, success, warning, error
-
 .alert-debug {
   background-color: $white;
   border-color: $mint-green;
   color: $black;
 }
-
 .alert-error {
   background-color: $pink;
   border-color: $dark-pink;
@@ -42,11 +38,9 @@ $clarantiq: "Clara Antique", serif;
 ////////////////////////////////
 //Custom Classes//
 ////////////////////////////////
-
 .text-gray-normal {
   color: rgba(0, 0, 0, 0.54) !important;
 }
-
 .not-logged {
   margin: 0.875rem;
   border-radius: 9999px;
@@ -57,7 +51,6 @@ $clarantiq: "Clara Antique", serif;
     height: 40px;
   }
 }
-
 .no-border {
   border: none !important;
 }
@@ -66,18 +59,19 @@ $clarantiq: "Clara Antique", serif;
     padding: 1rem !important;
   }
 }
+.display-none {
+  display: none;
+}
 
 ////////////////////////////////
 //Website//
 ////////////////////////////////
-
 body {
   margin: 0;
   padding: 0;
   position: relative;
   overflow-x: hidden !important;
 }
-
 // main body
 .section-content {
   left: 68px;
@@ -87,7 +81,9 @@ body {
   padding: 1.25rem 7.5rem 3rem 3rem;
 }
 
-// side navigation
+////////////////////////////////
+//Side navigation//
+////////////////////////////////
 .side-navigation {
   width: 68px;
   height: 100%;
@@ -125,7 +121,6 @@ body {
     width: 100%;
     .nav-item {
       position: relative;
-
       .avatar-wrapper {
         margin: 0.875rem;
         img {
@@ -134,10 +129,48 @@ body {
           border-radius: 9999px;
         }
       }
+      .btn-menu {
+        cursor: pointer;
+      }
+      .menus {
+        font-family: "Montserrat", sans-serif;
+        width: auto;
+        max-width: 200px;
+        top: 75%;
+        left: 90%;
+        position: fixed;
+        background-color: #fff;
+        border: 1px solid rgb(195, 195, 195);
+        border-radius: 4px;
+        .item {
+          text-align: left !important;
+          color: rgb(144, 144, 144);
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          padding: 0.65rem 1.85rem 0.65rem 1.75rem;
+          &:hover {
+            color: rgb(92, 92, 92);
+          }
+        }
+        .profile {
+          color: rgb(16, 185, 129);
+          &:hover {
+            color: rgb(16, 185, 129);
+          }
+        }
+        .logout {
+          &:hover {
+            color: rgb(202, 15, 52);
+          }
+        }
+      }
     }
   }
 }
 
+////////////////////////////////
+//Home//
+////////////////////////////////
 .home {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -332,6 +365,9 @@ body {
   }
 }
 
+////////////////////////////////
+//User detail//
+////////////////////////////////
 .user-detail {
   .wrapper {
     .inner {
@@ -394,6 +430,7 @@ body {
                 word-break: break-all !important;
                 margin-top: 0.5rem;
                 .title > h2 {
+                  font-family: "Montserrat", sans-serif;
                   font-weight: 600;
                   font-size: 3.75rem;
                   line-height: 1;
@@ -450,6 +487,9 @@ body {
   }
 }
 
+////////////////////////////////
+//User settings//
+////////////////////////////////
 .user-settings {
   .wrapper {
     .inner {
@@ -490,15 +530,15 @@ body {
               .form-content {
                 color: rgb(41, 41, 41);
                 word-break: break-all;
+                &:not(:first-of-type) {
+                  margin-top: 5rem;
+                }
                 h2 {
                   font-weight: 700;
                   font-size: 1.5rem;
                   line-height: 2rem;
                   padding-bottom: 0.5rem;
                   border-bottom: 1px solid rgb(236, 237, 240);
-                }
-                &:not(:first-child) {
-                  margin-top: 5rem;
                 }
                 .form-item {
                   margin: 1.5rem 0 1.5rem 0;
@@ -617,6 +657,9 @@ body {
   }
 }
 
+////////////////////////////////
+//Stories user//
+////////////////////////////////
 .stories-user {
   .wrapper {
     margin-top: 0.35rem;
@@ -728,6 +771,9 @@ body {
   }
 }
 
+////////////////////////////////
+//Story form//
+////////////////////////////////
 .story-form {
   .wrapper {
     margin: 5rem 12rem 0 12rem;
@@ -786,26 +832,9 @@ body {
   }
 }
 
-story-form {
-  form {
-    // background-color: crimson;
-    font-family: "Montserrat", sans-serif;
-    margin: 0 10rem 0 10rem;
-    word-break: break-all !important;
-
-    #article-title {
-      h2 {
-        font-family: $clarantiq;
-
-        span {
-          line-height: 50%;
-          margin-left: 1rem;
-        }
-      }
-    }
-  }
-}
-
+////////////////////////////////
+//Story detail//
+////////////////////////////////
 .story-detail {
   .wrapper {
     margin-top: 5rem;
@@ -909,6 +938,3 @@ story-form {
     }
   }
 }
-
-// @media screen and (max-width: 800px) {
-// }
