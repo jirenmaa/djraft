@@ -787,6 +787,8 @@ body {
     display: -ms-flexbox;
     display: flex; }
     .story-detail .wrapper .inner .author .avatar a > img {
+      width: 64px;
+      height: 64px;
       border-radius: 4px; }
     .story-detail .wrapper .inner .author .info {
       display: -webkit-box;
