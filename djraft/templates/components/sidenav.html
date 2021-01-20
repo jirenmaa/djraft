@@ -1,12 +1,5 @@
 {% load static i18n %}
 <nav class="side-navigation border-r">
-  <!-- <a href="{% url 'home' %}">
-    <img
-      alt="djraft logo"
-      class="sidenav-logo"
-      src="{% static 'images/logo-sm.png' %}"
-    />
-  </a> -->
   <div>
     <a href="{% url 'home' %}">
       <img
@@ -33,13 +26,25 @@
   <ul class="items-bottom">
     <li class="nav-item">
       {% if request.user and request.user.is_authenticated %}
-      <div class="avatar-wrapper">
-        <a
-          id="user_href_detail"
-          href="{% url 'users:detail' request.user.username  %}"
-        >
+      <div class="avatar-wrapper" id="btn-menu">
+        <a href="#">
           <img src="{{request.user.avatar.url}}" id="user_avatar" />
         </a>
+      </div>
+      <div class="menus display-none" id="menus">
+        <div class="item profile">
+          <a
+            id="profile_href"
+            href="{% url 'users:detail' username=request.user.username %}"
+            >@Me</a
+          >
+        </div>
+        <div class="item">
+          <a href="{% url 'me:settings' %}">settings</a>
+        </div>
+        <div class="item logout">
+          <a href="{% url 'account_logout' %}">logout</a>
+        </div>
       </div>
       {% else %}
       <div class="not-logged" style="width: 40px; height: 40px">
