@@ -21,4 +21,14 @@ window.addEventListener("DOMContentLoaded", function () {
       });
     }
   });
+
+  /**
+   * User dropdown menus
+   */
+  var btnMenu = document.getElementById("btn-menu");
+  var menus = document.getElementById("menus");
+  btnMenu.addEventListener("click", () => {
+      menus.classList.toggle("display-none");
+  })
+
 });
